@@ -749,7 +749,7 @@ export default function App() {
           </motion.div>
 
           {/* Technical Execution Grid */}
-          <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+          <div className="lg:col-span-12 flex flex-col gap-8 pt-4">
             {items.map(([title, desc], idx) => (
               <motion.div
                 key={idx}
