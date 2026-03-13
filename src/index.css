@@ -21,27 +21,42 @@
 }
 
 @layer components {
+
+  /* Typography Scale */
+  .h1-display {
+    @apply text-5xl lg:text-6xl font-bold tracking-tight text-[#1a1a1a] leading-[1.1];
+  }
+
+  .h2-header {
+    @apply text-3xl lg:text-4xl font-bold tracking-tight text-[#1a1a1a] leading-tight;
+  }
+
+  .h3-subhead {
+    @apply text-xl lg:text-2xl font-semibold text-slate-800 leading-snug;
+  }
+
+  .body-main {
+    @apply text-lg lg:text-xl text-slate-600 font-medium leading-[1.6];
+  }
+
+  .label-caps {
+    @apply text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-blue-600;
+  }
+
+  /* Components */
   .glass-card {
     @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(0, 0, 0, 0.04)];
   }
 
   .clean-card {
-    @apply bg-white border border-[#f0f0f0] rounded-2xl transition-all duration-300;
+    @apply bg-white border border-[#f0f0f0] rounded-3xl transition-all duration-500;
   }
 
   .clean-card:hover {
-    @apply border-blue-200 shadow-[0_20px_40px_-15px_rgba(0, 0, 0, 0.05)];
+    @apply border-blue-200 shadow-[0_30px_60px_-15px_rgba(0, 0, 0, 0.08)];
   }
 
   .soft-gradient-bg {
-    background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
-  }
-
-  .section-title {
-    @apply text-3xl lg:text-5xl font-bold text-[#1a1a1a] leading-[1.15] tracking-[-0.03em];
-  }
-
-  .section-description {
-    @apply text-lg lg:text-xl text-[#666666] leading-relaxed font-normal;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
   }
 }
