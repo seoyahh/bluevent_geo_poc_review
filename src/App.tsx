@@ -30,6 +30,23 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        if (activeSection < SLIDES.length - 1) {
+          scrollToSection(activeSection + 1);
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        if (activeSection > 0) {
+          scrollToSection(activeSection - 1);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeSection]);
+
   const scrollToSection = (index: number) => {
     const section = document.getElementById(`section-${index}`);
     section?.scrollIntoView({ behavior: 'smooth' });
