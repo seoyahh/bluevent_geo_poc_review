@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import {
   CheckCircle2, Layout, BarChart3, Settings, AlertTriangle,
   PlayCircle, ArrowRight, ArrowUp, ArrowDown, FileText,
-  Activity, ChevronRight, Sparkles, Check, Compass
+  Activity, ChevronRight, Sparkles, Check, Compass, AlertCircle
 } from 'lucide-react';
 import { SLIDES } from './constants';
 import React from 'react';
@@ -301,6 +301,80 @@ export default function App() {
       </div>
     );
   };
+  const InfraAuditLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const robots = slide.bullets.filter(b => b.startsWith('INFAR:ROBOTS')).map(b => b.split('|')[1]);
+    const conclusion = slide.bullets.filter(b => b.startsWith('INFAR:CONCLUSION')).map(b => b.split('|')[1]);
+    const sitemap = slide.bullets.filter(b => b.startsWith('INFAR:SITEMAP')).map(b => b.split('|')[1]);
+    const canonical = slide.bullets.filter(b => b.startsWith('INFAR:CANONICAL')).map(b => b.split('|')[1]);
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Robots.txt Analysis */}
+          <div className="lg:col-span-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="bg-white border-2 border-red-100 rounded-[3rem] p-12 relative overflow-hidden group shadow-xl shadow-red-500/5"
+            >
+              <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:rotate-12 transition-transform duration-700">
+                <AlertCircle size={120} className="text-red-600" />
+              </div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="px-4 py-1.5 rounded-full bg-red-50 text-red-600 font-black text-xs uppercase tracking-widest">Global Blocker</div>
+                  <h3 className="text-3xl font-black text-slate-900">robots.txt 진단 결과</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
+                  {robots.map((item, idx) => (
+                    <div key={idx} className="flex gap-4 items-start">
+                      <div className="w-2 h-2 rounded-full bg-red-400 mt-2.5 flex-shrink-0" />
+                      <p className="text-lg text-slate-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: item }} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Conclusion Box */}
+          <div className="lg:col-span-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="bg-slate-900 rounded-[2rem] p-8 flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-8">
+                <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
+                  <Activity size={32} />
+                </div>
+                <p className="text-xl lg:text-2xl text-white font-medium" dangerouslySetInnerHTML={{ __html: conclusion[0] }} />
+              </div>
+              <ArrowRight className="text-white/20 group-hover:translate-x-4 transition-all" size={32} />
+            </motion.div>
+          </div>
+
+          {/* Secondary Items */}
+          <div className="lg:col-span-6">
+            <div className="clean-card p-10 h-full">
+              <h4 className="label-caps mb-6">Infrastructure 02</h4>
+              <p className="text-xl font-bold text-slate-900 mb-6" dangerouslySetInnerHTML={{ __html: sitemap[0]?.split(':')[0] }} />
+              <p className="text-lg text-slate-500 leading-relaxed font-light">{sitemap[0]?.split(':')[1]}</p>
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <div className="clean-card p-10 h-full">
+              <h4 className="label-caps mb-6">Infrastructure 03</h4>
+              <p className="text-xl font-bold text-slate-900 mb-6" dangerouslySetInnerHTML={{ __html: canonical[0]?.split(':')[0] }} />
+              <p className="text-lg text-slate-500 leading-relaxed font-light">{canonical[0]?.split(':')[1]}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
@@ -336,9 +410,10 @@ export default function App() {
             {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
             {index === 6 && <DualPillarLayout slide={slide} />}
+            {index === 7 && <InfraAuditLayout slide={slide} />}
             {[12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
             {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {[7, 10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
+            {[10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
             {![0, 1, 2, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}

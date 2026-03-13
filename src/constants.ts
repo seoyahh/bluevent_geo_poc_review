@@ -88,10 +88,13 @@ export const SLIDES: Slide[] = [
     title: "2-1-b. 사이트 인프라 진단 결과",
     oneLiner: "도메인 루트의 <strong>robots.txt 크리티컬 이슈</strong> 및 인프라 설정 진단",
     bullets: [
-      "<strong>robots.txt 차단 이슈</strong>: 고도몰 기본 정책에 의해 <strong>ClaudeBot, GPTBot이 전면 차단(Disallow: /)</strong>된 상태 확인",
-      "<strong>AI 봇별 영향도</strong>: Perplexity/Gemini는 허용되나, <strong>ChatGPT/Claude는 사이트 직접 크롤링이 불가능</strong>하여 PoC 검증 불가",
-      "<strong>Sitemap.xml 상태</strong>: 페이지 갱신 정보 누락 및 AI 봇 대상의 별도 사이트맵 경로 제공 미비",
-      "<strong>Canonical 정책</strong>: 중복 페이지 처리 로직 미흡으로 인한 AI 엔티티 인식 분산 위험 식별"
+      "INFAR:ROBOTS|<strong>robots.txt 진단 결과</strong>: `bluevent.co.kr` 도메인 루트의 단일 파일이 사이트 전체에 적용 중",
+      "INFAR:ROBOTS|<strong>크리티컬 이슈</strong>: 고도몰 기본 정책에 의해 <strong>ClaudeBot & GPTBot 전면 차단(Disallow: /)</strong> 상태",
+      "INFAR:ROBOTS|<strong>AI 봇 영향도</strong>: ChatGPT와 Claude는 블루벤트 사이트 직접 크롤링 불가 (Perplexity/Gemini는 허용)",
+      "INFAR:ROBOTS|<strong>검색 봇 상태</strong>: Google/Naver 등 주요 엔진은 관리자 영역만 부분 차단 중",
+      "INFAR:CONCLUSION|<strong>결론</strong>: 인프라 이슈 해결 전까지는 Claude/ChatGPT 대상의 기술 개선 효과 검증이 불가능함",
+      "INFAR:SITEMAP|<strong>Sitemap.xml 존재 여부</strong>: 사이트맵 경로 확인 및 AI 봇 인식 가용성 점검 필요 (이슈 요약 삽입 예정)",
+      "INFAR:CANONICAL|<strong>Canonical 정책</strong>: 중복 페이지 처리 로직 및 대표 URL 엔티티 선언 상태 (이슈 요약 삽입 예정)"
     ],
     visualGuide: "인프라 차단 이슈(Red Signal)가 페이지별 개선 효과를 저해하는 로직 도식화."
   },
