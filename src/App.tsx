@@ -650,8 +650,8 @@ export default function App() {
               <div className="h-px flex-grow bg-slate-100" />
             </div>
 
-            <div className="rounded-[2rem] border border-slate-100 shadow-lg shadow-slate-200/5 bg-slate-50 relative group opacity-40 grayscale hover:opacity-80 transition-all duration-700 overflow-hidden max-h-[50vh] flex items-start justify-center">
-              {asis && <img src={asis} alt="As-Is Main" className="w-full h-auto object-contain" />}
+            <div className="rounded-[2rem] border border-slate-100 shadow-lg shadow-slate-200/5 bg-slate-50 relative group opacity-40 grayscale hover:opacity-80 transition-all duration-700 overflow-hidden h-[50vh] flex items-center justify-center">
+              {asis && <img src={asis} alt="As-Is Main" className="max-w-full max-h-full object-contain" />}
               <div className="absolute inset-0 shadow-[inner_0_0_60px_rgba(0,0,0,0.02)] pointer-events-none" />
             </div>
             <p className="text-center text-[10px] text-slate-400 font-medium tracking-tight">기존 메인 홈페이지</p>
@@ -673,8 +673,8 @@ export default function App() {
               {/* Subtle Glow */}
               <div className="absolute -inset-8 bg-blue-500/5 rounded-[4rem] blur-3xl -z-10 animate-pulse" />
 
-              <div className="rounded-[2.5rem] border-2 border-blue-100 shadow-[0_30px_80px_-20px_rgba(0,102,255,0.12)] bg-white relative group overflow-hidden max-h-[65vh] flex items-start justify-center ring-4 ring-blue-50/30">
-                {tobe && <img src={tobe} alt="To-Be Main" className="w-full h-auto object-contain scale-100 group-hover:scale-[1.01] transition-transform duration-[3000ms] ease-out" />}
+              <div className="rounded-[2.5rem] border-2 border-blue-100 shadow-[0_30px_80px_-20px_rgba(0,102,255,0.12)] bg-white relative group overflow-hidden h-[75vh] flex items-center justify-center ring-4 ring-blue-50/30">
+                {tobe && <img src={tobe} alt="To-Be Main" className="max-w-full max-h-full object-contain scale-100 group-hover:scale-[1.01] transition-transform duration-[3000ms] ease-out" />}
                 <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
               </div>
             </div>
