@@ -4,7 +4,7 @@ export const SLIDES: Slide[] = [
   {
     id: 1,
     title: "블루벤트 GEO향 개편 PoC - 수행방안 리뷰",
-    oneLiner: "<strong>AI 기반 검색 엔진 최적화</strong> 및<br/>사용자 경험 고도화 전략",
+    oneLiner: "<strong>AI 기반 검색 엔진 최적화</strong> 및 사용자 경험 고도화 전략",
     bullets: [
       "Project: <strong>SEO/GEO Optimization</strong>",
       "Date: <strong>2026. 03</strong>",
@@ -15,23 +15,23 @@ export const SLIDES: Slide[] = [
   {
     id: 2,
     title: "1. AI 인용 현황 분석",
-    oneLiner: "현행 <strong>AI 플랫폼별</strong><br/>브랜드 인지 및 인용률 정밀 진단",
+    oneLiner: "현행 <strong>AI 플랫폼별</strong> 브랜드 인지 및 인용률 정밀 진단",
     bullets: [],
     visualGuide: "대단원 섹션 브레이크. 심플하고 볼드한 텍스트 중심 디자인."
   },
   {
     id: 3,
     title: "1-1. 질문 세트 구성 방안",
-    oneLiner: "정교한 질문 설계를 통한<br/><strong>브랜드 인식</strong> 및 인용 정확도 측정",
+    oneLiner: "정교한 질문 설계를 통한 <strong>브랜드 인식</strong> 및 인용 정확도 측정",
     bullets: [
-      "SUMMARY:<strong>진단 목적</strong>|AI 플랫폼(ChatGPT, Perplexity, Gemini 등)에서<br/>블루벤트가 얼마나 올바르게 인식·인용되는지 측정",
-      "SUMMARY:<strong>개선 범위</strong>|메인페이지 + 제품 상세페이지<br/>(코드 수정 수준)",
-      "SUMMARY:<strong>수집 항목</strong>|① 블루벤트 언급 유무 ② 인용 URL<br/>③ 제품명·스펙 정확도 ④ 오류/누락 내용",
-      "QUESTION:브랜드 인식|블루벤트는 어떤 회사고,<br/>어떤 제품을 판매하나요?",
-      "QUESTION:카테고리 추천|가정용 음식물처리기 추천해줘.<br/>분쇄식으로 조용하고 탈취 잘 되는 거 찾고 있어.",
-      "QUESTION:카테고리 추천|음식물처리기 구매할 때 브랜드별로 어떤 차이가 있나요?<br/>국내 주요 브랜드 비교해줘.",
-      "QUESTION:카테고리 추천|필터 교체 주기를 앱으로 확인하고 원격 제어할 수 있는<br/>음식물처리기 브랜드는 어디야?",
-      "QUESTION:제품 스펙|블루벤트 ID 음식물처리기 스펙이랑<br/>주요 기능 알려줘.",
+      "SUMMARY:<strong>진단 목적</strong>|AI 플랫폼(ChatGPT, Perplexity, Gemini 등)에서 블루벤트가 얼마나 올바르게 인식·인용되는지 측정",
+      "SUMMARY:<strong>개선 범위</strong>|메인페이지 + 제품 상세페이지 (코드 수정 수준)",
+      "SUMMARY:<strong>수집 항목</strong>|① 블루벤트 언급 유무 ② 인용 URL ③ 제품명·스펙 정확도 ④ 오류/누락 내용",
+      "QUESTION:브랜드 인식|블루벤트는 어떤 회사고, 어떤 제품을 판매하나요?",
+      "QUESTION:카테고리 추천|가정용 음식물처리기 추천해줘. 분쇄식으로 조용하고 탈취 잘 되는 거 찾고 있어.",
+      "QUESTION:카테고리 추천|음식물처리기 구매할 때 브랜드별로 어떤 차이가 있나요? 국내 주요 브랜드 비교해줘.",
+      "QUESTION:카테고리 추천|필터 교체 주기를 앱으로 확인하고 원격 제어할 수 있는 음식물처리기 브랜드는 어디야?",
+      "QUESTION:제품 스펙|블루벤트 ID 음식물처리기 스펙이랑 주요 기능 알려줘.",
       "MODEL:ChatGPT",
       "MODEL:Perplexity",
       "MODEL:Gemini",
@@ -42,96 +42,96 @@ export const SLIDES: Slide[] = [
   {
     id: 4,
     title: "1-2. AI 모델별 인용률 분석 결과",
-    oneLiner: "4대 주요 모델 대상<br/><strong>정량적 인용 매트릭스</strong> 산출 결과",
+    oneLiner: "4대 주요 모델 대상 <strong>정량적 인용 매트릭스</strong> 산출 결과",
     bullets: [
-      "인용 매트릭스: 모델별 답변에 대한<br/><strong>인용 유무</strong> 및 근거 URL 적절성 평가",
-      "오류 식별: <strong>Hallucination(사실 오류)</strong> 패턴 정리 및<br/>경쟁사 오인용 사례 분석",
-      "출처 분석: 공식 홈페이지 vs 상세페이지 vs<br/><strong>외부 리소스</strong>(블로그/뉴스) 인용 비중",
-      "인용 패턴: 텍스트 정보 부족 시 크롤러가 참조하는<br/><strong>외부 소스 현황</strong> 파악"
+      "인용 매트릭스: 모델별 답변에 대한 <strong>인용 유무</strong> 및 근거 URL 적절성 평가",
+      "오류 식별: <strong>Hallucination(사실 오류)</strong> 패턴 정리 및 경쟁사 오인용 사례 분석",
+      "출처 분석: 공식 홈페이지 vs 상세페이지 vs <strong>외부 리소스</strong>(블로그/뉴스) 인용 비중",
+      "인용 패턴: 텍스트 정보 부족 시 크롤러가 참조하는 <strong>외부 소스 현황</strong> 파악"
     ],
     visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)과 출처별 비율 파이 차트."
   },
   {
     id: 5,
     title: "1-3. 인사이트 도출 — 가설 설정의 배경",
-    oneLiner: "진단 데이터 기반 <strong>'테크니컬 개선을 통한 인용 신뢰도 확보'</strong><br/>핵심 가설 설정",
+    oneLiner: "진단 데이터 기반 <strong>'테크니컬 개선을 통한 인용 신뢰도 확보'</strong> 가설 설정",
     bullets: [
-      "핵심 발견: 인용은 주로 정보 밀도가 높은<br/><strong>외부 사이트</strong>에 의존함",
-      "오류 패턴: <strong>이미지 기반 콘텐츠</strong>를 AI가<br/>오인하거나 누락하는 경향 뚜렷",
-      "상위 가설: 자사몰 테크니컬 최적화 시<br/><strong>인용률 및 데이터 신뢰도</strong> 대폭 상승",
-      "수행 근거: 공식 데이터 우위를 점하기 위한<br/><strong>구조화 데이터(JSON-LD)</strong> 적용 필수"
+      "핵심 발견: 인용은 주로 정보 밀도가 높은 <strong>외부 사이트</strong>에 의존함",
+      "오류 패턴: <strong>이미지 기반 콘텐츠</strong>를 AI가 오인하거나 누락하는 경향 뚜렷",
+      "상위 가설: 자사몰 테크니컬 최적화 시 <strong>인용률 및 데이터 신뢰도</strong> 대폭 상승",
+      "수행 근거: 공식 데이터 우위를 점하기 위한 <strong>구조화 데이터(JSON-LD)</strong> 적용 필수"
     ],
     visualGuide: "현상 발견(Low Direct Citation)에서 가설 수립(Technical Optimization)으로 이어지는 로직 플로우."
   },
   {
     id: 6,
     title: "2. 테크니컬 GEO 진단 결과",
-    oneLiner: "자사몰 <strong>인프라 및 페이지별</strong><br/>검색 환경 정밀 진단 데이터",
+    oneLiner: "자사몰 <strong>인프라 및 페이지별</strong> 검색 환경 정밀 진단 데이터",
     bullets: [],
     visualGuide: "두 번째 섹션 브레이크. 기술적 진단 키워드 중심의 시각화."
   },
   {
     id: 7,
     title: "2-1. 진단 방법론",
-    oneLiner: "<strong>데이터 기반 정밀 진단</strong>을 위한<br/>이트라이브 고유 방법론 적용",
+    oneLiner: "<strong>데이터 기반 정밀 진단</strong>을 위한 이트라이브 고유 방법론 적용",
     bullets: [
-      "PILLAR:이트라이브 내부 진단 도구|AI 봇의 사이트 구조 해석 안정성과<br/>데이터 추출 정합성을 객관적으로 평가합니다.",
-      "PILLAR:수행계획서 기준 점검 항목|인덱싱 가능성: robots.txt, sitemap,<br/>canonical 등 AI 봇의 접근성 전수 조사",
-      "PILLAR:수행계획서 기준 점검 항목|사이트 구조: SSR 기술적 한계,<br/>템플릿 반복 영역 및 본문 비중 분석",
-      "PILLAR:수행계획서 기준 점검 항목|헤딩 구조 & 링크: 시맨틱 헤딩(H1-H6)<br/>위계 및 내부 링크 품질 검토",
-      "PILLAR:수행계획서 기준 점검 항목|구조화 데이터: Schema.org 기반<br/>JSON-LD 유무 및 마크업 정합성 진단"
+      "PILLAR:이트라이브 내부 진단 도구|AI 봇의 사이트 구조 해석 안정성과 데이터 추출 정합성을 객관적으로 평가합니다.",
+      "PILLAR:수행계획서 기준 점검 항목|인덱싱 가능성: robots.txt, sitemap, canonical 등 AI 봇의 접근성 전수 조사",
+      "PILLAR:수행계획서 기준 점검 항목|사이트 구조: SSR 기술적 한계, 템플릿 반복 영역 및 본문 비중 분석",
+      "PILLAR:수행계획서 기준 점검 항목|헤딩 구조 & 링크: 시맨틱 헤딩(H1-H6) 위계 및 내부 링크 품질 검토",
+      "PILLAR:수행계획서 기준 점검 항목|구조화 데이터: Schema.org 기반 JSON-LD 유무 및 마크업 정합성 진단"
     ],
     visualGuide: "이트라이브만의 진단 로직이 담긴 다이아몬드 모델 프레임워크."
   },
   {
     id: 8,
     title: "2-1-b. 사이트 인프라 진단 결과",
-    oneLiner: "도메인 루트의 <strong>robots.txt 크리티컬 이슈</strong> 및<br/>인프라 설정 진단 결과",
+    oneLiner: "도메인 루트의 <strong>robots.txt 크리티컬 이슈</strong> 및 인프라 설정 진단 결과",
     bullets: [
-      "INFAR:ROBOTS|<strong>robots.txt 진단 결과</strong>:<br/>루트 도메인의 단일 파일이 사이트 전체에 적용 중",
-      "INFAR:ROBOTS|<strong>크리티컬 이슈</strong>:<br/>고도몰 기본 정책에 의해 <strong>ClaudeBot & GPTBot 전면 차단</strong> 상태",
-      "INFAR:ROBOTS|<strong>AI 봇 영향도</strong>:<br/>ChatGPT와 Claude는 블루벤트 사이트를 직접 크롤링할 수 없음",
-      "INFAR:ROBOTS|<strong>검색 봇 상태</strong>:<br/>Google/Naver 등 주요 엔진은 관리자 영역만 부분 차단 중",
-      "INFAR:CONCLUSION|<strong>결론</strong>:<br/>인프라 이슈 해결 전까지는 기술 개선 효과 검증이 불가능함",
-      "INFAR:SITEMAP|<strong>Sitemap.xml 존재</strong>:<br/>사이트맵 경로 확인 및 AI 봇 인식 가용성 점검 필요",
-      "INFAR:CANONICAL|<strong>Canonical 정책</strong>:<br/>중복 페이지 처리 로직 및 대표 URL 선언 상태 점검"
+      "INFAR:ROBOTS|<strong>robots.txt 진단 결과</strong>: 루트 도메인의 단일 파일이 사이트 전체에 적용 중",
+      "INFAR:ROBOTS|<strong>크리티컬 이슈</strong>: 고도몰 기본 정책에 의해 <strong>ClaudeBot & GPTBot 전면 차단</strong> 상태",
+      "INFAR:ROBOTS|<strong>AI 봇 영향도</strong>: ChatGPT와 Claude는 블루벤트 사이트를 직접 크롤링할 수 없음",
+      "INFAR:ROBOTS|<strong>검색 봇 상태</strong>: Google/Naver 등 주요 엔진은 관리자 영역만 부분 차단 중",
+      "INFAR:CONCLUSION|<strong>결론</strong>: 인프라 이슈 해결 전까지는 기술 개선 효과 검증이 불가능함",
+      "INFAR:SITEMAP|<strong>Sitemap.xml 존재</strong>: 사이트맵 경로 확인 및 AI 봇 인식 가용성 점검 필요",
+      "INFAR:CANONICAL|<strong>Canonical 정책</strong>: 중복 페이지 처리 로직 및 대표 URL 선언 상태 점검"
     ],
     visualGuide: "인프라 차단 이슈(Red Signal)가 페이지별 개선 효과를 저해하는 로직 도식화."
   },
   {
     id: 9,
     title: "2-2. 메인 홈페이지 진단 결과",
-    oneLiner: "브랜드 인식의 핵심인<br/><strong>메인 페이지 테크니컬 요소</strong> 심층 분석",
+    oneLiner: "브랜드 인식의 핵심인 <strong>메인 페이지 테크니컬 요소</strong> 심층 분석",
     bullets: [
-      "SCORE:Title & Meta|<strong>Warning</strong>|<br/>기본 정보는 존재하나 브랜드 키워드 최적화 부족",
-      "SCORE:Heading Level|<strong>Fail</strong>|<br/>H1 태그 부재 및 논리적 위계 구조 전무",
-      "SCORE:Content Ratio|<strong>Fail</strong>|<br/>이미지 비중 90% 이상으로 AI 인식 텍스트 극소량",
-      "SCORE:Structured Data|<strong>Fail</strong>|<br/>JSON-LD 등 검색 기여 구조화 데이터 미적용",
-      "ISSUE:요약|본문 텍스트 비율이 낮고 구조화가 안 되어<br/>AI의 의미론적 분석이 불가능한 상태"
+      "SCORE:Title & Meta|<strong>Warning</strong>|기본 정보인 제목과 설명은 존재하나 브랜드 키워드 최적화 부족",
+      "SCORE:Heading Level|<strong>Fail</strong>|H1 태그가 존재하지 않으며 논리적 위계 구조 전무",
+      "SCORE:Content Ratio|<strong>Fail</strong>|이미지 비중 90% 이상으로 AI 인식 가능 텍스트 극소량",
+      "SCORE:Structured Data|<strong>Fail</strong>|JSON-LD 등 검색 기여 구조화 데이터 미적용",
+      "ISSUE:요약|본문 텍스트 비율이 낮고 구조화가 안 되어 AI의 의미론적 분석이 불가능한 상태"
     ],
     visualGuide: "항목별 Pass/Fail 스코어 카드 및 검색 가용성 정밀 분석 그래프."
   },
   {
     id: 10,
     title: "2-3. 제품 상세페이지(블루벤트 ID) 진단 결과",
-    oneLiner: "제품 정보 정확도를 결정하는<br/><strong>데이터 추출 효율성</strong> 정밀 진단",
+    oneLiner: "제품 정보 정확도를 결정하는 <strong>데이터 추출 효율성</strong> 정밀 진단",
     bullets: [
-      "SCORE:Image Structure|<strong>Fail</strong>|<br/>전체가 통 이미지로 구성되어 텍스트 추출 불가",
-      "SCORE:Alt Metadata|<strong>Fail</strong>|<br/>핵심 제품 스펙에 대한 대체 텍스트(alt) 전무",
-      "SCORE:Heading Hierarchy|<strong>Fail</strong>|<br/>제품명, 스펙 표 등을 구분하는 헤딩 구조 실종",
-      "SCORE:Schema Product|<strong>Fail</strong>|<br/>구조화 데이터 부재로 AI 답변 내 추천 소스 제외",
-      "ISSUE:요약|데이터 크롤링의 '블랙홀' 상태로,<br/>AI가 인용할 수 있는 텍스트 레이어 전무"
+      "SCORE:Image Structure|<strong>Fail</strong>|상세페이지 전체가 통 이미지로 구성되어 텍스트 데이터 추출 불가",
+      "SCORE:Alt Metadata|<strong>Fail</strong>|핵심 제품 스펙에 대한 대체 텍스트(alt) 지원 전무",
+      "SCORE:Heading Hierarchy|<strong>Fail</strong>|제품명, 스펙 표 등을 구분하는 헤딩 구조 실종",
+      "SCORE:Schema Product|<strong>Fail</strong>|Product/Offer 구조화 데이터 부재로 AI 답변 내 추천 소스 제외",
+      "ISSUE:요약|데이터 크롤링의 '블랙홀' 상태로, AI가 인용할 수 있는 텍스트 데이터 레이어 부재"
     ],
     visualGuide: "데이터 인지 불가 지점(이미지 영역)을 붉게 표시한 상세페이지 히트맵 시각화."
   },
   {
     id: 11,
     title: "2-4. 진단 결과 종합 → 가설 구체화",
-    oneLiner: "진단 기반 핵심 문제 정의 및<br/><strong>PoC 수행을 위한 실행 가설</strong> 확정",
+    oneLiner: "진단 기반 핵심 문제 정의 및 <strong>PoC 수행을 위한 실행 가설</strong> 확정",
     bullets: [
-      "HYPO:<strong>가설 A (상세페이지)</strong>|<br/>이미지를 분할하고 alt를 삽입하면 AI가 제품 정보를 정확히 인용한다.",
-      "HYPO:<strong>가설 B (메인페이지)</strong>|<br/>JSON-LD를 적용하면 브랜드 인지 질문에서 자사몰 인용률이 상승한다.",
-      "HYPO:<strong>가설 C (정보 구조)</strong>|<br/>GEO 6단계 구조로 재배치하면 AI가 핵심 스펙을 우선 참조한다.",
+      "HYPO:<strong>가설 A (상세페이지)</strong>|이미지를 분할하고 alt + 히든 텍스트를 삽입하면 AI가 제품 정보를 정확히 인용한다.",
+      "HYPO:<strong>가설 B (메인페이지)</strong>|JSON-LD 구조화 데이터를 적용하면 브랜드 인지 질문에서 자사몰 인용률이 상승한다.",
+      "HYPO:<strong>가설 C (정보 구조)</strong>|GEO 6단계 구조로 정보 순서를 재배치하면 AI가 핵심 스펙 데이터를 우선 참조한다.",
       "TABLE:가설별 검증 여부|가설A:PoC적용(상세)|가설B:PoC적용(메인)|가설C:전술적용(공통)"
     ],
     visualGuide: "과제 도출 매트릭스 및 가설 수립 플로우차트."
@@ -139,41 +139,41 @@ export const SLIDES: Slide[] = [
   {
     id: 12,
     title: "3. PoC 수행방안",
-    oneLiner: "기술적 개선과 성과 입증을 위한<br/><strong>단계별 실행 로드맵</strong> 상세 전략",
+    oneLiner: "기술적 개선과 성과 입증을 위한 <strong>단계별 실행 로드맵</strong> 상세 전략",
     bullets: [],
     visualGuide: "마지막 섹션 브레이크. 실행력과 성과 중심의 다이나믹한 디자인."
   },
   {
     id: 13,
     title: "3-0. 플랫폼 특성을 고려한 개선 전략",
-    oneLiner: "솔루션 제약을 극복하고<br/><strong>실행력을 확보</strong>하기 위한 엔지니어링 전략",
+    oneLiner: "솔루션 제약을 극복하고 <strong>실행력을 확보</strong>하기 위한 엔지니어링 전략",
     bullets: [
-      "CONSTR:SSR 한계|HTML 내 직접 데이터 삽입 방식으로 구현하여<br/>AI봇의 인용률 확보",
-      "CONSTR:템플릿 구조|변경 가능 영역(본문) vs 불가 영역(시스템)을<br/>엄격히 구분하여 적용",
-      "CONSTR:치환코드 활용|플랫폼 고유 치환코드를 활용한<br/>메타 정보 및 데이터 레이어 자동화",
-      "STRAT:구조화 구현|신규 컨텐츠 제작이 아닌,<br/>기존 <strong>템플릿/코드 구조화</strong>에 집중",
-      "STRAT:Robots.txt 수정|관리자 UI 수정 불가 시,<br/><strong>FTP 직접 수정 또는 센터 요청</strong> 필수",
-      "STRAT:리스크 관리|시스템 업데이트 시 초기화 가능성 존재 →<br/>주기적인 <strong>기술 상태 모니터링</strong> 프로세스 가동"
+      "CONSTR:SSR 한계|HTML 내 직접 텍스트/데이터 삽입 방식으로 구현하여 AI 인용률 확보",
+      "CONSTR:템플릿 구조 제약|변경 가능 영역(본문/헤더) vs 불가 영역(시스템)을 엄격히 구분하여 적용",
+      "CONSTR:치환코드 활용|플랫폼 고유 치환코드를 활용한 메타 정보 및 데이터 레이어 자동화 시도",
+      "STRAT:구조화 구현|신규 컨텐츠 대량 제작이 아닌, 기존 <strong>템플릿/코드/데이터 구조화</strong>에 집중",
+      "STRAT:Robots.txt 수정|관리자 UI 수정 불가 → <strong>FTP 직접 수정 또는 고객센터 요청</strong> 필수",
+      "STRAT:리스크 관리|시스템 업데이트 시 초기화 가능성 존재 → 주기적인 <strong>기술 상태 모니터링</strong> 프로세스 가동"
     ],
     visualGuide: "플랫폼 제약사항과 기술적 돌파구를 매칭한 솔루션 맵."
   },
   {
     id: 14,
     title: "3-1. 메인 홈페이지 — As-Is & To-Be",
-    oneLiner: "브랜드 실체 강화를 위한<br/><strong>인프라 정상화 및 시맨틱 보정</strong> 비교",
+    oneLiner: "브랜드 실체 강화를 위한 <strong>인프라 정상화 및 시맨틱 보정</strong> 비교",
     bullets: [
-      "COMPARE:인덱싱 인프라|robots.txt에서 GPT·Claude 차단 상태|<strong>전면 허용으로 전환</strong> 및<br/>사이트맵 수동 제출",
-      "COMPARE:메타 태그|타이틀 태그 혼재 및<br/>OG/Description 미정규화|<strong>타이틀 1개 확정 적용</strong> 및<br/>메타 정보 일괄 정규화",
-      "COMPARE:텍스트 구조|이미지/영상 의존도 높음,<br/>헤딩 태그 위계 전무|<strong>H1 및 TL;DR 텍스트 삽입</strong>,<br/>스펙/인증 요약 텍스트 추가",
-      "COMPARE:JSON-LD|미적용|Organization / WebSite<br/>스키마 우선 적용",
-      "COMPARE:FAQ|없음|핵심 5개 FAQ 및<br/>FAQPage 스키마 연동"
+      "COMPARE:인덱싱 인프라|robots.txt에서 GPT·Claude 차단 상태|<strong>전면 허용으로 전환</strong> 및 사이트맵 수동 제출",
+      "COMPARE:메타 태그|타이틀 태그 후보가 복수로 혼재, Meta Description·OG 태그 미정규화|<strong>타이틀 1개 확정 적용</strong> 및 메타 정보 일괄 정규화",
+      "COMPARE:본문 텍스트 구조|본문 텍스트 비율 낮음, 헤딩 태그 미사용, 정보가 영상·이미지에만 의존|<strong>H1 및 TL;DR 텍스트 삽입</strong>, 스펙/인증 요약 텍스트 블록 추가",
+      "COMPARE:JSON-LD|미적용|Organization / WebSite 스키마 우선 적용",
+      "COMPARE:FAQ|없음|핵심 5개 FAQ 텍스트 블록 삽입 (FAQPage 스키마 연동)"
     ],
     visualGuide: "메인 페이지의 시각적/기술적 변화를 비교한 전/후 레이아웃 도식."
   },
   {
     id: 15,
     title: "3-1. 메인 홈페이지 — 비주얼 프리뷰",
-    oneLiner: "UI/UX 및 테크니컬 구조 개편에 따른<br/><strong>시각적 변화 미리보기</strong>",
+    oneLiner: "UI/UX 및 테크니컬 구조 개편에 따른 <strong>시각적 변화 미리보기</strong>",
     bullets: [
       "ASIS:images/main_asis1.png",
       "TOBE:images/main_tobe1.png"
@@ -183,26 +183,26 @@ export const SLIDES: Slide[] = [
   {
     id: 16,
     title: "3-1. 메인 홈페이지 — As-Is & To-Be",
-    oneLiner: "성공적인 PoC 수행을 위한<br/><strong>개선 시 의사결정 필요 사항</strong>",
+    oneLiner: "성공적인 PoC 수행을 위한 <strong>개선 시 의사결정 필요 사항</strong>",
     bullets: [
-      "OPTION:A. Title Tag 후보|웹사이트의 이름표|음식물 처리의 한 손 시대 개막|원핸드그립 음식물처리기, 블루벤트 ID|한 손으로 끝내는 음식물처리기 공식몰",
-      "OPTION:B. H1 Tag 후보|페이지의 핵심 주제|한 손으로 끝내는 음식물처리기, 블루벤트|한 손으로 넣고 AI로 처리하는 음식물처리기|블루벤트, AI 음식물처리기의 기준",
-      "OPTION:C. 스펙 요약 영역|핵심 제품 정보 요약|대표 제품(블루벤트 ID) 단일 구성|무무 / S 포함 전 라인업 통합 구성",
-      "OPTION:D. FAQ 5개 선정|사용자 의도 반영|필터는 얼마나 자주 교체해야 하나요?|닭뼈나 생선뼈도 갈리나요?|작동 시 소음은 어느 정도인가요?"
+      "OPTION:A. Title Tag 후보|웹사이트의 각 페이지에 붙이는 '이름표'|음식물 처리의 한 손 시대 개막 (기존)|원핸드그립 음식물처리기, 블루벤트 ID (제품형)|한 손으로 끝내는 음식물처리기 공식 온라인몰",
+      "OPTION:B. H1 Tag 후보|페이지의 핵심 주제를 정의하는 대제목|한 손으로 끝내는 음식물처리기, 블루벤트 (브랜드)|한 손으로 넣고 AI로 처리하는 음식물처리기 (AI 강조)|블루벤트, AI 음식물처리기의 새로운 기준",
+      "OPTION:C. 스펙 요약 영역|핵심 제품 정보를 요약한 텍스트 블록|대표 제품(블루벤트 ID) 단일 모델 중심 구성|무무 / S 포함 전 라인업 통합 요약 구성",
+      "OPTION:D. FAQ 5개 선정|사용자 의도를 반영한 텍스트 블록|필터는 얼마나 자주 교체해야 하나요?|닭뼈나 생선뼈도 갈리나요?|작동 시 소음은 어느 정도인가요?"
     ],
     visualGuide: "의사결정이 필요한 항목들을 대조표 및 선택형 카드 형태로 시각화."
   },
   {
     id: 17,
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
-    oneLiner: "테크니컬 GEO 신호 개선 및<br/><strong>텍스트 레이어 확보</strong> 전략",
+    oneLiner: "테크니컬 GEO 신호 개선 및 <strong>텍스트 레이어 확보</strong> 전략",
     bullets: [
-      "ASIDE_TITLE:본 PoC 범위에서는 상세페이지 이미지 ‘순서 재배치’는 제외하고,<br/>기술적 GEO 신호 개선에 집중합니다.",
-      "ASIDE_BULLET:<strong>AI 인용/정확도 개선의 핵심 레버</strong>는 이미지 위치보다<br/>‘텍스트로 읽히는 구조’(alt, hidden text, H1~H3)입니다.",
-      "ASIDE_BULLET:<strong>alt 텍스트 품질이 확보</strong>되면 이미지 위치와 상관없이<br/>크롤러의 정보 인식률이 대폭 상승합니다.",
-      "ASIDE_BULLET:순서 재배치는 검증보다 <strong>UX/CRO 성격이 강해</strong><br/>이번 PoC 기술 검증 항목과는 분리합니다.",
-      "ASIDE_BULLET:PoC 우선순위는 <strong>① 이미지 Alt 텍스트 전면 적용 →<br/>② 섹션별 헤딩 구조 정비 및 데이터 구조화</strong> 순입니다.",
-      "ITEM:PoC 기술적 구현 범위|순서 재배치 등 UI/UX 개편이 아닌,<br/><strong>이미지 Alt 텍스트(Alternative Text) 정밀 마크업</strong>을 통한<br/>데이터 가독성 확보에 집중합니다."
+      "ASIDE_TITLE:본 PoC 범위에서는 상세페이지 이미지 ‘순서 재배치’는 제외하고, 기술적 GEO 신호 개선에 집중합니다.",
+      "ASIDE_BULLET:<strong>AI 인용/정확도 개선의 핵심 레버</strong>는 이미지 위치보다 ‘텍스트로 읽히는 구조’(alt, hidden text, H1~H3)입니다.",
+      "ASIDE_BULLET:<strong>alt 텍스트 품질이 확보</strong>되면 이미지 위치와 상관없이 크롤러의 정보 인식률이 대폭 상승합니다.",
+      "ASIDE_BULLET:순서 재배치는 검증보다 <strong>UX/CRO 성격이 강해</strong> 이번 PoC 기술 검증 항목과는 분리합니다.",
+      "ASIDE_BULLET:PoC 우선순위는 <strong>① 이미지 Alt 텍스트 전면 적용 → ② 섹션별 헤딩 구조 정비 및 데이터 구조화</strong> 순입니다.",
+      "ITEM:PoC 기술적 구현 범위|순서 재배치 등 UI/UX 개편이 아닌, <strong>이미지 Alt 텍스트(Alternative Text) 정밀 마크업</strong>을 통한 데이터 가독성 확보에 집중합니다."
     ],
     visualGuide: "상세 페이지의 테크니컬 개선 핵심 포인트(Aside)와 4대 실행 항목(Grid)을 결합한 정보 중심 레이아웃."
   }
