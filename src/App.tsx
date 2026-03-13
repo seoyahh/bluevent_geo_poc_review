@@ -636,10 +636,7 @@ export default function App() {
     const tobe = slide.bullets.find(b => b.startsWith('TOBE:'))?.replace('TOBE:', '');
 
     return (
-      <div className="w-full max-w-[1600px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-4" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-2xl text-slate-400 font-light mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
-
+      <div className="w-full max-w-[1600px] mx-auto px-8 lg:px-16 py-10 min-h-screen flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* As-Is */}
           <motion.div
