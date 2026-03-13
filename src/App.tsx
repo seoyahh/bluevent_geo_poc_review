@@ -221,6 +221,7 @@ export default function App() {
               key={idx}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.1 }}
               className="flex items-center gap-8 bg-white/60 border border-slate-100 p-6 rounded-[1.5rem] shadow-sm hover:border-blue-200 hover:bg-white transition-all group"
             >
@@ -262,6 +263,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             className="clean-card p-12 bg-white flex flex-col gap-10 border-blue-100/50 shadow-xl shadow-blue-500/5"
           >
             <div className="space-y-4">
@@ -278,6 +280,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.2 }}
             className="clean-card p-12 bg-white flex flex-col gap-10 border-slate-200"
           >
@@ -317,6 +320,7 @@ export default function App() {
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
               className="bg-white border-2 border-red-100 rounded-[3rem] p-12 relative overflow-hidden group shadow-xl shadow-red-500/5"
             >
               <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:rotate-12 transition-transform duration-700">
@@ -344,6 +348,7 @@ export default function App() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               className="bg-slate-900 rounded-[2rem] p-8 flex items-center justify-between group"
             >
               <div className="flex items-center gap-8">
@@ -389,13 +394,14 @@ export default function App() {
               key={idx}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.1 }}
               className="clean-card p-10 flex flex-col gap-6"
             >
               <div className="flex justify-between items-start">
                 <span className="label-caps !text-slate-400">{label}</span>
                 <span className={`px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest ${status.includes('Fail') ? 'bg-red-50 text-red-600' :
-                    status.includes('Warning') ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'
+                  status.includes('Warning') ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'
                   }`} dangerouslySetInnerHTML={{ __html: status }} />
               </div>
               <p className="text-lg text-slate-700 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
@@ -432,6 +438,7 @@ export default function App() {
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               className="clean-card p-12 bg-white flex flex-col gap-8 hover:border-blue-300 transition-colors"
             >
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-black">
