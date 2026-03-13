@@ -233,6 +233,22 @@ export default function App() {
     </div>
   );
 
+  const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
+    <div className="flex flex-col items-center text-center justify-center min-h-[70vh]">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: "100px" }}
+        className="h-1 bg-blue-600 mb-10"
+      />
+      <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-slate-900 mb-6 uppercase">
+        {slide.title}
+      </h2>
+      <p className="text-xl lg:text-2xl text-slate-400 font-medium">
+        {slide.oneLiner}
+      </p>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 scroll-smooth overflow-x-hidden">
       {/* Sidebar Navigation progress */}
@@ -261,10 +277,11 @@ export default function App() {
               className="min-h-[80vh] first:min-h-screen"
             >
               {index === 0 && <IntroLayout slide={slide} />}
-              {(index >= 2 && index <= 4) || (index === 7) || (index === 10) ? <GridLayout slide={slide} index={index} /> : null}
-              {index === 13 ? <RoadmapLayout slide={slide} index={index} /> : null}
-              {index === 14 || index === 11 ? <ChecklistLayout slide={slide} index={index} /> : null}
-              {![0, 2, 3, 4, 7, 10, 11, 13, 14].includes(index) && <StandardLayout slide={slide} index={index} />}
+              {index === 1 && <DividerLayout slide={slide} />}
+              {index === 3 || (index >= 8 && index <= 10) || index === 13 ? <GridLayout slide={slide} index={index} /> : null}
+              {index === 16 ? <RoadmapLayout slide={slide} index={index} /> : null}
+              {index === 17 || index === 14 ? <ChecklistLayout slide={slide} index={index} /> : null}
+              {![0, 1, 3, 8, 9, 10, 13, 16, 17, 14].includes(index) && <StandardLayout slide={slide} index={index} />}
 
               {/* Subtle divider except for intro */}
               {index > 0 && index < SLIDES.length - 1 && (

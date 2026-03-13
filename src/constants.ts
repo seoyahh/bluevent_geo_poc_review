@@ -14,6 +14,13 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 2,
+    title: "1. AI 인용 현황 분석",
+    oneLiner: "현행 AI 플랫폼별 브랜드 인지 및 인용률 정밀 진단",
+    bullets: [],
+    visualGuide: "대단원 섹션 브레이크. 심플하고 볼드한 텍스트 중심 디자인."
+  },
+  {
+    id: 3,
     title: "1-1. 질문 세트 구성 방안",
     oneLiner: "정교한 질문 설계를 통한 AI 플랫폼별 브랜드 인식 및 인용 정확도 측정",
     bullets: [
@@ -25,7 +32,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "질문 설계 로직과 카테고리별(A, B, C) 대표 문항을 배치한 구조적 인포그래픽."
   },
   {
-    id: 3,
+    id: 4,
     title: "질문 카테고리 및 최종 5문항",
     oneLiner: "브랜드 실체부터 비브랜드 추천, 상세 스펙까지 아우르는 진단 쿼리 구성",
     bullets: [
@@ -38,7 +45,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "질문 카테고리(브랜드/추천/스펙)별 아이콘과 말풍선 형태의 질문 리스트."
   },
   {
-    id: 4,
+    id: 5,
     title: "1-2. AI 모델별 인용률 분석 결과",
     oneLiner: "4대 주요 모델(ChatGPT, Perplexity, Gemini, Claude) 대상 정량적 인용 매트릭스 산출",
     bullets: [
@@ -50,7 +57,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)과 출처별 비율 파이 차트."
   },
   {
-    id: 5,
+    id: 6,
     title: "1-3. 인사이트 및 상위 가설 수립",
     oneLiner: "진단 데이터 기반 '테크니컬 개선을 통한 인용 신뢰도 확보' 가설 설정",
     bullets: [
