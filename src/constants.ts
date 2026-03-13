@@ -24,11 +24,18 @@ export const SLIDES: Slide[] = [
     title: "1-1. 질문 세트 구성 방안",
     oneLiner: "정교한 질문 설계를 통한 <strong>브랜드 인식</strong> 및 인용 정확도 측정",
     bullets: [
-      "<strong>질문 카테고리 A (브랜드 인식)</strong>: AI가 블루벤트를 독립적인 브랜드 엔티티로 인식하고 있는지 진단 (회사 성격 및 판매 제품군)",
-      "<strong>질문 카테고리 B (카테고리 추천)</strong>: 비브랜드 쿼리(음식물처리기 추천, 브랜드 비교 등) 시 블루벤트의 후보군 포함 여부 테스트",
-      "<strong>질문 카테고리 C (제품 스펙)</strong>: 상세페이지 핵심 정보(용량, 방식 등)에 대한 AI 인용 정확도 및 데이터 추출 신뢰도 검증",
-      "<strong>테스트 질문 구성</strong>: 카테고리별 브랜드/비브랜드 쿼리 혼합을 통한 <strong>최종 5문항</strong>의 검증 세트 수립",
-      "<strong>테스트 대상 AI 모델</strong>: <strong>ChatGPT, Perplexity, Gemini, Claude</strong> 등 4대 주요 생성형 AI 모델 전수 진단"
+      "SUMMARY:<strong>진단 목적</strong>|AI 플랫폼(ChatGPT, Perplexity, Gemini 등)에서 블루벤트가 얼마나 올바르게 인식·인용되는지 측정",
+      "SUMMARY:<strong>개선 범위</strong>|메인페이지 + 제품 상세페이지 (코드 수정 수준)",
+      "SUMMARY:<strong>수집 항목</strong>|① 블루벤트 언급 유무 ② 인용 URL ③ 제품명·스펙 정확도 ④ 오류/누락 내용",
+      "QUESTION:브랜드 인식|블루벤트는 어떤 회사고, 어떤 제품을 판매하나요?",
+      "QUESTION:카테고리 추천|가정용 음식물처리기 추천해줘. 분쇄식으로 조용하고 탈취 잘 되는 거 찾고 있어.",
+      "QUESTION:카테고리 추천|음식물처리기 구매할 때 브랜드별로 어떤 차이가 있나요? 국내 주요 브랜드 비교해줘.",
+      "QUESTION:카테고리 추천|음식물 처리기 필터 교체 주기를 스마트폰 앱으로 확인하고 기기를 원격 제어할 수 있는 제품 브랜드는 어디야?",
+      "QUESTION:제품 스펙|블루벤트 ID 음식물처리기 스펙이랑 주요 기능 알려줘.",
+      "MODEL:ChatGPT",
+      "MODEL:Perplexity",
+      "MODEL:Gemini",
+      "MODEL:Claude"
     ],
     visualGuide: "질문 설계 로직과 카테고리별(A, B, C) 대표 문항을 배치한 구조적 인포그래픽."
   },
@@ -68,10 +75,11 @@ export const SLIDES: Slide[] = [
     title: "2-1. 진단 방법론",
     oneLiner: "<strong>데이터 기반 정밀 진단</strong>을 위한 이트라이브 고유 방법론 적용",
     bullets: [
-      "<strong>이트라이브 내부 진단 도구</strong>: AI의 사이트 구조 이해도와 데이터 추출 효율성을 정량적으로 측정하는 독자 도구 활용",
-      "<strong>인덱싱 및 접근성 점검</strong>: robots.txt, sitemap, canonical 정책 등 검색 엔진 및 AI 봇의 가용성 전수 조사",
-      "<strong>사이트 구조 및 SSR 분석</strong>: SSR 한계성, 템플릿 반복 영역, 본문 밀도 분석을 통한 크롤링 최적화 진단",
-      "<strong>시맨틱 및 데이터 구조화</strong>: 헤딩 구조(H1-H6) 위계, 내부 링크 품질, Schema.org(JSON-LD) 적용 정합성 검토"
+      "PILLAR:이트라이브 내부 진단 도구|AI 봇의 사이트 구조 해석 안정성과 개별 요소별 데이터 추출 정합성을 수치화하여, 검색 엔진 및 생성형 AI의 크롤링 가용성을 객관적으로 평가합니다.",
+      "PILLAR:수행계획서 1-2 기준 점검 항목|인덱싱 가능성: robots.txt, sitemap, canonical 정책 등 AI 봇의 접근성 전수 조사",
+      "PILLAR:수행계획서 1-2 기준 점검 항목|사이트 구조: SSR 기술적 한계, 템플릿 반복 영역, 본문 비항목 비중 분석",
+      "PILLAR:수행계획서 1-2 기준 점검 항목|헤딩 구조 & 링크: 시맨틱 헤딩(H1-H6) 위계 및 내부 링크 품질 검토",
+      "PILLAR:수행계획서 1-2 기준 점검 항목|구조화 데이터: Schema.org 기반 JSON-LD 유무 및 마크업 정합성 진단"
     ],
     visualGuide: "이트라이브만의 진단 로직이 담긴 다이아몬드 모델 프레임워크."
   },

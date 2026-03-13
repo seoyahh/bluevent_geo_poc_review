@@ -249,6 +249,59 @@ export default function App() {
     );
   };
 
+  const DualPillarLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const pillar1 = slide.bullets.filter(b => b.startsWith('PILLAR:이트라이브')).map(b => b.replace(/PILLAR:.*?\|/, ''));
+    const pillar2 = slide.bullets.filter(b => b.startsWith('PILLAR:수행계획서')).map(b => b.replace(/PILLAR:.*?\|/, ''));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Pillar 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="clean-card p-12 bg-white flex flex-col gap-10 border-blue-100/50 shadow-xl shadow-blue-500/5"
+          >
+            <div className="space-y-4">
+              <span className="label-caps !text-blue-600">Methodology 01</span>
+              <h3 className="text-3xl font-black text-slate-900">이트라이브 내부 진단 도구</h3>
+            </div>
+            <div className="w-full h-1 bg-gradient-to-r from-blue-600 to-transparent rounded-full opacity-20" />
+            <p className="text-xl text-slate-600 leading-relaxed font-light">
+              {pillar1[0]}
+            </p>
+          </motion.div>
+
+          {/* Pillar 2 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="clean-card p-12 bg-white flex flex-col gap-10 border-slate-200"
+          >
+            <div className="space-y-4">
+              <span className="label-caps !text-slate-400">Methodology 02</span>
+              <h3 className="text-3xl font-black text-slate-900">수행계획서 1-2 기준 점검 항목</h3>
+            </div>
+            <div className="w-full h-1 bg-gradient-to-r from-slate-200 to-transparent rounded-full" />
+            <div className="grid grid-cols-1 gap-6">
+              {pillar2.map((item, idx) => (
+                <div key={idx} className="flex gap-5 items-start group">
+                  <div className="w-6 h-6 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-blue-600 group-hover:border-blue-600 transition-all">
+                    <Check size={12} className="text-slate-300 group-hover:text-white" />
+                  </div>
+                  <p className="text-lg text-slate-600 group-hover:text-slate-900 transition-colors font-medium" dangerouslySetInnerHTML={{ __html: item }} />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
       {/* Refined Sidebar Navigation */}
@@ -282,7 +335,8 @@ export default function App() {
             {index === 0 && <IntroLayout slide={slide} />}
             {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
-            {[6, 12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
+            {index === 6 && <DualPillarLayout slide={slide} />}
+            {[12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
             {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
             {[7, 10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
             {![0, 1, 2, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
