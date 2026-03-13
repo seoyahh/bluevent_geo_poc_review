@@ -652,8 +652,8 @@ export default function App() {
               <span className="px-4 py-1 bg-slate-100 text-slate-500 rounded-full text-xs font-black uppercase tracking-widest">As-Is</span>
               <span className="text-slate-400 font-light italic">현재 상태</span>
             </div>
-            <div className="rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 bg-slate-50 relative group overflow-hidden">
-              {asis && <img src={asis} alt="As-Is Main" className="w-full h-auto block" />}
+            <div className="rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 bg-slate-50 relative group overflow-hidden flex flex-col">
+              {asis && <img src={asis} alt="As-Is Main" className="w-full h-auto object-top" />}
               <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,0,0,0.03)] pointer-events-none" />
             </div>
           </motion.div>
@@ -669,8 +669,8 @@ export default function App() {
               <span className="px-4 py-1 bg-blue-600 text-white rounded-full text-xs font-black uppercase tracking-widest">To-Be</span>
               <span className="text-blue-600 font-bold">PoC 적용 후 예시</span>
             </div>
-            <div className="rounded-[2.5rem] border border-blue-100 shadow-2xl shadow-blue-500/10 bg-blue-50/30 relative group overflow-hidden">
-              {tobe && <img src={tobe} alt="To-Be Main" className="w-full h-auto block" />}
+            <div className="rounded-[2.5rem] border border-blue-100 shadow-2xl shadow-blue-500/10 bg-blue-50/30 relative group overflow-hidden flex flex-col">
+              {tobe && <img src={tobe} alt="To-Be Main" className="w-full h-auto object-top" />}
               <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,102,255,0.03)] pointer-events-none" />
             </div>
           </motion.div>
