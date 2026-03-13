@@ -81,7 +81,7 @@ export default function App() {
       </div>
       <div className="lg:col-span-7 space-y-10">
         <div className="p-8 bg-blue-50/50 border-l-4 border-blue-500 rounded-xl rounded-l-none">
-          <p className="text-xl lg:text-2xl text-slate-700 leading-snug font-medium italic">
+          <p className="text-xl lg:text-2xl text-slate-700 leading-snug font-medium">
             "{slide.oneLiner}"
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function App() {
               <Settings size={14} className="text-blue-400 animate-spin-slow" />
               <h3 className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em]">Visual Framework</h3>
             </div>
-            <p className="text-lg text-slate-300 font-medium leading-relaxed italic border-l-2 border-slate-700 pl-6">
+            <p className="text-lg text-slate-300 font-medium leading-relaxed border-l-2 border-slate-700 pl-6">
               {slide.visualGuide}
             </p>
           </div>
