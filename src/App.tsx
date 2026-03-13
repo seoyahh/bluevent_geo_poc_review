@@ -685,6 +685,78 @@ export default function App() {
     );
   };
 
+  const TechnicalDetailLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const asideTitle = slide.bullets.find(b => b.startsWith('ASIDE_TITLE:'))?.replace('ASIDE_TITLE:', '');
+    const asideBullets = slide.bullets.filter(b => b.startsWith('ASIDE_BULLET:')).map(b => b.replace('ASIDE_BULLET:', ''));
+    const items = slide.bullets.filter(b => b.startsWith('ITEM:')).map(b => b.replace('ITEM:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <div className="mb-12">
+          <h2 className="h2-header mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-xl lg:text-2xl text-slate-500 font-light" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Primary Scope Card (Aside) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-12 p-10 bg-blue-600 rounded-[2.5rem] text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 p-12 opacity-10">
+              <Sparkles size={120} />
+            </div>
+
+            <div className="relative z-10 space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">
+                PoC 집중 영역
+              </div>
+              <h3 className="text-2xl lg:text-3xl font-black leading-tight max-w-4xl" dangerouslySetInnerHTML={{ __html: asideTitle || '' }} />
+
+              <div className="w-24 h-1 bg-white/30 rounded-full" />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                {asideBullets.map((bullet, idx) => (
+                  <div key={idx} className="flex gap-4 items-start">
+                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check size={14} className="text-white" />
+                    </div>
+                    <p className="text-base lg:text-lg text-blue-50 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Technical Execution Grid */}
+          <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+            {items.map(([title, desc], idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * idx }}
+                viewport={{ once: true }}
+                className="clean-card p-10 flex flex-col gap-6 group hover:border-blue-500 transition-all shadow-xl shadow-slate-200/5 h-full"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-sm overflow-hidden">
+                    <Settings className="animate-spin-slow" size={20} />
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
+                </div>
+                <div className="h-px bg-slate-100 group-hover:bg-blue-100 transition-colors" />
+                <p className="text-base lg:text-lg text-slate-500 font-normal leading-relaxed group-hover:text-slate-700 transition-colors" dangerouslySetInnerHTML={{ __html: desc }} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
       {/* Refined Sidebar Navigation */}
@@ -726,8 +798,9 @@ export default function App() {
             {index === 13 && <ComparisonTableLayout slide={slide} />}
             {index === 14 && <VisualPreviewLayout slide={slide} />}
             {index === 15 && <DecisionGridLayout slide={slide} />}
+            {index === 16 && <TechnicalDetailLayout slide={slide} />}
             {index === 18 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

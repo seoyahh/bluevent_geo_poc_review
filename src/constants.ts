@@ -195,14 +195,19 @@ export const SLIDES: Slide[] = [
   {
     id: 17,
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
-    oneLiner: "AI용 <strong>정형 데이터 레이어 구축</strong>을 통한 인용률 극대화",
+    oneLiner: "테크니컬 GEO 신호 개선 및 <strong>정형 데이터 구조화</strong> 전략",
     bullets: [
-      "As-Is: 통 이미지 상세내용, AI 인식 불가, 스키마 부재",
-      "To-Be 1: <strong>이미지 분할</strong> 및 핵심 데이터의 HTML 텍스트 병행 노출",
-      "To-Be 2: <strong>Product 스키마(가격, 평점 등)</strong> JSON-LD 적용",
-      "To-Be 3: 최적화용 <strong>숏폼 텍스트 블록(Key Specs)</strong> 상단 배치"
+      "ASIDE_TITLE:본 PoC 범위에서는 제품 상세페이지 이미지 ‘순서 재배치’는 제외하고, 테크니컬 GEO 신호 개선에 집중합니다.",
+      "ASIDE_BULLET:<strong>AI 인용/정확도 개선의 핵심 레버</strong>는 이미지 위치가 아니라 ‘텍스트로 읽히는 구조’(alt, hidden text, H1~H3, 구조화 데이터)입니다.",
+      "ASIDE_BULLET:<strong>alt/hidden text 품질이 확보</strong>되면 이미지가 상단·하단에 있더라도 크롤러 인식 차이는 제한적입니다.",
+      "ASIDE_BULLET:순서 재배치는 GEO 검증보다 <strong>UX/CRO 성격이 강해</strong> 1차 검증 항목과 분리합니다.",
+      "ASIDE_BULLET:PoC 우선순위는 <strong>① alt + hidden text 전면 적용 → ② 섹션별 헤딩 구조 정비 및 스펙의 구조화</strong> 순입니다.",
+      "ITEM:① <strong>JSON-LD 구조화 데이터</strong>|미적용 → Product(+ FAQPage/HowTo 필요 시) 스키마 적용",
+      "ITEM:② <strong>메타 태그 정규화</strong>|(현황 점검) → Meta Title 최적화, Meta Description, OG 태그, Canonical URL 정규화",
+      "ITEM:③ <strong>본문 텍스트 삽입</strong>|이미지 분할(13개), 규격 Alt 텍스트, H2/H3/p 히든 텍스트, 헤딩 태그 계층화 적용",
+      "ITEM:④ <strong>크롤링/인덱싱 인프라</strong>|robots.txt AI봇 허용, sitemap.xml 확인, llms.txt 선택 적용"
     ],
-    visualGuide: "상세 페이지의 데이터 추출 엔진 친화적 개선안 가이드라인."
+    visualGuide: "상세 페이지의 테크니컬 개선 핵심 포인트(Aside)와 4대 실행 항목(Grid)을 결합한 정보 중심 레이아웃."
   },
   {
     id: 18,
