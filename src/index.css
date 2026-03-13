@@ -24,43 +24,49 @@
 
   /* Typography Scale */
   .h1-hero {
-    @apply text-6xl lg:text-[6.5rem] font-bold tracking-[-0.04em] text-[#1a1a1a] leading-[1.02];
+    @apply text-6xl lg:text-[7.5rem] font-extrabold tracking-[-0.05em] text-[#0f172a] leading-[0.95];
   }
 
   .h1-display {
-    @apply text-5xl lg:text-8xl font-bold tracking-[-0.02em] text-[#1a1a1a] leading-[1.1];
+    @apply text-5xl lg:text-8xl font-extrabold tracking-[-0.04em] text-[#0f172a] leading-[1.05];
   }
 
   .h2-header {
-    @apply text-3xl lg:text-5xl font-bold tracking-tight text-[#1a1a1a] leading-tight;
+    @apply text-3xl lg:text-6xl font-bold tracking-[-0.03em] text-[#0f172a] leading-tight;
   }
 
   .h3-subhead {
-    @apply text-xl lg:text-2xl font-semibold text-slate-800 leading-snug;
+    @apply text-xl lg:text-3xl font-medium tracking-tight text-slate-500 leading-relaxed;
   }
 
   .body-main {
-    @apply text-lg lg:text-xl text-slate-600 font-medium leading-[1.6];
+    @apply text-lg lg:text-2xl font-normal text-slate-600 leading-[1.7];
+  }
+
+  .body-main strong {
+    @apply font-bold text-blue-600 px-1 rounded-sm bg-blue-50/50;
   }
 
   .label-caps {
-    @apply text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-blue-600;
+    @apply text-[11px] font-black uppercase tracking-[0.3em] text-blue-600/80;
   }
 
-  /* Components */
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(0, 0, 0, 0.04)];
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500;
   }
 
+  /* Component Styles */
   .clean-card {
-    @apply bg-white border border-[#f0f0f0] rounded-3xl transition-all duration-500;
+    @apply bg-white border border-slate-100 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0, 0, 0, 0.04)] hover:shadow-[0_20px_50px_rgba(0, 102, 255, 0.08)] transition-all duration-500;
   }
 
-  .clean-card:hover {
-    @apply border-blue-200 shadow-[0_30px_60px_-15px_rgba(0, 0, 0, 0.08)];
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-2xl border border-white/50 rounded-[3rem] shadow-2xl shadow-slate-200/50;
   }
 
   .soft-gradient-bg {
-    background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle at top right, rgba(0, 102, 255, 0.05), transparent 40%),
+      radial-gradient(circle at bottom left, rgba(0, 102, 255, 0.03), transparent 40%),
+      #fafbfc;
   }
 }

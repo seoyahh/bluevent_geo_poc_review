@@ -41,73 +41,69 @@ export default function App() {
       <div className="absolute inset-0 soft-gradient-bg pointer-events-none" />
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 45, damping: 20 }}
-        className="relative z-10 max-w-5xl px-6"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 max-w-7xl px-8"
       >
-        <div className="label-caps mb-12 flex items-center justify-center gap-3">
-          <Sparkles size={16} />
+        <div className="label-caps mb-16 flex items-center justify-center gap-4 bg-white/50 backdrop-blur-sm px-6 py-2 rounded-full border border-slate-100/50 shadow-sm mx-auto w-fit">
+          <Sparkles size={18} />
           <span>Strategic Review 2026</span>
         </div>
 
-        <h1 className="h1-hero mb-10">
-          {slide.title}
-        </h1>
+        <h1 className="h1-hero mb-14 text-gradient" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <p className="text-2xl lg:text-4xl text-slate-500 font-normal max-w-5xl mx-auto mb-24 opacity-80">
-          {slide.oneLiner}
-        </p>
+        <p className="text-3xl lg:text-5xl text-slate-500 font-light leading-[1.4] max-w-5xl mx-auto mb-28" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 15, 0] }}
           transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-5 opacity-30"
+          className="flex flex-col items-center gap-6 opacity-40"
         >
-          <div className="w-[1.5px] h-20 bg-gradient-to-b from-blue-600 to-transparent" />
-          <span className="label-caps text-[10px]">Begin Exploration</span>
+          <div className="w-[1px] h-24 bg-gradient-to-b from-blue-600 to-transparent" />
+          <span className="label-caps !text-[10px]">Scroll to Begin</span>
         </motion.div>
       </motion.div>
     </div>
   );
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 py-32 min-h-screen items-center text-left">
-      <div className="lg:col-span-12 mb-12">
-        <h2 className="h2-header max-w-5xl">{slide.title}</h2>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 py-40 min-h-screen items-center text-left">
+      <div className="lg:col-span-12 mb-20">
+        <h2 className="h2-header max-w-6xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
       </div>
-      <div className="lg:col-span-7 space-y-16">
-        <div className="relative pl-12 border-l-4 border-blue-600">
-          <p className="h3-subhead">
-            "{slide.oneLiner}"
-          </p>
+      <div className="lg:col-span-8 space-y-24">
+        <div className="relative pl-16 border-l-[8px] border-blue-600/10">
+          <div className="absolute left-[-8px] top-0 bottom-0 w-[8px] bg-blue-600 rounded-full" />
+          <p className="text-3xl lg:text-5xl text-slate-900 font-medium leading-[1.3] tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
         </div>
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 gap-12">
           {slide.bullets.map((bullet, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="flex gap-8 items-start group"
+              transition={{ delay: idx * 0.1 }}
+              className="flex gap-10 items-start group"
             >
-              <div className="w-8 h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0 mt-1.5 group-hover:bg-blue-600 transition-colors duration-500">
-                <Check size={16} className="text-blue-600 group-hover:text-white transition-colors" />
+              <div className="w-10 h-10 rounded-2xl bg-blue-50/50 border border-blue-100 flex items-center justify-center flex-shrink-0 mt-1.5 group-hover:bg-blue-600 transition-all duration-500 shadow-sm">
+                <Check size={20} className="text-blue-600 group-hover:text-white transition-colors" />
               </div>
-              <p className="body-main group-hover:text-slate-900 transition-colors duration-500">{bullet}</p>
+              <p className="body-main group-hover:text-slate-900 transition-colors duration-500 pt-1" dangerouslySetInnerHTML={{ __html: bullet }} />
             </motion.div>
           ))}
         </div>
       </div>
-      <div className="lg:col-span-5">
-        <div className="glass-card p-12 rounded-[2.5rem] relative overflow-hidden group">
+      <div className="lg:col-span-4">
+        <div className="glass-card p-14 relative overflow-hidden group">
           <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-200">
-                <Compass size={24} />
+            <div className="flex items-center gap-5 mb-12">
+              <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-xl shadow-blue-200">
+                <Compass size={28} />
               </div>
               <h3 className="label-caps !text-slate-400">Strategic Guide</h3>
             </div>
-            <p className="text-xl text-slate-600 font-medium leading-relaxed border-l-2 border-slate-100 pl-8 group-hover:border-blue-600 transition-colors duration-700">
+            <p className="text-2xl text-slate-800 font-medium leading-relaxed border-l-3 border-blue-100 pl-10 group-hover:border-blue-600 transition-colors duration-700">
               {slide.visualGuide}
             </p>
           </div>
@@ -117,30 +113,26 @@ export default function App() {
   );
 
   const GridLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="flex flex-col justify-center py-32 min-h-screen text-left">
-      <div className="space-y-6 mb-24">
-        <h2 className="h2-header">{slide.title}</h2>
-        <p className="body-main max-w-4xl">{slide.oneLiner}</p>
+    <div className="flex flex-col justify-center py-40 min-h-screen text-left">
+      <div className="space-y-10 mb-32">
+        <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-2xl lg:text-4xl text-slate-500 font-light max-w-5xl leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {slide.bullets.map((bullet, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="clean-card p-14 flex flex-col gap-12 group hover:-translate-y-3"
+            className="clean-card p-16 flex flex-col gap-14 group hover:-translate-y-4"
           >
-            <div className="w-16 h-16 rounded-3xl bg-slate-50 text-blue-600 flex items-center justify-center font-bold text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-sm">
-              0{idx + 1}
+            <div className="w-20 h-20 rounded-[2rem] bg-slate-50 text-blue-600 flex items-center justify-center font-black text-3xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-700 shadow-sm">
+              {String(idx + 1).padStart(2, '0')}
             </div>
-            <div className="space-y-5">
-              <p className="text-2xl font-bold leading-tight text-slate-900 group-hover:text-blue-700 transition-colors duration-500">
-                {bullet.includes(':') ? bullet.split(':')[0] : bullet}
-              </p>
+            <div className="space-y-8">
+              <p className="text-3xl font-extrabold leading-[1.2] text-slate-900 group-hover:text-blue-700 transition-colors duration-500" dangerouslySetInnerHTML={{ __html: bullet.includes(':') ? bullet.split(':')[0] : bullet }} />
               {bullet.includes(':') && (
-                <p className="text-lg text-slate-500 font-medium leading-[1.6]">
-                  {bullet.split(':')[1]}
-                </p>
+                <p className="text-xl lg:text-2xl text-slate-500 font-normal leading-relaxed overflow-hidden" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] }} />
               )}
             </div>
           </motion.div>
@@ -150,23 +142,23 @@ export default function App() {
   );
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="flex flex-col justify-center py-32 min-h-screen text-center">
-      <div className="space-y-8 mb-24">
-        <h2 className="h2-header">{slide.title}</h2>
-        <p className="h3-subhead text-blue-600 bg-blue-50 px-8 py-3 rounded-full inline-block">{slide.oneLiner}</p>
+    <div className="flex flex-col justify-center py-40 min-h-screen text-center">
+      <div className="space-y-10 mb-32">
+        <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-2xl lg:text-3xl text-blue-600 font-bold bg-blue-50/50 px-10 py-4 rounded-full inline-block" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
         {slide.bullets.map((bullet, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="clean-card p-12 flex flex-col items-start text-left relative overflow-hidden group hover:-translate-y-2"
+            className="clean-card p-14 flex flex-col items-start text-left relative overflow-hidden group hover:-translate-y-3"
           >
-            <span className="label-caps mb-8 bg-blue-50/50 px-4 py-1.5 rounded-full">Phase 0{idx + 1}</span>
-            <p className="text-2xl font-bold text-slate-900 mb-6 group-hover:text-blue-600 transition-colors">{bullet.split(':')[0]}</p>
-            <div className="w-full h-[1px] bg-slate-100 mb-8" />
-            <p className="text-lg text-slate-500 font-medium leading-relaxed">{bullet.split(':')[1]}</p>
+            <span className="label-caps mb-10 bg-blue-50/50 px-5 py-2 rounded-full border border-blue-100/50 shadow-sm">Phase {String(idx + 1).padStart(2, '0')}</span>
+            <p className="text-3xl font-black text-slate-900 mb-8 leading-tight group-hover:text-blue-700 transition-colors" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
+            <div className="w-full h-[2px] bg-slate-50 mb-10 group-hover:bg-blue-100 transition-colors" />
+            <p className="text-xl text-slate-500 font-normal leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] }} />
           </motion.div>
         ))}
       </div>
@@ -174,31 +166,31 @@ export default function App() {
   );
 
   const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 py-32 min-h-screen items-center text-left">
-      <div className="lg:col-span-12 mb-12">
-        <h2 className="h2-header">{slide.title}</h2>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 py-40 min-h-screen items-center text-left">
+      <div className="lg:col-span-12 mb-16">
+        <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
       </div>
       <div className="lg:col-span-5 flex flex-col justify-center">
-        <p className="h3-subhead text-slate-500 font-normal">{slide.oneLiner}</p>
+        <p className="text-2xl lg:text-4xl text-slate-500 font-light leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
-      <div className="lg:col-span-7 grid grid-cols-1 gap-8">
+      <div className="lg:col-span-7 grid grid-cols-1 gap-10">
         {slide.bullets.map((bullet, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="clean-card p-12 flex items-center justify-between group hover:border-blue-500 cursor-pointer"
+            className="clean-card p-14 flex items-center justify-between group hover:border-blue-500 cursor-pointer shadow-xl shadow-slate-200/20"
           >
-            <div className="flex items-center gap-12">
-              <div className="w-16 h-16 rounded-2xl bg-slate-50 group-hover:bg-blue-600 flex items-center justify-center transition-all duration-500">
-                <CheckCircle2 className="text-slate-200 group-hover:text-white transition-colors duration-500" size={32} />
+            <div className="flex items-center gap-14">
+              <div className="w-20 h-20 rounded-[2rem] bg-slate-50 group-hover:bg-blue-600 flex items-center justify-center transition-all duration-700">
+                <CheckCircle2 className="text-slate-200 group-hover:text-white transition-colors duration-700" size={40} />
               </div>
-              <div className="space-y-2">
-                <span className="label-caps !text-slate-300">{bullet.split(':')[0]}</span>
-                <p className="text-2xl font-bold text-slate-800 group-hover:text-blue-700 transition-colors duration-500 leading-tight">{bullet.split(':')[1] || bullet}</p>
+              <div className="space-y-3">
+                <span className="label-caps !text-slate-300" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
+                <p className="text-3xl font-extrabold text-slate-900 group-hover:text-blue-700 transition-colors duration-500" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] || bullet }} />
               </div>
             </div>
-            <ArrowRight className="text-slate-200 group-hover:text-blue-600 group-hover:translate-x-3 transition-all duration-500" size={28} />
+            <ArrowRight className="text-slate-200 group-hover:text-blue-600 group-hover:translate-x-4 transition-all duration-700" size={32} />
           </motion.div>
         ))}
       </div>
@@ -206,19 +198,15 @@ export default function App() {
   );
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="flex flex-col items-center text-center justify-center min-h-[60vh] py-32">
+    <div className="flex flex-col items-center text-center justify-center min-h-[70vh] py-40">
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        transition={{ duration: 1, ease: "circOut" }}
-        className="w-20 h-2 bg-blue-600 rounded-full mb-16"
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        className="w-32 h-[3px] bg-blue-600 rounded-full mb-20"
       />
-      <h2 className="h1-display mb-8">
-        {slide.title}
-      </h2>
-      <p className="text-2xl lg:text-3xl text-slate-400 font-medium max-w-3xl mx-auto opacity-80">
-        {slide.oneLiner}
-      </p>
+      <h2 className="h1-display mb-12 text-gradient" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <p className="text-3xl lg:text-5xl text-slate-400 font-light max-w-4xl mx-auto" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
     </div>
   );
 
@@ -266,21 +254,18 @@ export default function App() {
 
       {/* Sophisticated Footer */}
       <footer className="py-64 bg-slate-50/40 backdrop-blur-sm border-t border-slate-100 relative z-10 text-center">
-        <div className="max-w-5xl mx-auto px-16">
-          <h2 className="h1-display mb-12">
+        <div className="max-w-7xl mx-auto px-16">
+          <h2 className="h1-display mb-14 text-gradient">
             The Future is Structured.
           </h2>
-          <p className="text-xl lg:text-2xl text-slate-500 font-normal mb-20 max-w-3xl mx-auto opacity-80 leading-relaxed">
-            블루벤트 GEO 개편 PoC 수행을 위한 전략적 기술 검토가 완료되었습니다.<br />
-            성공적인 인용률 최적화를 향한 구체적인 실행 단계로 진입합니다.
-          </p>
+          <p className="text-2xl lg:text-4xl text-slate-500 font-light mb-24 max-w-5xl mx-auto leading-relaxed" dangerouslySetInnerHTML={{ __html: SLIDES[SLIDES.length - 1].oneLiner + '<br/>준비된 포괄적 기술 검토를 바탕으로 최적의 결과를 도출하겠습니다.' }} />
           <div className="flex justify-center">
             <button
               onClick={() => scrollToSection(0)}
-              className="group inline-flex items-center gap-4 bg-blue-600 text-white px-12 py-6 rounded-full font-bold text-xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-100"
+              className="group inline-flex items-center gap-6 bg-blue-600 text-white px-16 py-8 rounded-full font-bold text-2xl hover:bg-blue-700 transition-all shadow-2xl shadow-blue-200/50 hover:scale-105"
             >
               Back to Top
-              <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
+              <ArrowUp size={32} className="group-hover:-translate-y-2 transition-transform" />
             </button>
           </div>
         </div>

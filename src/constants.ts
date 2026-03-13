@@ -4,176 +4,176 @@ export const SLIDES: Slide[] = [
   {
     id: 1,
     title: "블루벤트 GEO향 개편 PoC - 수행방안 리뷰",
-    oneLiner: "AI 기반 검색 엔진 최적화 및 사용자 경험 고도화 전략",
+    oneLiner: "<strong>AI 기반 검색 엔진 최적화</strong> 및 사용자 경험 고도화 전략",
     bullets: [
-      "Project: SEO/GEO Optimization",
-      "Date: 2026. 03",
-      "Confidential: Level 2"
+      "Project: <strong>SEO/GEO Optimization</strong>",
+      "Date: <strong>2026. 03</strong>",
+      "Confidential: <strong>Level 2</strong>"
     ],
     visualGuide: "심플하고 전문적인 커버 디자인. 블루벤트 로고와 GEO(Generative Engine Optimization) 키워드 강조."
   },
   {
     id: 2,
     title: "1. AI 인용 현황 분석",
-    oneLiner: "현행 AI 플랫폼별 브랜드 인지 및 인용률 정밀 진단",
+    oneLiner: "현행 <strong>AI 플랫폼별</strong> 브랜드 인지 및 인용률 정밀 진단",
     bullets: [],
     visualGuide: "대단원 섹션 브레이크. 심플하고 볼드한 텍스트 중심 디자인."
   },
   {
     id: 3,
     title: "1-1. 질문 세트 구성 방안",
-    oneLiner: "정교한 질문 설계를 통한 AI 플랫폼별 브랜드 인식 및 인용 정확도 측정",
+    oneLiner: "정교한 질문 설계를 통한 <strong>브랜드 인식</strong> 및 인용 정확도 측정",
     bullets: [
-      "진단 목적: 주요 AI 모델별 블루벤트 브랜드 엔티티 및 제품 정보 인용 현황 진단",
-      "개선 범위: 블루벤트 공식 메인 홈페이지 및 대표 제품 상세페이지 (코드 레벨 개선)",
-      "수집 항목: 브랜드 언급 유무 / 인용 URL 경로 / 제품 정보 정확도 / 오류 패턴 분석",
-      "질문 설계: 카테고리별 핵심 질문 5개를 선정하여 중복 답변을 방지하고 변별력 확보"
+      "진단 목적: 주요 AI 모델별 <strong>브랜드 엔티티</strong> 및 제품 정보 인용 현황 진단",
+      "개선 범위: 블루벤트 공식 <strong>메인 홈페이지</strong> 및 제품 상세페이지",
+      "수집 항목: <strong>브랜드 언급 유무</strong> / 인용 URL / 정보 정확도 / 오류 패턴",
+      "질문 설계: 카테고리별 핵심 질문 <strong>최종 5문항</strong> 선정으로 변별력 확보"
     ],
     visualGuide: "질문 설계 로직과 카테고리별(A, B, C) 대표 문항을 배치한 구조적 인포그래픽."
   },
   {
     id: 4,
     title: "1-2. AI 모델별 인용률 분석 결과",
-    oneLiner: "4대 주요 모델(ChatGPT, Perplexity, Gemini, Claude) 대상 정량적 인용 매트릭스 산출",
+    oneLiner: "4대 주요 모델 대상 <strong>정량적 인용 매트릭스</strong> 산출 결과",
     bullets: [
-      "인용 매트릭스: 모델별 질문 답변에 대한 인용 유무 및 근거 URL 적절성 평가",
-      "오류 식별: 사실 오류(Hallucination) 패턴 정리 및 경쟁사 오인용 사례 분석",
-      "출처 분석: 공식 홈페이지 vs 상세페이지 vs 외부 리뷰/블로그 인용 비중 통계",
-      "인용 패턴: 텍스트 정보 부족 시 크롤러가 주로 참조하는 외부 리소스 현황 파악"
+      "인용 매트릭스: 모델별 답변에 대한 <strong>인용 유무</strong> 및 근거 URL 적절성 평가",
+      "오류 식별: <strong>Hallucination(사실 오류)</strong> 패턴 정리 및 경쟁사 오인용 사례",
+      "출처 분석: 공식 홈페이지 vs 상세페이지 vs <strong>외부 리소스</strong> 인용 비중 통계",
+      "인용 패턴: 텍스트 정보 부족 시 크롤러가 참조하는 <strong>외부 소스 현황</strong> 파악"
     ],
     visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)과 출처별 비율 파이 차트."
   },
   {
     id: 5,
     title: "1-3. 인사이트 도출 — 가설 설정의 배경",
-    oneLiner: "진단 데이터 기반 '테크니컬 개선을 통한 인용 신뢰도 확보' 가설 설정",
+    oneLiner: "진단 데이터 기반 <strong>'테크니컬 개선을 통한 인용 신뢰도 확보'</strong> 가설 설정",
     bullets: [
-      "핵심 발견: 인용은 주로 정보 밀도가 높은 외부 사이트에 의존하며 자사몰 비중이 낮음",
-      "오류 패턴: 이미지 기반의 상세 페이지 내용을 AI가 오인하거나 누락하는 경향 뚜렷",
-      "상위 가설: 자사몰 테크니컬 구조 최적화 시 AI의 정확한 인용 확률 및 신뢰도 대폭 상승",
-      "수행 근거: 공식 데이터의 신뢰도 우위를 점하기 위한 데이터 구조화(JSON-LD 등) 필수"
+      "핵심 발견: 인용은 주로 정보 밀도가 높은 <strong>외부 사이트</strong>에 의존함",
+      "오류 패턴: <strong>이미지 기반 콘텐츠</strong>를 AI가 오인하거나 누락하는 경향 뚜렷",
+      "상위 가설: 자사몰 테크니컬 최적화 시 <strong>인용 확률 및 신뢰도</strong> 대폭 상승",
+      "수행 근거: 공식 데이터 우위를 점하기 위한 <strong>구조화 데이터(JSON-LD)</strong> 필수"
     ],
     visualGuide: "현상 발견(Low Direct Citation)에서 가설 수립(Technical Optimization)으로 이어지는 로직 플로우."
   },
   {
     id: 6,
     title: "2. 테크니컬 GEO 진단 결과",
-    oneLiner: "자사몰 인프라 및 페이지별 검색 환경 정밀 진단 데이터",
+    oneLiner: "자사몰 <strong>인프라 및 페이지별</strong> 검색 환경 정밀 진단 데이터",
     bullets: [],
     visualGuide: "두 번째 섹션 브레이크. 기술적 진단 키워드 중심의 시각화."
   },
   {
     id: 7,
     title: "2-1. 진단 방법론",
-    oneLiner: "크롤링 가용성, 인덱싱 최적화, 구조화 데이터 정합성 기반 진단 프레임워크",
+    oneLiner: "<strong>크롤링 가용성</strong> 및 <strong>구조화 데이터 정합성</strong> 기반 진단 프레임워크",
     bullets: [
-      "Robots Analysis: AI 크롤러의 접근성 및 차단 정책 분석",
-      "Semantic Structure: 텍스트 콘텐츠의 위계 및 의미론적 마크업 진단",
-      "Data Markup: Schema.org 표준 규격 준수 여부 및 오류 검증",
-      "Response Speed: AI봇의 데이터 수집 효율을 결정하는 서버 응답 및 렌더링 진단"
+      "Robots Analysis: <strong>AI 크롤러의 접근성</strong> 및 차단 정책 분석",
+      "Semantic Structure: 텍스트 콘텐츠의 <strong>의미론적 마크업</strong> 진단",
+      "Data Markup: <strong>Schema.org 표준 규격</strong> 준수 여부 검증",
+      "Response Speed: AI봇의 수집 효율을 결정하는 <strong>서버 응답 진단</strong>"
     ],
     visualGuide: "4대 진단 영역을 도식화한 다이아몬드 모델 인포그래픽."
   },
   {
     id: 8,
-    title: "2-1-b. 사이트 인프라 진단 결과 (전체 도메인 레벨)",
-    oneLiner: "도메인 전체에 영향을 미치는 검색 엔진 및 AI 봇 접근 제어 설정 진단",
+    title: "2-1-b. 사이트 인프라 진단 결과",
+    oneLiner: "도메인 전체에 영향을 미치는 <strong>AI 봇 접근 제어</strong> 설정 진단",
     bullets: [
-      "Robots.txt: 주요 AI 봇(GPTBot, Claude-Web)의 접근 허용 및 차단 현황 (Disallow 패턴)",
-      "Sitemap.xml: 페이지 우선순위 및 갱신 정보의 검색 엔진 전달 효율성",
-      "SSL & Security: 보안 프로토콜 및 방화벽 설정에 따른 봇 차단 케이스 유무",
-      "Mobile Friendly: 모바일 환경 기반의 구글 모바일 퍼스트 인덱싱 최적화 수준"
+      "Robots.txt: 주요 봇(GPT, Claude)의 <strong>접근 차단(Disallow)</strong> 현황",
+      "Sitemap.xml: 페이지 갱신 정보의 <strong>검색 엔진 전달 효율성</strong>",
+      "SSL & Security: 보안 정책에 따른 <strong>봇 차단 케이스</strong> 유무 점검",
+      "Mobile Friendly: 구글 <strong>모바일 퍼스트 인덱싱</strong> 최적화 수준"
     ],
     visualGuide: "인프라 진단 항목별 Pass/Fail 체크리스트 대시보드."
   },
   {
     id: 9,
     title: "2-2. 메인 홈페이지 진단 결과",
-    oneLiner: "브랜드 실체 인식의 핵심인 메인 페이지의 테크니컬 요소 심층 분석",
+    oneLiner: "브랜드 인식의 핵심인 <strong>메인 페이지 테크니컬 요소</strong> 심층 분석",
     bullets: [
-      "Title & Meta: 브랜드 정체성 및 핵심 가치 전달을 위한 메타 태그 최적화 수준",
-      "Heading Level: H1 태그 부재 및 H2-H6 위계 불일치 사례 식별",
-      "Content Density: 이미지 비중 대비 텍스트 정보량 분석 (AI 인식 가용 텍스트량)",
-      "Entity Signal: Organization 및 WebSite 구조화 데이터 적용 여부"
+      "Title & Meta: 브랜드 정체성 전달을 위한 <strong>메타 태그 최적화</strong> 수준",
+      "Heading Level: <strong>H1 태그 부재</strong> 및 의미론적 위계 불일치 식별",
+      "Content Density: <strong>이미지 비중</strong> 대비 AI 인식 가용 텍스트량 분석",
+      "Entity Signal: <strong>Organization/WebSite</strong> 구조화 데이터 적용 여부"
     ],
     visualGuide: "메인 페이지의 가독성 및 데이터 구조화 수준을 보여주는 스코어링 차트."
   },
   {
     id: 10,
     title: "2-3. 제품 상세페이지(블루벤트 ID) 진단 결과",
-    oneLiner: "제품 정보 정확도를 결정하는 상세 페이지의 데이터 추출 효율성 진단",
+    oneLiner: "제품 정보 정확도를 결정하는 <strong>데이터 추출 효율성</strong> 진단",
     bullets: [
-      "통 이미지 구조: 전체 이미지가 단일 파일로 구성되어 텍스트 데이터 추출 불가",
-      "Alt Tags: 제품 핵심 스펙 및 이미지 정보에 대한 대체 텍스트 제공 부재",
-      "Structured Data: Product 스키마 미적용으로 인한 AI 인용 소스 실종",
-      "Technical Debt: 고도몰 플랫폼 커스텀 제약에 따른 스크립트 삽입 한계점"
+      "통 이미지 구조: 단일 파일 구성으로 인한 <strong>텍스트 데이터 추출 불가</strong>",
+      "Alt Tags: 제품 핵심 스펙에 대한 <strong>대체 텍스트 제공 부재</strong>",
+      "Structured Data: <strong>Product 스키마 미적용</strong>으로 인한 인용 소스 실종",
+      "Technical Debt: 플랫폼 제약에 따른 <strong>스크립트 삽입 한계점</strong>"
     ],
     visualGuide: "상세 페이지의 데이터 추출 방해 요소(이미지 덩어리 등) 시각화."
   },
   {
     id: 11,
     title: "2-4. 진단 결과 종합 → 가설 구체화",
-    oneLiner: "진단 결과 기반의 핵심 문제 정의 및 PoC 수행을 위한 실행 가설 확정",
+    oneLiner: "진단 기반 핵심 문제 정의 및 <strong>PoC 수행을 위한 실행 가설</strong> 확정",
     bullets: [
-      "문제 정의: '인프라 차단'과 '데이터 구조 결핍'으로 인한 AI 인용 신뢰도 저하",
-      "실행 가설: 인프라 정상화와 시맨틱 구조화 적용 시 자사몰의 직접 인용률 30% 이상 향상",
-      "우선 지점: 메인 페이지의 브랜드 엔티티 강화 및 상세 페이지의 데이터 레이어 구축",
-      "검증 설계: 기술적 개선 전/후의 AI 답변 정확도 및 인용 출처 변화 측정"
+      "문제 정의: <strong>'인프라 차단'</strong> 및 <strong>'데이터 구조 결핍'</strong>에 따른 신뢰도 저하",
+      "실행 가설: <strong>시맨틱 구조화 적용</strong> 시 직접 인용률 30% 이상 향상",
+      "우선 지점: 브랜드 엔티티 강화 및 <strong>상세 페이지 데이터 레이어</strong> 구축",
+      "검증 설계: 기술 개선 전/후의 <strong>AI 답변 정확도 변화</strong> 측정"
     ],
     visualGuide: "과제 도출 매트릭스 및 가설 수립 플로우차트."
   },
   {
     id: 12,
     title: "3. PoC 수행방안",
-    oneLiner: "기술적 개선과 성과 입증을 위한 단계별 실행 로드맵 및 상세 전략",
+    oneLiner: "기술적 개선과 성과 입증을 위한 <strong>단계별 실행 로드맵</strong> 상세 전략",
     bullets: [],
     visualGuide: "마지막 섹션 브레이크. 실행력과 성과 중심의 다이나믹한 디자인."
   },
   {
     id: 13,
-    title: "3-0. 고도몰 플랫폼 특성을 고려한 개선 전략",
-    oneLiner: "임대형 솔루션의 제약을 극복하고 실행력을 확보하기 위한 엔지니어링 전략",
+    title: "3-0. 플랫폼 특성을 고려한 개선 전략",
+    oneLiner: "솔루션 제약을 극복하고 <strong>실행력을 확보</strong>하기 위한 엔지니어링 전략",
     bullets: [
-      "플랫폼 제약: FTP 접근 및 DB 커스텀 불가능한 고도몰 표준형 모델의 한계점 상존",
-      "전략적 우회: 스크립트 매니저 및 치환 코드를 활용한 클라이언트 사이드 데이터 삽입",
-      "수동 가공: AI봇을 위한 별도 텍스트 레이어 삽입 및 HTML 시맨틱 수동 보정",
-      "협업 구조: 플랫폼사의 공식 지원 범위 외의 기술적 가용 범위 확정"
+      "플랫폼 제약: FTP 접근 및 DB 커스텀 불가능한 <strong>표준형 모델의 한계</strong>",
+      "전략적 우회: <strong>스크립트 매니저</strong>를 활용한 클라이언트 사이드 데이터 삽입",
+      "수동 가공: AI봇을 위한 별도 <strong>텍스트 레이어 삽입</strong> 및 시맨틱 보정",
+      "협업 구조: 플랫폼사 지원 범위 외의 <strong>기술적 가용 범위</strong> 확정"
     ],
     visualGuide: "플랫폼 제약사항과 기술적 돌파구를 매칭한 솔루션 맵."
   },
   {
     id: 14,
     title: "3-1. 메인 홈페이지 — As-Is & To-Be",
-    oneLiner: "브랜드 실체 강화를 위한 인프라 정상화 및 시맨틱 보정 계획",
+    oneLiner: "브랜드 실체 강화를 위한 <strong>인프라 정상화 및 시맨틱 보정</strong>",
     bullets: [
       "As-Is: AI 봇 차단 상태, 이미지 중심, 의미론적 정보 부재",
-      "To-Be 1: robots.txt 수정 및 sitemap 자동 생성/제출 최적화",
-      "To-Be 2: TL;DR(요약문) 삽입 및 핵심 FAQ 텍스트 레이어 추가",
-      "To-Be 3: JSON-LD 기반의 브랜드 구조화 데이터 전면 적용"
+      "To-Be 1: <strong>robots.txt 수정</strong> 및 sitemap 자동 생성/제출 최적화",
+      "To-Be 2: <strong>TL;DR(요약문) 삽입</strong> 및 핵심 FAQ 텍스트 레이어 추가",
+      "To-Be 3: <strong>JSON-LD 브랜드 구조화 데이터</strong> 전면 적용"
     ],
     visualGuide: "메인 페이지의 시각적/기술적 변화를 비교한 전/후 레이아웃 도식."
   },
   {
     id: 15,
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
-    oneLiner: "AI용 정형 데이터 레이어 구축을 통한 상세 스펙 인용률 극대화",
+    oneLiner: "AI용 <strong>정형 데이터 레이어 구축</strong>을 통한 인용률 극대화",
     bullets: [
       "As-Is: 통 이미지 상세내용, AI 인식 불가, 스키마 부재",
-      "To-Be 1: 이미지 분할 및 핵심 데이터의 HTML 텍스트 병행 노출",
-      "To-Be 2: Product 스키마(명칭, 가격, 평점 등) JSON-LD 적용",
-      "To-Be 3: AI 답변 최적화용 숏폼 텍스트 블록(Key Specs) 상단 배치"
+      "To-Be 1: <strong>이미지 분할</strong> 및 핵심 데이터의 HTML 텍스트 병행 노출",
+      "To-Be 2: <strong>Product 스키마(가격, 평점 등)</strong> JSON-LD 적용",
+      "To-Be 3: 최적화용 <strong>숏폼 텍스트 블록(Key Specs)</strong> 상단 배치"
     ],
     visualGuide: "상세 페이지의 데이터 추출 엔진 친화적 개선안 가이드라인."
   },
   {
     id: 16,
-    title: "3-3. 검증 계획 (수행계획서 4단계 연계)",
-    oneLiner: "정량적 데이터와 정성적 분석을 결합한 PoC 성과 리포팅 및 기술 검증",
+    title: "3-3. 검증 계획 및 성과 측정",
+    oneLiner: "<strong>수행계획서 4단계</strong> 연계를 통한 PoC 성과 리포팅 및 기술 검증",
     bullets: [
-      "지표 측정: 개선 전/후 동일 프롬프트 답변 데이터 셋 비교 분석",
-      "인용 추적: 답변 내 자사몰 링크 포함 비중 및 인용 텍스트 정확도 측정",
-      "QA 프로세스: 기술 적용 후 봇 크롤링 성공 여부 및 검색 반영 현황 최종 점검",
-      "Next Action: 측정 결과 기반의 상용 레벨 확산 및 운영 가이드라인 도출"
+      "지표 측정: 개선 전/후 <strong>동일 프롬프트 답변 데이터</strong> 비교 분석",
+      "인용 추적: 답변 내 <strong>자사몰 링크 포함 비중</strong> 및 정확도 측정",
+      "QA 프로세스: 기술 적용 후 <strong>봇 크롤링 성공 여부</strong> 최종 점검",
+      "Next Action: 측정 결과 기반의 <strong>상용 레벨 확산 가이드라인</strong> 도출"
     ],
     visualGuide: "검증 단계별 타임라인 및 KPI 달성 평가 보드."
   }
