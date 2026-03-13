@@ -223,7 +223,7 @@ export default function App() {
         <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         {/* Top Summary Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {summaries.map(([label, content], idx) => (
             <div key={idx} className="bg-blue-50/30 border border-blue-100/50 rounded-[2rem] p-8 backdrop-blur-sm">
               <span className="label-caps mb-4 block" dangerouslySetInnerHTML={{ __html: label }} />
