@@ -23,12 +23,16 @@
 @layer components {
 
   /* Typography Scale */
+  .h1-hero {
+    @apply text-6xl lg:text-[6.5rem] font-bold tracking-[-0.04em] text-[#1a1a1a] leading-[1.02];
+  }
+
   .h1-display {
-    @apply text-5xl lg:text-6xl font-bold tracking-tight text-[#1a1a1a] leading-[1.1];
+    @apply text-5xl lg:text-8xl font-bold tracking-[-0.02em] text-[#1a1a1a] leading-[1.1];
   }
 
   .h2-header {
-    @apply text-3xl lg:text-4xl font-bold tracking-tight text-[#1a1a1a] leading-tight;
+    @apply text-3xl lg:text-5xl font-bold tracking-tight text-[#1a1a1a] leading-tight;
   }
 
   .h3-subhead {

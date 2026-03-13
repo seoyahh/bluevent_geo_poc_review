@@ -51,11 +51,11 @@ export default function App() {
           <span>Strategic Review 2026</span>
         </div>
 
-        <h1 className="h1-display mb-10">
+        <h1 className="h1-hero mb-10">
           {slide.title}
         </h1>
 
-        <p className="h3-subhead text-slate-500 font-normal max-w-3xl mx-auto mb-20 opacity-80">
+        <p className="text-2xl lg:text-4xl text-slate-500 font-normal max-w-5xl mx-auto mb-24 opacity-80">
           {slide.oneLiner}
         </p>
 
@@ -216,7 +216,7 @@ export default function App() {
       <h2 className="h1-display mb-8">
         {slide.title}
       </h2>
-      <p className="h3-subhead text-slate-400 font-medium max-w-2xl mx-auto">
+      <p className="text-2xl lg:text-3xl text-slate-400 font-medium max-w-3xl mx-auto opacity-80">
         {slide.oneLiner}
       </p>
     </div>
@@ -270,7 +270,7 @@ export default function App() {
           <h2 className="h1-display mb-12">
             The Future is Structured.
           </h2>
-          <p className="h3-subhead text-slate-500 font-normal mb-20 max-w-3xl mx-auto">
+          <p className="text-xl lg:text-2xl text-slate-500 font-normal mb-20 max-w-3xl mx-auto opacity-80 leading-relaxed">
             블루벤트 GEO 개편 PoC 수행을 위한 전략적 기술 검토가 완료되었습니다.<br />
             성공적인 인용률 최적화를 향한 구체적인 실행 단계로 진입합니다.
           </p>
