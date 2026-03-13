@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Layout, BarChart3, Settings, AlertTriangle, PlayCircle, ArrowRight, ArrowUp, FileText, Activity, ChevronRight } from 'lucide-react';
+import { CheckCircle2, Layout, BarChart3, Settings, AlertTriangle, PlayCircle, ArrowRight, ArrowUp, ArrowDown, FileText, Activity, ChevronRight } from 'lucide-react';
 import { SLIDES } from './constants';
 import React from 'react';
 
@@ -33,10 +33,40 @@ export default function App() {
   // --- Specialized Layout Components ---
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="flex flex-col items-center text-center justify-center min-h-[90vh]">
-      <h1 className="text-4xl lg:text-7xl font-bold tracking-tighter text-slate-900 leading-tight max-w-5xl">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-[95vh] pt-20">
+      {/* Top Tag */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-12 inline-flex items-center gap-2.5 px-5 py-2 bg-blue-50 text-blue-600 rounded-full border border-blue-100 shadow-sm"
+      >
+        <Activity size={14} className="animate-pulse" />
+        <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Project Execution Plan</span>
+      </motion.div>
+
+      <h1 className="text-5xl lg:text-8xl font-bold tracking-tight text-slate-900 leading-none max-w-6xl mb-8">
         {slide.title}
       </h1>
+
+      <p className="text-xl lg:text-2xl text-slate-400 font-medium max-w-3xl leading-relaxed">
+        {slide.oneLiner}
+      </p>
+
+      {/* Bottom Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+      >
+        <span className="text-[12px] font-medium text-slate-400 tracking-tight">스크롤하여 탐색하기</span>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <ArrowDown size={18} className="text-slate-400" />
+        </motion.div>
+      </motion.div>
     </div>
   );
 

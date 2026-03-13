@@ -3,12 +3,12 @@ import { Slide } from './types';
 export const SLIDES: Slide[] = [
   {
     id: 1,
-    title: "블루벤트 GEO 개편 PoC 수행 방안 리뷰",
-    oneLiner: "데이터 기반의 AI 인용 최적화 및 테크니컬 개선 전략",
+    title: "Bluevent GEO 수행계획",
+    oneLiner: "AI 기반 검색 엔진 최적화 및 사용자 경험 고도화 전략",
     bullets: [
-      "발표자: SEO/GEO 전략팀",
-      "일시: 2026년 3월",
-      "대상: 블루벤트 의사결정권자 및 실무진"
+      "Project: SEO/GEO Optimization",
+      "Date: 2026. 03",
+      "Confidential: Level 2"
     ],
     visualGuide: "심플하고 전문적인 커버 디자인. 블루벤트 로고와 GEO(Generative Engine Optimization) 키워드 강조."
   },
