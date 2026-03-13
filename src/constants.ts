@@ -211,15 +211,17 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 18,
-    title: "3-3. 검증 계획 및 성과 측정",
-    oneLiner: "<strong>수행계획서 4단계</strong> 연계를 통한 PoC 성과 리포팅 및 기술 검증",
+    title: "3-3. 검증 계획 (수행계획서 4단계 연계)",
+    oneLiner: "<strong>효과적인 GEO 검증</strong>을 위한 전/후 비교 및 심층 지표 측정",
     bullets: [
-      "지표 측정: 개선 전/후 <strong>동일 프롬프트 답변 데이터</strong> 비교 분석",
-      "인용 추적: 답변 내 <strong>자사몰 링크 포함 비중</strong> 및 정확도 측정",
-      "QA 프로세스: 기술 적용 후 <strong>봇 크롤링 성공 여부</strong> 최종 점검",
-      "Next Action: 측정 결과 기반의 <strong>상용 레벨 확산 가이드라인</strong> 도출"
+      "METHOD:동일 프롬프트 세트로 전/후 비교 테스트 (수행계획서 4-2)",
+      "METRIC:인용률 변화|전체 및 모델별 인용 빈도 비교",
+      "METRIC:인용 URL 변화|대상 페이지 인용 비율 추적",
+      "METRIC:사실 정확도 변화|기술적 정확도 및 정합성 평가",
+      "METRIC:근거 URL 노출|출처 URL 명시 및 노출 여부",
+      "SCHEDULE:Week 04|수행계획서 로드맵 기준 검증 완료"
     ],
-    visualGuide: "검증 단계별 타임라인 및 KPI 달성 평가 보드."
+    visualGuide: "검증 방법론, 핵심 측정 지표, 추진 일정을 통합한 성과 관리 보드."
   },
   {
     id: 19,

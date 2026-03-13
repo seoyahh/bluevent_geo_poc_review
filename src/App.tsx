@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import {
   CheckCircle2, Layout, BarChart3, Settings, AlertTriangle,
   PlayCircle, ArrowRight, ArrowUp, ArrowDown, FileText,
-  Activity, ChevronRight, Sparkles, Check, Compass, AlertCircle
+  Activity, ChevronRight, Sparkles, Check, Compass, AlertCircle,
+  Target, Calendar
 } from 'lucide-react';
 import { SLIDES } from './constants';
 import React from 'react';
@@ -757,6 +758,85 @@ export default function App() {
     );
   };
 
+  const ValidationPlanLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const method = slide.bullets.find(b => b.startsWith('METHOD:'))?.replace('METHOD:', '');
+    const metrics = slide.bullets.filter(b => b.startsWith('METRIC:')).map(b => b.replace('METRIC:', '').split('|'));
+    const schedule = slide.bullets.find(b => b.startsWith('SCHEDULE:'))?.replace('SCHEDULE:', '').split('|');
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <div className="mb-14">
+          <h2 className="h2-header mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-xl lg:text-2xl text-slate-500 font-light" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Methodology Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-8 p-12 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden group shadow-2xl shadow-slate-200"
+          >
+            <div className="absolute -right-8 -top-8 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-colors duration-700" />
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-3 px-5 py-2 bg-blue-600 rounded-xl text-xs font-black uppercase tracking-widest mb-10 shadow-lg shadow-blue-500/30">
+                <Target size={14} />
+                검증 방법론
+              </div>
+              <h3 className="text-2xl lg:text-4xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: method || '' }} />
+              <div className="mt-12 flex items-center gap-6 text-slate-400">
+                <div className="h-px w-12 bg-slate-700" />
+                <p className="text-sm font-medium tracking-wide tracking-[0.2em] uppercase">Step 4-2 Implementation</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Schedule Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="lg:col-span-4 p-12 bg-blue-50 rounded-[3rem] border border-blue-100 flex flex-col justify-between group hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-16 h-16 rounded-[1.5rem] bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:rotate-12 transition-transform duration-500">
+                <Calendar size={32} />
+              </div>
+              <span className="text-4xl font-black text-blue-600/20">{schedule?.[0]}</span>
+            </div>
+            <div>
+              <p className="text-slate-500 text-sm font-bold uppercase tracking-widest mb-3">Target Schedule</p>
+              <h3 className="text-3xl font-black text-slate-900" dangerouslySetInnerHTML={{ __html: schedule?.[1] || '' }} />
+            </div>
+          </motion.div>
+
+          {/* Metrics Grid */}
+          <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
+            {metrics.map(([title, desc], idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + idx * 0.1 }}
+                className="clean-card p-10 flex flex-col gap-6 group hover:border-blue-500 transition-all"
+              >
+                <div className="flex flex-col gap-4">
+                  <div className="text-blue-600 font-black text-xs tracking-widest uppercase opacity-40">Metric {idx + 1}</div>
+                  <h4 className="text-xl font-bold text-slate-900" dangerouslySetInnerHTML={{ __html: title }} />
+                </div>
+                <div className="h-px bg-slate-100 group-hover:bg-blue-100 transition-colors" />
+                <p className="text-slate-500 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
       {/* Refined Sidebar Navigation */}
@@ -799,8 +879,9 @@ export default function App() {
             {index === 14 && <VisualPreviewLayout slide={slide} />}
             {index === 15 && <DecisionGridLayout slide={slide} />}
             {index === 16 && <TechnicalDetailLayout slide={slide} />}
+            {index === 17 && <ValidationPlanLayout slide={slide} />}
             {index === 18 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
