@@ -37,14 +37,12 @@ export default function App() {
   // --- Specialized Layout Components ---
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="relative flex flex-col items-center text-center justify-center min-h-screen overflow-hidden py-24">
-      <div className="absolute inset-0 soft-gradient-bg pointer-events-none" />
-
+    <div className="relative flex flex-col items-center text-center justify-center min-h-screen overflow-hidden py-24 w-full">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-6xl px-10"
+        className="relative z-10 w-full max-w-6xl px-12 lg:px-32"
       >
         <div className="label-caps mb-12 flex items-center justify-center gap-3 bg-white/50 backdrop-blur-sm px-5 py-2 rounded-full border border-slate-100/50 shadow-sm mx-auto w-fit">
           <Sparkles size={14} />
@@ -68,44 +66,46 @@ export default function App() {
   );
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-20 min-h-screen items-center text-left">
-      <div className="lg:col-span-12 mb-8">
-        <h2 className="h2-header max-w-5xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
-      </div>
-      <div className="lg:col-span-7 space-y-12">
-        <div className="relative pl-12 border-l-[6px] border-blue-600/10">
-          <div className="absolute left-[-6px] top-0 bottom-0 w-[6px] bg-blue-600 rounded-full" />
-          <p className="text-lg lg:text-2xl text-slate-900 font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-20 min-h-screen items-center text-left">
+        <div className="lg:col-span-12 mb-8">
+          <h2 className="h2-header max-w-5xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
         </div>
-        <div className="grid grid-cols-1 gap-8">
-          {slide.bullets.map((bullet, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.05 }}
-              className="flex gap-6 items-start group"
-            >
-              <div className="w-8 h-8 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-blue-600 transition-all duration-500 shadow-sm">
-                <Check size={16} className="text-blue-600 group-hover:text-white transition-colors" />
-              </div>
-              <p className="body-main group-hover:text-slate-900 transition-colors duration-500 pt-0.5" dangerouslySetInnerHTML={{ __html: bullet }} />
-            </motion.div>
-          ))}
+        <div className="lg:col-span-7 space-y-12">
+          <div className="relative pl-12 border-l-[6px] border-blue-600/10">
+            <div className="absolute left-[-6px] top-0 bottom-0 w-[6px] bg-blue-600 rounded-full" />
+            <p className="text-lg lg:text-2xl text-slate-900 font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+          </div>
+          <div className="grid grid-cols-1 gap-8">
+            {slide.bullets.map((bullet, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                className="flex gap-6 items-start group"
+              >
+                <div className="w-8 h-8 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-blue-600 transition-all duration-500 shadow-sm">
+                  <Check size={16} className="text-blue-600 group-hover:text-white transition-colors" />
+                </div>
+                <p className="body-main group-hover:text-slate-900 transition-colors duration-500 pt-0.5" dangerouslySetInnerHTML={{ __html: bullet }} />
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="lg:col-span-5">
-        <div className="glass-card p-10 relative overflow-hidden group">
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-200">
-                <Compass size={24} />
+        <div className="lg:col-span-5">
+          <div className="glass-card p-10 relative overflow-hidden group">
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-200">
+                  <Compass size={24} />
+                </div>
+                <h3 className="label-caps !text-slate-400">Strategic Guide</h3>
               </div>
-              <h3 className="label-caps !text-slate-400">Strategic Guide</h3>
+              <p className="text-lg text-slate-800 font-medium leading-relaxed border-l-2 border-blue-100 pl-8 group-hover:border-blue-600 transition-colors duration-700">
+                {slide.visualGuide}
+              </p>
             </div>
-            <p className="text-lg text-slate-800 font-medium leading-relaxed border-l-2 border-blue-100 pl-8 group-hover:border-blue-600 transition-colors duration-700">
-              {slide.visualGuide}
-            </p>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@ export default function App() {
   );
 
   const GridLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="flex flex-col justify-center py-20 min-h-screen text-left">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 flex flex-col justify-center py-20 min-h-screen text-left">
       <div className="space-y-6 mb-16">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
         <p className="text-lg lg:text-2xl text-slate-500 font-light max-w-4xl leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -142,7 +142,7 @@ export default function App() {
   );
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="flex flex-col justify-center py-24 min-h-screen text-center">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 flex flex-col justify-center py-24 min-h-screen text-center">
       <div className="space-y-8 mb-20">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
         <p className="text-lg lg:text-2xl text-blue-600 font-bold bg-blue-50/50 px-8 py-3 rounded-full inline-block" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -166,12 +166,12 @@ export default function App() {
   );
 
   const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 py-24 min-h-screen items-center text-left">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-20 py-24 min-h-screen items-center text-left">
       <div className="lg:col-span-12 mb-10">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
       </div>
       <div className="lg:col-span-4 flex flex-col justify-center">
-        <p className="text-xl lg:text-3xl text-slate-500 font-light leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <p className="text-xl lg:text-2xl text-slate-500 font-light leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
       <div className="lg:col-span-8 grid grid-cols-1 gap-8">
         {slide.bullets.map((bullet, idx) => (
@@ -198,7 +198,7 @@ export default function App() {
   );
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
@@ -233,23 +233,21 @@ export default function App() {
       </nav>
 
       {/* Main Content Area */}
-      <main className="relative z-10 px-12 lg:px-32">
-        <div className="max-w-6xl mx-auto">
-          {SLIDES.map((slide, index) => (
-            <section
-              key={index}
-              id={`section-${index}`}
-              className="min-h-screen flex flex-col justify-center"
-            >
-              {index === 0 && <IntroLayout slide={slide} />}
-              {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
-              {[6, 12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
-              {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
-              {[7, 10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
-              {![0, 1, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
-            </section>
-          ))}
-        </div>
+      <main className="relative z-10">
+        {SLIDES.map((slide, index) => (
+          <section
+            key={index}
+            id={`section-${index}`}
+            className="min-h-screen flex flex-col justify-center w-full"
+          >
+            {index === 0 && <IntroLayout slide={slide} />}
+            {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
+            {[6, 12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
+            {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
+            {[7, 10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
+            {![0, 1, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
+          </section>
+        ))}
       </main>
 
       {/* Sophisticated Footer */}
