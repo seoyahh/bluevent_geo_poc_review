@@ -33,36 +33,10 @@ export default function App() {
   // --- Specialized Layout Components ---
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="flex flex-col items-center text-center justify-center min-h-[85vh] py-20">
-      <div className="accent-tag mb-8 px-4 py-1.5 bg-blue-50 text-blue-700 border-blue-100 rounded-full font-bold tracking-widest text-[11px]">
-        GEO Monitoring Manual v2.0
-      </div>
-      <h1 className="text-4xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-8 leading-tight">
+    <div className="flex flex-col items-center text-center justify-center min-h-[90vh]">
+      <h1 className="text-4xl lg:text-7xl font-bold tracking-tighter text-slate-900 leading-tight max-w-5xl">
         {slide.title}
       </h1>
-      <p className="text-lg lg:text-xl text-slate-500 font-medium max-w-2xl mb-16 leading-relaxed">
-        {slide.oneLiner}
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl pt-10 border-t border-slate-200">
-        {slide.bullets.map((b, i) => (
-          <div key={i} className="flex flex-col gap-2 p-4 rounded-xl hover:bg-white transition-colors">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-              {b.split(':')[0]}
-            </span>
-            <span className="text-base font-semibold text-slate-800 leading-snug">
-              {b.split(':')[1]?.trim() || b}
-            </span>
-          </div>
-        ))}
-      </div>
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2.5 }}
-        className="mt-20 flex flex-col items-center gap-3 opacity-30"
-      >
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Scroll to analyze</span>
-        <div className="w-px h-16 bg-gradient-to-b from-slate-300 to-transparent" />
-      </motion.div>
     </div>
   );
 
