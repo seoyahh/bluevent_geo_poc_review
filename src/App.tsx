@@ -886,22 +886,16 @@ export default function App() {
         ))}
       </main>
 
-      {/* Sophisticated Footer */}
-      <footer className="py-64 bg-slate-50/40 backdrop-blur-sm border-t border-slate-100 relative z-10 text-center">
+      {/* Simplified Footer */}
+      <footer className="py-20 bg-slate-50/40 border-t border-slate-100 relative z-10 text-center">
         <div className="max-w-7xl mx-auto px-16">
-          <h2 className="h1-display mb-14 text-gradient">
-            The Future is Structured.
-          </h2>
-          <p className="text-2xl lg:text-4xl text-slate-500 font-light mb-24 max-w-5xl mx-auto leading-relaxed" dangerouslySetInnerHTML={{ __html: SLIDES[SLIDES.length - 1].oneLiner + '<br/>준비된 포괄적 기술 검토를 바탕으로 최적의 결과를 도출하겠습니다.' }} />
-          <div className="flex justify-center">
-            <button
-              onClick={() => scrollToSection(0)}
-              className="group inline-flex items-center gap-6 bg-blue-600 text-white px-16 py-8 rounded-full font-bold text-2xl hover:bg-blue-700 transition-all shadow-2xl shadow-blue-200/50 hover:scale-105"
-            >
-              Back to Top
-              <ArrowUp size={32} className="group-hover:-translate-y-2 transition-transform" />
-            </button>
-          </div>
+          <button
+            onClick={() => scrollToSection(0)}
+            className="group inline-flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-600 transition-all shadow-xl"
+          >
+            Back to Top
+            <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
+          </button>
         </div>
       </footer>
     </div>
