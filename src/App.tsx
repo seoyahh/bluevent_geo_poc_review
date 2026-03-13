@@ -38,12 +38,12 @@ export default function App() {
   // --- Specialized Layout Components ---
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="relative flex flex-col items-center text-center justify-center min-h-screen overflow-hidden py-24 w-full">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-screen overflow-hidden py-24 w-full px-12">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-[1400px] px-8 lg:px-16"
+        className="relative z-10 w-full max-w-5xl"
       >
         <div className="label-caps mb-12 flex items-center justify-center gap-3 bg-white/50 backdrop-blur-sm px-5 py-2 rounded-full border border-slate-100/50 shadow-sm mx-auto w-fit">
           <Sparkles size={14} />
@@ -67,8 +67,8 @@ export default function App() {
   );
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16">
-      <div className="flex flex-col gap-12 py-20 min-h-screen justify-center text-left">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-24">
+      <div className="flex flex-col gap-10 py-20 min-h-screen justify-center text-left">
         <div className="mb-4">
           <h2 className="h2-header max-w-5xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
         </div>
@@ -99,10 +99,10 @@ export default function App() {
   );
 
   const GridLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex flex-col justify-center py-20 min-h-screen text-left">
-      <div className="space-y-6 mb-16">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 flex flex-col justify-center py-20 min-h-screen text-left">
+      <div className="space-y-6 mb-12">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-lg lg:text-2xl text-slate-500 font-light max-w-4xl leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <p className="text-base lg:text-xl text-slate-500 font-light max-w-3xl leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {slide.bullets.map((bullet, idx) => (
@@ -128,10 +128,10 @@ export default function App() {
   );
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex flex-col justify-center py-24 min-h-screen text-center">
-      <div className="space-y-8 mb-20">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 flex flex-col justify-center py-24 min-h-screen text-center">
+      <div className="space-y-6 mb-16">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-lg lg:text-2xl text-blue-600 font-bold bg-blue-50/50 px-8 py-3 rounded-full inline-block" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <p className="text-base lg:text-xl text-blue-600 font-bold bg-blue-50/50 px-6 py-2.5 rounded-full inline-block" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
         {slide.bullets.map((bullet, idx) => (
@@ -152,12 +152,12 @@ export default function App() {
   );
 
   const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-20 py-24 min-h-screen items-center text-left">
-      <div className="lg:col-span-12 mb-10">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-12 gap-16 py-24 min-h-screen items-center text-left">
+      <div className="lg:col-span-12 mb-8">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
       </div>
       <div className="lg:col-span-4 flex flex-col justify-center">
-        <p className="text-xl lg:text-2xl text-slate-500 font-light leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <p className="text-lg lg:text-xl text-slate-500 font-light leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
       <div className="lg:col-span-8 grid grid-cols-1 gap-8">
         {slide.bullets.map((bullet, idx) => (
@@ -184,7 +184,7 @@ export default function App() {
   );
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
+    <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
@@ -202,8 +202,8 @@ export default function App() {
     const models = slide.bullets.filter(b => b.startsWith('MODEL:')).map(b => b.replace('MODEL:', ''));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         {/* Top Summary Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -256,8 +256,8 @@ export default function App() {
     const pillar2 = slide.bullets.filter(b => b.startsWith('PILLAR:수행계획서')).map(b => b.replace(/PILLAR:.*?\|/, ''));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Pillar 1 */}
@@ -386,8 +386,8 @@ export default function App() {
     const issues = slide.bullets.filter(b => b.startsWith('ISSUE:')).map(b => b.replace('ISSUE:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
           {scores.map(([label, status, desc], idx) => (
@@ -430,8 +430,8 @@ export default function App() {
     const table = slide.bullets.filter(b => b.startsWith('TABLE:')).map(b => b.replace('TABLE:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {hypos.map(([title, desc], idx) => (
@@ -478,8 +478,8 @@ export default function App() {
     const strats = slide.bullets.filter(b => b.startsWith('STRAT:')).map(b => b.replace('STRAT:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Section 1: Constraints */}
@@ -581,9 +581,9 @@ export default function App() {
     const confirm = slide.bullets.filter(b => b.startsWith('CONFIRM:')).map(b => b.replace('CONFIRM:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
         <h2 className="h2-header mb-4" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-2xl text-slate-400 font-light mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <p className="text-xl text-slate-400 font-light mb-12" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {options.map(([title, subtitle, ...choices], idx) => (
@@ -637,7 +637,7 @@ export default function App() {
     const tobe = slide.bullets.find(b => b.startsWith('TOBE:'))?.replace('TOBE:', '');
 
     return (
-      <div className="w-full max-w-[1700px] mx-auto px-8 lg:px-16 py-10 min-h-screen flex flex-col justify-center">
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-10 min-h-screen flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* As-Is Column */}
           <motion.div
@@ -692,10 +692,10 @@ export default function App() {
     const items = slide.bullets.filter(b => b.startsWith('ITEM:')).map(b => b.replace('ITEM:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <div className="mb-12">
+      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
+        <div className="mb-10">
           <h2 className="h2-header mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
-          <p className="text-xl lg:text-2xl text-slate-500 font-light" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+          <p className="text-lg lg:text-xl text-slate-500 font-light" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -758,84 +758,6 @@ export default function App() {
     );
   };
 
-  const ValidationPlanLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
-    const method = slide.bullets.find(b => b.startsWith('METHOD:'))?.replace('METHOD:', '');
-    const metrics = slide.bullets.filter(b => b.startsWith('METRIC:')).map(b => b.replace('METRIC:', '').split('|'));
-    const schedule = slide.bullets.find(b => b.startsWith('SCHEDULE:'))?.replace('SCHEDULE:', '').split('|');
-
-    return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <div className="mb-14">
-          <h2 className="h2-header mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
-          <p className="text-xl lg:text-2xl text-slate-500 font-light" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Methodology Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-8 p-12 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden group shadow-2xl shadow-slate-200"
-          >
-            <div className="absolute -right-8 -top-8 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-colors duration-700" />
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-3 px-5 py-2 bg-blue-600 rounded-xl text-xs font-black uppercase tracking-widest mb-10 shadow-lg shadow-blue-500/30">
-                <Target size={14} />
-                검증 방법론
-              </div>
-              <h3 className="text-2xl lg:text-4xl font-bold leading-tight" dangerouslySetInnerHTML={{ __html: method || '' }} />
-              <div className="mt-12 flex items-center gap-6 text-slate-400">
-                <div className="h-px w-12 bg-slate-700" />
-                <p className="text-sm font-medium tracking-wide tracking-[0.2em] uppercase">Step 4-2 Implementation</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Schedule Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="lg:col-span-4 p-12 bg-blue-50 rounded-[3rem] border border-blue-100 flex flex-col justify-between group hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
-          >
-            <div className="flex items-center justify-between">
-              <div className="w-16 h-16 rounded-[1.5rem] bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:rotate-12 transition-transform duration-500">
-                <Calendar size={32} />
-              </div>
-              <span className="text-4xl font-black text-blue-600/20">{schedule?.[0]}</span>
-            </div>
-            <div>
-              <p className="text-slate-500 text-sm font-bold uppercase tracking-widest mb-3">Target Schedule</p>
-              <h3 className="text-3xl font-black text-slate-900" dangerouslySetInnerHTML={{ __html: schedule?.[1] || '' }} />
-            </div>
-          </motion.div>
-
-          {/* Metrics Grid */}
-          <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
-            {metrics.map(([title, desc], idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + idx * 0.1 }}
-                className="clean-card p-10 flex flex-col gap-6 group hover:border-blue-500 transition-all"
-              >
-                <div className="flex flex-col gap-4">
-                  <div className="text-blue-600 font-black text-xs tracking-widest uppercase opacity-40">Metric {idx + 1}</div>
-                  <h4 className="text-xl font-bold text-slate-900" dangerouslySetInnerHTML={{ __html: title }} />
-                </div>
-                <div className="h-px bg-slate-100 group-hover:bg-blue-100 transition-colors" />
-                <p className="text-slate-500 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">

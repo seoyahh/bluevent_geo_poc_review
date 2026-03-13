@@ -32,25 +32,25 @@
 
 @layer components {
 
-  /* Typography Scale */
+  /* Typography Scale - Reduced for better balance */
   .h1-hero {
-    @apply text-5xl lg:text-[5.5rem] font-extrabold tracking-[-0.04em] text-[#0f172a] leading-[1.05];
+    @apply text-4xl lg:text-[4.5rem] font-extrabold tracking-[-0.04em] text-[#0f172a] leading-[1.1];
   }
 
   .h1-display {
-    @apply text-4xl lg:text-7xl font-extrabold tracking-[-0.03em] text-[#0f172a] leading-[1.1];
+    @apply text-3xl lg:text-6xl font-extrabold tracking-[-0.03em] text-[#0f172a] leading-[1.1];
   }
 
   .h2-header {
-    @apply text-2xl lg:text-5xl font-bold tracking-[-0.02em] text-[#0f172a] leading-tight;
+    @apply text-xl lg:text-4xl font-bold tracking-[-0.02em] text-[#0f172a] leading-tight;
   }
 
   .h3-subhead {
-    @apply text-lg lg:text-2xl font-medium tracking-tight text-slate-500 leading-relaxed;
+    @apply text-base lg:text-xl font-medium tracking-tight text-slate-500 leading-relaxed;
   }
 
   .body-main {
-    @apply text-base lg:text-xl font-normal text-slate-600 leading-[1.6];
+    @apply text-sm lg:text-lg font-normal text-slate-600 leading-[1.7];
   }
 
   .body-main strong {
@@ -58,7 +58,7 @@
   }
 
   .label-caps {
-    @apply text-[10px] font-black uppercase tracking-[0.25em] text-blue-600/80;
+    @apply text-[9px] font-black uppercase tracking-[0.25em] text-blue-600/80;
   }
 
   .text-gradient {
