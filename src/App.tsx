@@ -42,7 +42,7 @@ export default function App() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-6xl px-12 lg:px-32"
+        className="relative z-10 w-full max-w-[1400px] px-8 lg:px-16"
       >
         <div className="label-caps mb-12 flex items-center justify-center gap-3 bg-white/50 backdrop-blur-sm px-5 py-2 rounded-full border border-slate-100/50 shadow-sm mx-auto w-fit">
           <Sparkles size={14} />
@@ -66,7 +66,7 @@ export default function App() {
   );
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32">
+    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-20 min-h-screen items-center text-left">
         <div className="lg:col-span-12 mb-8">
           <h2 className="h2-header max-w-5xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
@@ -113,7 +113,7 @@ export default function App() {
   );
 
   const GridLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 flex flex-col justify-center py-20 min-h-screen text-left">
+    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex flex-col justify-center py-20 min-h-screen text-left">
       <div className="space-y-6 mb-16">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
         <p className="text-lg lg:text-2xl text-slate-500 font-light max-w-4xl leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -142,7 +142,7 @@ export default function App() {
   );
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 flex flex-col justify-center py-24 min-h-screen text-center">
+    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex flex-col justify-center py-24 min-h-screen text-center">
       <div className="space-y-8 mb-20">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
         <p className="text-lg lg:text-2xl text-blue-600 font-bold bg-blue-50/50 px-8 py-3 rounded-full inline-block" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -166,7 +166,7 @@ export default function App() {
   );
 
   const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-20 py-24 min-h-screen items-center text-left">
+    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-20 py-24 min-h-screen items-center text-left">
       <div className="lg:col-span-12 mb-10">
         <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
       </div>
@@ -198,7 +198,7 @@ export default function App() {
   );
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="w-full max-w-6xl mx-auto px-12 lg:px-32 flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
+    <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
