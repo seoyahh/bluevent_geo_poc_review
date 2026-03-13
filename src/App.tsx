@@ -535,6 +535,78 @@ export default function App() {
       </div>
     );
   };
+  const ComparisonTableLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const rows = slide.bullets.filter(b => b.startsWith('COMPARE:')).map(b => b.replace('COMPARE:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="overflow-hidden rounded-[2.5rem] border border-slate-100 bg-white shadow-2xl shadow-blue-500/5">
+          <div className="grid grid-cols-[1.5fr_2fr_3fr] bg-slate-900 p-8 text-white sticky top-0 z-20">
+            <span className="label-caps !text-slate-400">항목</span>
+            <span className="label-caps !text-slate-400 text-center">As-Is</span>
+            <span className="label-caps !text-slate-400 text-center">To-Be</span>
+          </div>
+          <div className="divide-y divide-slate-100">
+            {rows.map(([item, asis, tobe], idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: idx * 0.1 }}
+                className="grid grid-cols-[1.5fr_2fr_3fr] group"
+              >
+                <div className="p-10 bg-slate-50/50 flex items-center border-r border-slate-100 group-hover:bg-blue-50/30 transition-colors">
+                  <h3 className="text-xl font-bold text-slate-800" dangerouslySetInnerHTML={{ __html: item }} />
+                </div>
+                <div className="p-10 flex items-center justify-center border-r border-slate-100 text-slate-400 text-lg leading-relaxed text-center font-light">
+                  <p dangerouslySetInnerHTML={{ __html: asis }} />
+                </div>
+                <div className="p-10 flex items-center bg-blue-50/10 text-slate-700 text-xl leading-relaxed font-medium group-hover:bg-blue-50/30 transition-colors">
+                  <p dangerouslySetInnerHTML={{ __html: tobe }} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const DecisionItemsLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const items = slide.bullets.filter(b => b.startsWith('CONFIRM:')).map(b => b.replace('CONFIRM:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {items.map(([title, content], idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="clean-card p-12 flex flex-col gap-8 bg-white"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center">
+                <AlertTriangle size={32} />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black text-slate-900" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-lg text-slate-500 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
+              </div>
+              <div className="mt-auto pt-8 border-t border-slate-50">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-300">Decision Required</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
@@ -574,8 +646,10 @@ export default function App() {
             {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
             {index === 10 && <HypothesesLayout slide={slide} />}
             {index === 12 && <StrategyLayout slide={slide} />}
-            {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 13 && <ComparisonTableLayout slide={slide} />}
+            {index === 14 && <DecisionItemsLayout slide={slide} />}
+            {index === 17 ? <RoadmapLayout slide={slide} index={index} /> : null}
+            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

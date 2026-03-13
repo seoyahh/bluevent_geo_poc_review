@@ -159,18 +159,30 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 14,
-    title: "3-1. 메인 홈페이지 — As-Is & To-Be",
-    oneLiner: "브랜드 실체 강화를 위한 <strong>인프라 정상화 및 시맨틱 보정</strong>",
+    title: "3-1. 메인 홈페이지 — As-Is & To-Be 비교",
+    oneLiner: "브랜드 실체 강화를 위한 <strong>인프라 정상화 및 시맨틱 보정</strong> 비교",
     bullets: [
-      "As-Is: AI 봇 차단 상태, 이미지 중심, 의미론적 정보 부재",
-      "To-Be 1: <strong>robots.txt 수정</strong> 및 sitemap 자동 생성/제출 최적화",
-      "To-Be 2: <strong>TL;DR(요약문) 삽입</strong> 및 핵심 FAQ 텍스트 레이어 추가",
-      "To-Be 3: <strong>JSON-LD 브랜드 구조화 데이터</strong> 전면 적용"
+      "COMPARE:크롤링/인덱싱 인프라|robots.txt에서 GPTBot·ClaudeBot 전체 차단(`Disallow: /`), sitemap.xml 미확인, canonical 미정규화|GPTBot·ClaudeBot 최소 허용으로 전환, sitemap.xml 상태 확인 및 제출, canonical 정규화, (선택) llms.txt 적용 검토",
+      "COMPARE:메타 태그|타이틀 태그 후보가 복수로 혼재, Meta Description·OG 태그 미정규화|타이틀 1개 확정 → 전면 적용 <strong>(🔴 컨펌 필요)</strong>, Meta Description·OG·Canonical 일괄 정규화",
+      "COMPARE:본문 텍스트 구조|본문 텍스트 비율 낮음, 헤딩 태그 미사용, 정보가 영상·이미지에만 의존|H1 브랜드+핵심키워드 삽입, TL;DR 1문장 정의 텍스트 노출, 스펙/인증 요약 텍스트 블록 추가, 영상 영역에 요약 텍스트 블록 병행, 제품상세·리뷰로의 앵커 텍스트 설계",
+      "COMPARE:JSON-LD 구조화 데이터|미적용|Organization / WebSite / BreadcrumbList 우선 적용",
+      "COMPARE:FAQ|없음|핵심 5개 FAQ 텍스트 블록 삽입 (FAQPage 스키마 연동)"
     ],
     visualGuide: "메인 페이지의 시각적/기술적 변화를 비교한 전/후 레이아웃 도식."
   },
   {
     id: 15,
+    title: "3-1-b. 메인 홈페이지 — 개선 시 의사결정 필요 사항",
+    oneLiner: "효과적인 PoC 수행을 위한 <strong>브랜드 가이드 및 기술 정책</strong> 확정",
+    bullets: [
+      "CONFIRM:브랜드 키워드|메타 타이틀 및 H1에 명시할 1순위 브랜드 키워드 확정 필요",
+      "CONFIRM:컨텐츠 노출|TL;DR 정의 및 요약 텍스트의 디자인적 노출 방식 결정 (Hidden vs Visible)",
+      "CONFIRM:기술 지원|robots.txt 수정을 위한 FTP 정보 공유 또는 플랫폼사 협업 채널 확보"
+    ],
+    visualGuide: "의사결정이 필요한 항목들을 체크리스트 형태로 시각화."
+  },
+  {
+    id: 16,
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
     oneLiner: "AI용 <strong>정형 데이터 레이어 구축</strong>을 통한 인용률 극대화",
     bullets: [
@@ -182,7 +194,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "상세 페이지의 데이터 추출 엔진 친화적 개선안 가이드라인."
   },
   {
-    id: 16,
+    id: 17,
     title: "3-3. 검증 계획 및 성과 측정",
     oneLiner: "<strong>수행계획서 4단계</strong> 연계를 통한 PoC 성과 리포팅 및 기술 검증",
     bullets: [
@@ -192,5 +204,16 @@ export const SLIDES: Slide[] = [
       "Next Action: 측정 결과 기반의 <strong>상용 레벨 확산 가이드라인</strong> 도출"
     ],
     visualGuide: "검증 단계별 타임라인 및 KPI 달성 평가 보드."
+  },
+  {
+    id: 18,
+    title: "4. 기대 효과 및 향후 계획",
+    oneLiner: "GEO 기술 도입을 통한 <strong>브랜드 가치 제고 및 시장 선점</strong> 로드맵",
+    bullets: [
+      "PHASE 1: PoC 수행|메인/상세 개선 및 AI 인용률 변화 측정 (2026.03)",
+      "PHASE 2: 결과 분석|검색 노출 최적화 및 GPTs 커스텀 지식 구축 (2026.04)",
+      "PHASE 3: 상용 확산|전사 디지털 에셋 GEO 표준 수립 및 글로벌 확장 (2026.05+)"
+    ],
+    visualGuide: "성과 가시화 및 단계별 확장을 보여주는 3D 로드맵 애니메이션."
   }
 ];
