@@ -172,6 +172,16 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 15,
+    title: "3-1. 메인 홈페이지 — 비주얼 프리뷰",
+    oneLiner: "UI/UX 및 테크니컬 구조 개편에 따른 <strong>시각적 변화 미리보기</strong>",
+    bullets: [
+      "ASIS:images/main_asis.png",
+      "TOBE:images/main_tobe.png"
+    ],
+    visualGuide: "As-Is와 To-Be 이미지를 좌우로 배치하여 직관적인 변화를 보여주는 레이아웃."
+  },
+  {
+    id: 16,
     title: "3-1. 메인 홈페이지 — As-Is & To-Be",
     oneLiner: "성공적인 PoC 수행을 위한 <strong>개선 시 의사결정 필요 사항</strong>",
     bullets: [
@@ -183,7 +193,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "의사결정이 필요한 항목들을 대조표 및 선택형 카드 형태로 시각화."
   },
   {
-    id: 16,
+    id: 17,
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
     oneLiner: "AI용 <strong>정형 데이터 레이어 구축</strong>을 통한 인용률 극대화",
     bullets: [
@@ -195,7 +205,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "상세 페이지의 데이터 추출 엔진 친화적 개선안 가이드라인."
   },
   {
-    id: 17,
+    id: 18,
     title: "3-3. 검증 계획 및 성과 측정",
     oneLiner: "<strong>수행계획서 4단계</strong> 연계를 통한 PoC 성과 리포팅 및 기술 검증",
     bullets: [
@@ -207,7 +217,7 @@ export const SLIDES: Slide[] = [
     visualGuide: "검증 단계별 타임라인 및 KPI 달성 평가 보드."
   },
   {
-    id: 18,
+    id: 19,
     title: "4. 기대 효과 및 향후 계획",
     oneLiner: "GEO 기술 도입을 통한 <strong>브랜드 가치 제고 및 시장 선점</strong> 로드맵",
     bullets: [

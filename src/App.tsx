@@ -631,6 +631,53 @@ export default function App() {
       </div>
     );
   };
+  const VisualPreviewLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const asis = slide.bullets.find(b => b.startsWith('ASIS:'))?.replace('ASIS:', '');
+    const tobe = slide.bullets.find(b => b.startsWith('TOBE:'))?.replace('TOBE:', '');
+
+    return (
+      <div className="w-full max-w-[1600px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-4" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-2xl text-slate-400 font-light mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* As-Is */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col gap-6"
+          >
+            <div className="flex items-center gap-3">
+              <span className="px-4 py-1 bg-slate-100 text-slate-500 rounded-full text-xs font-black uppercase tracking-widest">As-Is</span>
+              <span className="text-slate-400 font-light italic">현재 상태</span>
+            </div>
+            <div className="rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/20 aspect-[16/10] bg-slate-50 relative group">
+              {asis && <img src={asis} alt="As-Is Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />}
+              <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,0,0,0.05)] pointer-events-none" />
+            </div>
+          </motion.div>
+
+          {/* To-Be */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col gap-6"
+          >
+            <div className="flex items-center gap-3 justify-end lg:justify-start">
+              <span className="px-4 py-1 bg-blue-600 text-white rounded-full text-xs font-black uppercase tracking-widest">To-Be</span>
+              <span className="text-blue-600 font-bold">PoC 적용 후 예시</span>
+            </div>
+            <div className="rounded-[2.5rem] overflow-hidden border border-blue-100 shadow-2xl shadow-blue-500/10 aspect-[16/10] bg-blue-50/30 relative group">
+              {tobe && <img src={tobe} alt="To-Be Main" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />}
+              <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,102,255,0.05)] pointer-events-none" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
@@ -671,9 +718,10 @@ export default function App() {
             {index === 10 && <HypothesesLayout slide={slide} />}
             {index === 12 && <StrategyLayout slide={slide} />}
             {index === 13 && <ComparisonTableLayout slide={slide} />}
-            {index === 14 && <DecisionGridLayout slide={slide} />}
-            {index === 17 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 14 && <VisualPreviewLayout slide={slide} />}
+            {index === 15 && <DecisionGridLayout slide={slide} />}
+            {index === 18 ? <RoadmapLayout slide={slide} index={index} /> : null}
+            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
