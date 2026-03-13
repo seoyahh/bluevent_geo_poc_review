@@ -585,17 +585,17 @@ export default function App() {
         <p className="text-2xl text-slate-400 font-light mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {options.map(([title, ...choices], idx) => (
+          {options.map(([title, subtitle, ...choices], idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="clean-card p-10 bg-white flex flex-col gap-8 border-slate-100"
+              className="clean-card p-10 bg-white flex flex-col gap-6 border-slate-100"
             >
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-black text-slate-900">{title}</h3>
-                <span className="px-3 py-1 bg-amber-50 text-amber-600 rounded-full text-[10px] font-black uppercase tracking-widest">Selection Req.</span>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-black text-slate-900">{title}</h3>
+                {subtitle && <p className="text-lg text-blue-600 font-medium leading-relaxed">{subtitle}</p>}
               </div>
               <div className="flex flex-col gap-3">
                 {choices.map((choice, cIdx) => (
@@ -603,7 +603,7 @@ export default function App() {
                     <div className="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center flex-shrink-0 mt-1">
                       <div className="w-2 h-2 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <p className="text-lg text-slate-600 group-hover:text-slate-900" dangerouslySetInnerHTML={{ __html: choice }} />
+                    <p className="text-xl text-slate-600 group-hover:text-slate-900" dangerouslySetInnerHTML={{ __html: choice }} />
                   </div>
                 ))}
               </div>
@@ -616,17 +616,14 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="lg:col-span-2 clean-card p-10 bg-slate-900 border-none flex flex-col md:flex-row items-center gap-10"
+              className="lg:col-span-2 clean-card p-12 bg-slate-900 border-none flex flex-col md:flex-row items-center gap-10"
             >
-              <div className="w-20 h-20 rounded-3xl bg-blue-600 flex items-center justify-center flex-shrink-0 animate-pulse">
+              <div className="w-20 h-20 rounded-3xl bg-blue-600 flex items-center justify-center flex-shrink-0">
                 <Settings size={40} className="text-white" />
               </div>
               <div className="flex-grow">
-                <h3 className="text-2xl font-black text-white mb-4">{title}</h3>
+                <h3 className="text-3xl font-black text-white mb-4">{title}</h3>
                 <p className="text-xl text-slate-400 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
-              </div>
-              <div className="px-8 py-4 rounded-full border border-white/10 text-white/40 label-caps shrink-0">
-                Action Required
               </div>
             </motion.div>
           ))}
