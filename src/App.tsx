@@ -243,7 +243,7 @@ export default function App() {
               transition={{ delay: idx * 0.1 }}
               className="flex items-center gap-8 bg-white/60 border border-slate-100 p-6 rounded-[1.5rem] shadow-sm hover:border-blue-200 hover:bg-white transition-all group"
             >
-              <div className="px-4 py-1.5 rounded-full bg-slate-50 text-slate-400 font-bold text-xs whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white transition-colors uppercase tracking-wider">
+              <div className="w-40 flex-shrink-0 px-4 py-1.5 rounded-full bg-slate-50 text-slate-400 font-bold text-xs group-hover:bg-blue-600 group-hover:text-white transition-colors uppercase tracking-wider text-center">
                 {category}
               </div>
               <div className="w-[1px] h-6 bg-slate-100" />
