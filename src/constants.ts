@@ -202,10 +202,8 @@ export const SLIDES: Slide[] = [
       "ASIDE_BULLET:<strong>alt/hidden text 품질이 확보</strong>되면 이미지가 상단·하단에 있더라도 크롤러 인식 차이는 제한적입니다.",
       "ASIDE_BULLET:순서 재배치는 GEO 검증보다 <strong>UX/CRO 성격이 강해</strong> 1차 검증 항목과 분리합니다.",
       "ASIDE_BULLET:PoC 우선순위는 <strong>① alt + hidden text 전면 적용 → ② 섹션별 헤딩 구조 정비 및 스펙의 구조화</strong> 순입니다.",
-      "ITEM:① <strong>JSON-LD 구조화 데이터</strong>|미적용 → Product(+ FAQPage/HowTo 필요 시) 스키마 적용",
-      "ITEM:② <strong>메타 태그 정규화</strong>|(현황 점검) → Meta Title 최적화, Meta Description, OG 태그, Canonical URL 정규화",
-      "ITEM:③ <strong>본문 텍스트 삽입</strong>|이미지 분할(13개), 규격 Alt 텍스트, H2/H3/p 히든 텍스트, 헤딩 태그 계층화 적용",
-      "ITEM:④ <strong>크롤링/인덱싱 인프라</strong>|robots.txt AI봇 허용, sitemap.xml 확인, llms.txt 선택 적용"
+      "ITEM:PoC 기술적 구현 범위|순서 재배치 등 UI/UX 개편이 아닌, <strong>이미지 Alt 텍스트(Alternative Text) 정밀 마크업</strong>을 통한 데이터 가독성 확보에 집중합니다.",
+      "ITEM:검증 핵심 지표|텍스트 레이어 삽입만으로 AI 인용 신뢰도가 어느 정도 상승하는지 정량적으로 측정하여 GEO 개선의 최소 요건을 정의합니다."
     ],
     visualGuide: "상세 페이지의 테크니컬 개선 핵심 포인트(Aside)와 4대 실행 항목(Grid)을 결합한 정보 중심 레이아웃."
   }
