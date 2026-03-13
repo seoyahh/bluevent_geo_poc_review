@@ -636,39 +636,86 @@ export default function App() {
     const tobe = slide.bullets.find(b => b.startsWith('TOBE:'))?.replace('TOBE:', '');
 
     return (
-      <div className="w-full max-w-[1600px] mx-auto px-8 lg:px-16 py-10 min-h-screen flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* As-Is */}
+      <div className="w-full max-w-[1700px] mx-auto px-8 lg:px-16 py-10 min-h-screen flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* As-Is: Smaller, Supporting Position */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-6"
+            viewport={{ once: true }}
+            className="lg:col-span-4 flex flex-col gap-6"
           >
             <div className="flex items-center gap-3">
-              <span className="px-4 py-1 bg-slate-100 text-slate-500 rounded-full text-xs font-black uppercase tracking-widest">As-Is</span>
-              <span className="text-slate-400 font-light italic">현재 상태</span>
+              <span className="px-4 py-1.5 bg-slate-100 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">Baseline</span>
+              <div className="h-px flex-grow bg-slate-100" />
             </div>
-            <div className="rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 bg-slate-50 relative group overflow-hidden flex flex-col">
-              {asis && <img src={asis} alt="As-Is Main" className="w-full h-auto object-top" />}
-              <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,0,0,0.03)] pointer-events-none" />
+            <div className="rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/10 bg-slate-50 relative group opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700 overflow-hidden text-center">
+              <div className="absolute top-6 left-6 z-10 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-slate-400 border border-slate-100 shadow-sm">
+                AS-IS 현황
+              </div>
+              {asis && <img src={asis} alt="As-Is Main" className="w-full h-auto block" />}
+              <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,0,0,0.02)] pointer-events-none" />
             </div>
           </motion.div>
 
-          {/* To-Be */}
+          {/* To-Be: Main Focus, Larger, Vibrant */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-6"
+            viewport={{ once: true }}
+            className="lg:col-span-8 flex flex-col gap-8"
           >
-            <div className="flex items-center gap-3 justify-end lg:justify-start">
-              <span className="px-4 py-1 bg-blue-600 text-white rounded-full text-xs font-black uppercase tracking-widest">To-Be</span>
-              <span className="text-blue-600 font-bold">PoC 적용 후 예시</span>
+            <div className="flex items-center gap-6">
+              <span className="px-6 py-2 bg-blue-600 text-white rounded-full text-xs font-black uppercase tracking-[0.3em] shadow-xl shadow-blue-500/40 animate-pulse">
+                Target Concept
+              </span>
+              <div className="flex gap-3 text-nowrap flex-wrap lg:flex-nowrap">
+                {['Semantic Structure', 'GEO Optimized', 'AI Core Ready'].map((tag, i) => (
+                  <span key={i} className="px-3 py-1 bg-white text-blue-600 rounded-full text-[10px] font-bold border border-blue-50 shadow-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="rounded-[2.5rem] border border-blue-100 shadow-2xl shadow-blue-500/10 bg-blue-50/30 relative group overflow-hidden flex flex-col">
-              {tobe && <img src={tobe} alt="To-Be Main" className="w-full h-auto object-top" />}
-              <div className="absolute inset-0 shadow-[inner_0_0_100px_rgba(0,102,255,0.03)] pointer-events-none" />
+
+            <div className="relative">
+              {/* Glow Decoration */}
+              <div className="absolute -inset-10 bg-blue-500/10 rounded-[4rem] blur-3xl -z-10 animate-pulse" />
+
+              <div className="rounded-[3rem] border-2 border-blue-100 shadow-[0_40px_100px_-20px_rgba(0,102,255,0.15)] bg-white relative group overflow-hidden ring-4 ring-blue-50/50">
+                {/* Status Badge */}
+                <div className="absolute top-8 right-8 z-10">
+                  <div className="px-5 py-2.5 bg-blue-600 backdrop-blur-md rounded-2xl text-xs font-black text-white shadow-2xl border border-white/20 flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-white animate-ping" />
+                    TO-BE 개선안
+                  </div>
+                </div>
+
+                {/* Floating Feature Tags */}
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 w-[94%] flex justify-between gap-4 pointer-events-none">
+                  {[
+                    { label: 'Architecture', val: '구조화 데이터 적용' },
+                    { label: 'Context', val: '시맨틱 텍스트 확장' },
+                    { label: 'Infrastructure', val: '로봇 크롤링 최적화' }
+                  ].map((f, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="p-5 bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-blue-50 flex-grow max-w-[240px]"
+                    >
+                      <div className="text-[10px] font-black text-blue-600 uppercase mb-1 tracking-widest">{f.label}</div>
+                      <div className="text-sm font-bold text-slate-900">{f.val}</div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {tobe && <img src={tobe} alt="To-Be Main" className="w-full h-auto block scale-100 group-hover:scale-[1.01] transition-transform duration-[3000ms] ease-out" />}
+
+                {/* Visual Indicators Overlay */}
+                <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              </div>
             </div>
           </motion.div>
         </div>
