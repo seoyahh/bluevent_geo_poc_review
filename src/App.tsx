@@ -665,7 +665,7 @@ export default function App() {
             className="lg:col-span-9 flex flex-col gap-6"
           >
             <div className="flex items-center gap-3">
-              <span className="px-5 py-2 bg-blue-600 text-white rounded-xl text-xs font-black tracking-widest uppercase shadow-lg shadow-blue-500/20">TO-BE</span>
+              <span className="px-5 py-2 bg-blue-600 text-white rounded-xl text-xs font-black tracking-widest uppercase shadow-lg shadow-blue-500/20">TO-BE 개선안</span>
               <div className="h-px flex-grow bg-blue-50" />
             </div>
 
