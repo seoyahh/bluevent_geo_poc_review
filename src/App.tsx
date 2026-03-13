@@ -375,6 +375,95 @@ export default function App() {
       </div>
     );
   };
+  const DiagnosticResultsLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const scores = slide.bullets.filter(b => b.startsWith('SCORE:')).map(b => b.replace('SCORE:', '').split('|'));
+    const issues = slide.bullets.filter(b => b.startsWith('ISSUE:')).map(b => b.replace('ISSUE:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
+          {scores.map(([label, status, desc], idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: idx * 0.1 }}
+              className="clean-card p-10 flex flex-col gap-6"
+            >
+              <div className="flex justify-between items-start">
+                <span className="label-caps !text-slate-400">{label}</span>
+                <span className={`px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest ${status.includes('Fail') ? 'bg-red-50 text-red-600' :
+                    status.includes('Warning') ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'
+                  }`} dangerouslySetInnerHTML={{ __html: status }} />
+              </div>
+              <p className="text-lg text-slate-700 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+            </motion.div>
+          ))}
+        </div>
+
+        {issues.map(([label, content], idx) => (
+          <div key={idx} className="bg-slate-900 rounded-[2.5rem] p-12 flex flex-col md:flex-row items-center gap-12">
+            <div className="w-20 h-20 rounded-[1.5rem] bg-blue-600 flex items-center justify-center flex-shrink-0 animate-pulse">
+              <FileText size={40} className="text-white" />
+            </div>
+            <div>
+              <span className="label-caps !text-blue-400 mb-4 block">{label}</span>
+              <p className="text-2xl lg:text-3xl text-white font-light leading-snug" dangerouslySetInnerHTML={{ __html: content }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const HypothesesLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const hypos = slide.bullets.filter(b => b.startsWith('HYPO:')).map(b => b.replace('HYPO:', '').split('|'));
+    const table = slide.bullets.filter(b => b.startsWith('TABLE:')).map(b => b.replace('TABLE:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {hypos.map(([title, desc], idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="clean-card p-12 bg-white flex flex-col gap-8 hover:border-blue-300 transition-colors"
+            >
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-black">
+                {String.fromCharCode(65 + idx)}
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black text-slate-900" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-lg text-slate-500 leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="overflow-hidden rounded-[2rem] border border-slate-100 bg-white/50 backdrop-blur-sm shadow-sm">
+          <div className="grid grid-cols-4 bg-slate-50 p-6 border-b border-slate-100">
+            {table[0]?.map((col, idx) => (
+              <span key={idx} className="label-caps !text-slate-500 text-center">{col}</span>
+            ))}
+          </div>
+          <div className="grid grid-cols-4 p-8">
+            {table[0]?.map((_, idx) => (
+              <div key={idx} className="flex justify-center">
+                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                  <Check size={20} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
@@ -411,10 +500,11 @@ export default function App() {
             {index === 2 && <MethodologyLayout slide={slide} />}
             {index === 6 && <DualPillarLayout slide={slide} />}
             {index === 7 && <InfraAuditLayout slide={slide} />}
+            {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
+            {index === 10 && <HypothesesLayout slide={slide} />}
             {[12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
             {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {[10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
-            {![0, 1, 2, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

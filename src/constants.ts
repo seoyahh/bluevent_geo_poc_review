@@ -103,34 +103,36 @@ export const SLIDES: Slide[] = [
     title: "2-2. 메인 홈페이지 진단 결과",
     oneLiner: "브랜드 인식의 핵심인 <strong>메인 페이지 테크니컬 요소</strong> 심층 분석",
     bullets: [
-      "Title & Meta: 브랜드 정체성 전달을 위한 <strong>메타 태그 최적화</strong> 수준",
-      "Heading Level: <strong>H1 태그 부재</strong> 및 의미론적 위계 불일치 식별",
-      "Content Density: <strong>이미지 비중</strong> 대비 AI 인식 가용 텍스트량 분석",
-      "Entity Signal: <strong>Organization/WebSite</strong> 구조화 데이터 적용 여부"
+      "SCORE:Title & Meta|<strong>Warning</strong>|기본 정보인 제목과 설명은 존재하나 브랜드 키워드 최적화 부족",
+      "SCORE:Heading Level|<strong>Fail</strong>|H1 태그가 존재하지 않으며 논리적 위계 구조 전무",
+      "SCORE:Content Ratio|<strong>Fail</strong>|이미지 비중 90% 이상으로 AI 인식 가능 텍스트 극소량",
+      "SCORE:Structured Data|<strong>Fail</strong>|JSON-LD(Organization/WebSite) 등 검색 기여 데이터 미적용",
+      "ISSUE:요약|본문 텍스트 비율이 극히 낮고 시맨틱 태그 구조가 없어 AI의 의미론적 분석이 불가능한 상태"
     ],
-    visualGuide: "메인 페이지의 가독성 및 데이터 구조화 수준을 보여주는 스코어링 차트."
+    visualGuide: "항목별 Pass/Fail 스코어 카드 및 검색 가용성 정밀 분석 그래프."
   },
   {
     id: 10,
     title: "2-3. 제품 상세페이지(블루벤트 ID) 진단 결과",
-    oneLiner: "제품 정보 정확도를 결정하는 <strong>데이터 추출 효율성</strong> 진단",
+    oneLiner: "제품 정보 정확도를 결정하는 <strong>데이터 추출 효율성</strong> 정밀 진단",
     bullets: [
-      "통 이미지 구조: 단일 파일 구성으로 인한 <strong>텍스트 데이터 추출 불가</strong>",
-      "Alt Tags: 제품 핵심 스펙에 대한 <strong>대체 텍스트 제공 부재</strong>",
-      "Structured Data: <strong>Product 스키마 미적용</strong>으로 인한 인용 소스 실종",
-      "Technical Debt: 플랫폼 제약에 따른 <strong>스크립트 삽입 한계점</strong>"
+      "SCORE:Image Structure|<strong>Fail</strong>|상세페이지 전체가 통 이미지로 구성되어 텍스트 데이터 추출 불가",
+      "SCORE:Alt Metadata|<strong>Fail</strong>|핵심 제품 스펙에 대한 대체 텍스트(alt) 지원 전무",
+      "SCORE:Heading Hierarchy|<strong>Fail</strong>|제품명, 스펙 표 등 주요 정보를 구분하는 헤딩 구조 실종",
+      "SCORE:Schema Product|<strong>Fail</strong>|Product/Offer 구조화 데이터 부재로 AI 답변 내 추천 소스 제외",
+      "ISSUE:요약|데이터 크롤링의 '블랙홀' 상태로, 시각 정보 외에 AI가 인용할 수 있는 텍스트 데이터 레이어 부재"
     ],
-    visualGuide: "상세 페이지의 데이터 추출 방해 요소(이미지 덩어리 등) 시각화."
+    visualGuide: "데이터 인지 불가 지점(이미지 영역)을 붉게 표시한 상세페이지 히트맵 시각화."
   },
   {
     id: 11,
     title: "2-4. 진단 결과 종합 → 가설 구체화",
     oneLiner: "진단 기반 핵심 문제 정의 및 <strong>PoC 수행을 위한 실행 가설</strong> 확정",
     bullets: [
-      "문제 정의: <strong>'인프라 차단'</strong> 및 <strong>'데이터 구조 결핍'</strong>에 따른 신뢰도 저하",
-      "실행 가설: <strong>시맨틱 구조화 적용</strong> 시 직접 인용률 30% 이상 향상",
-      "우선 지점: 브랜드 엔티티 강화 및 <strong>상세 페이지 데이터 레이어</strong> 구축",
-      "검증 설계: 기술 개선 전/후의 <strong>AI 답변 정확도 변화</strong> 측정"
+      "HYPO:<strong>가설 A (상세페이지)</strong>|이미지를 분할하고 alt + 히든 텍스트를 삽입하면 AI가 제품 정보를 정확히 인용한다.",
+      "HYPO:<strong>가설 B (메인페이지)</strong>|JSON-LD 구조화 데이터를 적용하면 브랜드 인지 질문에서 자사몰 인용률이 상승한다.",
+      "HYPO:<strong>가설 C (정보 구조)</strong>|GEO 6단계 구조로 정보 순서를 재배치하면 AI가 핵심 스펙 데이터를 우선 참조한다.",
+      "TABLE:가설별 검증 여부|가설A:PoC적용(상세)|가설B:PoC적용(메인)|가설C:전술적용(공통)"
     ],
     visualGuide: "과제 도출 매트릭스 및 가설 수립 플로우차트."
   },
