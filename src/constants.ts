@@ -26,7 +26,7 @@ export const SLIDES: Slide[] = [
     bullets: [
       "SUMMARY:<strong>진단 목적</strong>|AI 플랫폼(ChatGPT, Perplexity, Gemini 등)에서 블루벤트가 얼마나 올바르게 인식·인용되는지 측정",
       "SUMMARY:<strong>개선 범위</strong>|메인페이지 + 제품 상세페이지<br/>(코드 수정 수준)",
-      "SUMMARY:<strong>수집 항목</strong>|① 블루벤트 언급 유무<br/>② 인용 URL ③ 제품명·스펙 정확도 ④ 오류/누락 내용",
+      "SUMMARY:<strong>수집 항목</strong>|① 블루벤트 언급 유무<br/>② 인용 URL ③ 오류/누락 내용 ④ 제품명·스펙 정확도",
       "QUESTION:브랜드 인식|블루벤트는 어떤 회사고, 어떤 제품을 판매하나요?",
       "QUESTION:카테고리 추천|가정용 음식물처리기 추천해줘. 분쇄식으로 조용하고 탈취 잘 되는 거 찾고 있어.",
       "QUESTION:카테고리 추천|음식물처리기 구매할 때 브랜드별로 어떤 차이가 있나요? 국내 주요 브랜드 비교해줘.",
