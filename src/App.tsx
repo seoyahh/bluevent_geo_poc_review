@@ -235,12 +235,12 @@ export default function App() {
 
         {/* Bottom Models */}
         <div className="flex flex-wrap items-center gap-12 pt-10 border-t border-slate-100">
-          <span className="label-caps !text-slate-300">Test Platforms</span>
+          <span className="label-caps !text-slate-400">Test Platforms</span>
           <div className="flex gap-12">
             {models.map((model, idx) => (
               <div key={idx} className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-blue-600/20" />
-                <span className="text-xl font-black text-slate-300 uppercase tracking-[0.2em]">{model}</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-600 shadow-sm shadow-blue-200" />
+                <span className="text-xl lg:text-2xl font-black text-slate-900 uppercase tracking-[0.2em]">{model}</span>
               </div>
             ))}
           </div>
