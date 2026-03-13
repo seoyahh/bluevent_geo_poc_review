@@ -839,25 +839,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
-      {/* Refined Sidebar Navigation */}
-      <nav className="fixed right-16 top-1/2 -translate-y-1/2 z-[100] hidden 2xl:flex flex-col gap-12">
-        {SLIDES.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => scrollToSection(idx)}
-            className="group relative flex items-center justify-end outline-none"
-          >
-            <motion.span
-              initial={false}
-              animate={{ opacity: idx === activeSection ? 1 : 0, x: idx === activeSection ? 0 : 20 }}
-              className="label-caps mr-10"
-            >
-              {String(idx + 1).padStart(2, '0')}
-            </motion.span>
-            <div className={`transition-all duration-700 rounded-full ${idx === activeSection ? 'w-2.5 h-12 bg-blue-600 shadow-[0_0_25px_rgba(0,102,255,0.4)]' : 'w-[1px] h-5 bg-slate-100 group-hover:bg-slate-300'}`} />
-          </button>
-        ))}
-      </nav>
 
       {/* Main Content Area */}
       <main className="relative z-10">
@@ -879,9 +860,7 @@ export default function App() {
             {index === 14 && <VisualPreviewLayout slide={slide} />}
             {index === 15 && <DecisionGridLayout slide={slide} />}
             {index === 16 && <TechnicalDetailLayout slide={slide} />}
-            {index === 17 && <ValidationPlanLayout slide={slide} />}
-            {index === 18 ? <RoadmapLayout slide={slide} index={index} /> : null}
-            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

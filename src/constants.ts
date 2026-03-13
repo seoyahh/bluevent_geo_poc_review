@@ -208,30 +208,5 @@ export const SLIDES: Slide[] = [
       "ITEM:④ <strong>크롤링/인덱싱 인프라</strong>|robots.txt AI봇 허용, sitemap.xml 확인, llms.txt 선택 적용"
     ],
     visualGuide: "상세 페이지의 테크니컬 개선 핵심 포인트(Aside)와 4대 실행 항목(Grid)을 결합한 정보 중심 레이아웃."
-  },
-  {
-    id: 18,
-    title: "3-3. 검증 계획 (수행계획서 4단계 연계)",
-    oneLiner: "<strong>효과적인 GEO 검증</strong>을 위한 전/후 비교 및 심층 지표 측정",
-    bullets: [
-      "METHOD:동일 프롬프트 세트로 전/후 비교 테스트 (수행계획서 4-2)",
-      "METRIC:인용률 변화|전체 및 모델별 인용 빈도 비교",
-      "METRIC:인용 URL 변화|대상 페이지 인용 비율 추적",
-      "METRIC:사실 정확도 변화|기술적 정확도 및 정합성 평가",
-      "METRIC:근거 URL 노출|출처 URL 명시 및 노출 여부",
-      "SCHEDULE:Week 04|수행계획서 로드맵 기준 검증 완료"
-    ],
-    visualGuide: "검증 방법론, 핵심 측정 지표, 추진 일정을 통합한 성과 관리 보드."
-  },
-  {
-    id: 19,
-    title: "4. 기대 효과 및 향후 계획",
-    oneLiner: "GEO 기술 도입을 통한 <strong>브랜드 가치 제고 및 시장 선점</strong> 로드맵",
-    bullets: [
-      "PHASE 1: PoC 수행|메인/상세 개선 및 AI 인용률 변화 측정 (2026.03)",
-      "PHASE 2: 결과 분석|검색 노출 최적화 및 GPTs 커스텀 지식 구축 (2026.04)",
-      "PHASE 3: 상용 확산|전사 디지털 에셋 GEO 표준 수립 및 글로벌 확장 (2026.05+)"
-    ],
-    visualGuide: "성과 가시화 및 단계별 확장을 보여주는 3D 로드맵 애니메이션."
   }
 ];
