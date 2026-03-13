@@ -159,7 +159,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 14,
-    title: "3-1. 메인 홈페이지 — As-Is & To-Be 비교",
+    title: "3-1. 메인 홈페이지 — As-Is & To-Be",
     oneLiner: "브랜드 실체 강화를 위한 <strong>인프라 정상화 및 시맨틱 보정</strong> 비교",
     bullets: [
       "COMPARE:크롤링/인덱싱 인프라|robots.txt에서 GPTBot·ClaudeBot 전체 차단(`Disallow: /`), sitemap.xml 미확인, canonical 미정규화|GPTBot·ClaudeBot 최소 허용으로 전환, sitemap.xml 상태 확인 및 제출, canonical 정규화, (선택) llms.txt 적용 검토",
@@ -172,14 +172,15 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 15,
-    title: "3-1-b. 메인 홈페이지 — 개선 시 의사결정 필요 사항",
-    oneLiner: "효과적인 PoC 수행을 위한 <strong>브랜드 가이드 및 기술 정책</strong> 확정",
+    title: "3-1. 메인 홈페이지 — As-Is & To-Be",
+    oneLiner: "성공적인 PoC 수행을 위한 <strong>개선 시 의사결정 필요 사항</strong>",
     bullets: [
-      "CONFIRM:브랜드 키워드|메타 타이틀 및 H1에 명시할 1순위 브랜드 키워드 확정 필요",
-      "CONFIRM:컨텐츠 노출|TL;DR 정의 및 요약 텍스트의 디자인적 노출 방식 결정 (Hidden vs Visible)",
-      "CONFIRM:기술 지원|robots.txt 수정을 위한 FTP 정보 공유 또는 플랫폼사 협업 채널 확보"
+      "OPTION:A. Meta Title 후보|음식물 처리의 한 손 시대 개막 (비전형)|가정용 음식물처리기 공식 온라인몰 (명확형)|원핸드그립 음식물처리기, 블루벤트 ID (제품형)",
+      "OPTION:B. H1 Tag 후보|한 손으로 끝내는 음식물처리기, 블루벤트 (USP)|한 손으로 넣고 AI로 처리하는 음식물처리기 (AI 강조)|블루벤트, AI 음식물처리기의 새로운 기준 (리더십)",
+      "OPTION:C. FAQ 5개 선정|필터 교체 주기|닭뼈/생선뼈 처리 여부|추가 투입 가능성|작동 소음 정도|처리 완료 시간",
+      "CONFIRM:D. 스펙/인증 요약 영역|대표 제품을 <strong>블루벤트 ID 단일 모델</strong>로 구성할지, 라인업 전체를 포함할지 기술적 확정 필요"
     ],
-    visualGuide: "의사결정이 필요한 항목들을 체크리스트 형태로 시각화."
+    visualGuide: "의사결정이 필요한 항목들을 대조표 및 선택형 카드 형태로 시각화."
   },
   {
     id: 16,

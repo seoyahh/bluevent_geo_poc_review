@@ -575,31 +575,58 @@ export default function App() {
     );
   };
 
-  const DecisionItemsLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
-    const items = slide.bullets.filter(b => b.startsWith('CONFIRM:')).map(b => b.replace('CONFIRM:', '').split('|'));
+  const DecisionGridLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const options = slide.bullets.filter(b => b.startsWith('OPTION:')).map(b => b.replace('OPTION:', '').split('|'));
+    const confirm = slide.bullets.filter(b => b.startsWith('CONFIRM:')).map(b => b.replace('CONFIRM:', '').split('|'));
 
     return (
       <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <h2 className="h2-header mb-4" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-2xl text-slate-400 font-light mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {items.map(([title, content], idx) => (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {options.map(([title, ...choices], idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="clean-card p-12 flex flex-col gap-8 bg-white"
+              className="clean-card p-10 bg-white flex flex-col gap-8 border-slate-100"
             >
-              <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center">
-                <AlertTriangle size={32} />
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-black text-slate-900">{title}</h3>
+                <span className="px-3 py-1 bg-amber-50 text-amber-600 rounded-full text-[10px] font-black uppercase tracking-widest">Selection Req.</span>
               </div>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black text-slate-900" dangerouslySetInnerHTML={{ __html: title }} />
-                <p className="text-lg text-slate-500 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
+              <div className="flex flex-col gap-3">
+                {choices.map((choice, cIdx) => (
+                  <div key={cIdx} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 transition-all group flex items-start gap-4">
+                    <div className="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-2 h-2 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <p className="text-lg text-slate-600 group-hover:text-slate-900" dangerouslySetInnerHTML={{ __html: choice }} />
+                  </div>
+                ))}
               </div>
-              <div className="mt-auto pt-8 border-t border-slate-50">
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-300">Decision Required</span>
+            </motion.div>
+          ))}
+
+          {confirm.map(([title, content], idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="lg:col-span-2 clean-card p-10 bg-slate-900 border-none flex flex-col md:flex-row items-center gap-10"
+            >
+              <div className="w-20 h-20 rounded-3xl bg-blue-600 flex items-center justify-center flex-shrink-0 animate-pulse">
+                <Settings size={40} className="text-white" />
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-2xl font-black text-white mb-4">{title}</h3>
+                <p className="text-xl text-slate-400 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
+              </div>
+              <div className="px-8 py-4 rounded-full border border-white/10 text-white/40 label-caps shrink-0">
+                Action Required
               </div>
             </motion.div>
           ))}
@@ -647,7 +674,7 @@ export default function App() {
             {index === 10 && <HypothesesLayout slide={slide} />}
             {index === 12 && <StrategyLayout slide={slide} />}
             {index === 13 && <ComparisonTableLayout slide={slide} />}
-            {index === 14 && <DecisionItemsLayout slide={slide} />}
+            {index === 14 && <DecisionGridLayout slide={slide} />}
             {index === 17 ? <RoadmapLayout slide={slide} index={index} /> : null}
             {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
