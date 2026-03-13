@@ -24,10 +24,11 @@ export const SLIDES: Slide[] = [
     title: "1-1. 질문 세트 구성 방안",
     oneLiner: "정교한 질문 설계를 통한 <strong>브랜드 인식</strong> 및 인용 정확도 측정",
     bullets: [
-      "진단 목적: 주요 AI 모델별 <strong>브랜드 엔티티</strong> 및 제품 정보 인용 현황 진단",
-      "개선 범위: 블루벤트 공식 <strong>메인 홈페이지</strong> 및 제품 상세페이지",
-      "수집 항목: <strong>브랜드 언급 유무</strong> / 인용 URL / 정보 정확도 / 오류 패턴",
-      "질문 설계: 카테고리별 핵심 질문 <strong>최종 5문항</strong> 선정으로 변별력 확보"
+      "<strong>질문 카테고리 A (브랜드 인식)</strong>: AI가 블루벤트를 독립적인 브랜드 엔티티로 인식하고 있는지 진단 (회사 성격 및 판매 제품군)",
+      "<strong>질문 카테고리 B (카테고리 추천)</strong>: 비브랜드 쿼리(음식물처리기 추천, 브랜드 비교 등) 시 블루벤트의 후보군 포함 여부 테스트",
+      "<strong>질문 카테고리 C (제품 스펙)</strong>: 상세페이지 핵심 정보(용량, 방식 등)에 대한 AI 인용 정확도 및 데이터 추출 신뢰도 검증",
+      "<strong>테스트 질문 구성</strong>: 카테고리별 브랜드/비브랜드 쿼리 혼합을 통한 <strong>최종 5문항</strong>의 검증 세트 수립",
+      "<strong>테스트 대상 AI 모델</strong>: <strong>ChatGPT, Perplexity, Gemini, Claude</strong> 등 4대 주요 생성형 AI 모델 전수 진단"
     ],
     visualGuide: "질문 설계 로직과 카테고리별(A, B, C) 대표 문항을 배치한 구조적 인포그래픽."
   },
