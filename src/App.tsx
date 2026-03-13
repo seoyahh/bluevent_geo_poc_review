@@ -254,11 +254,11 @@ export default function App() {
               className="min-h-screen flex flex-col justify-center"
             >
               {index === 0 && <IntroLayout slide={slide} />}
-              {index === 1 && <DividerLayout slide={slide} />}
-              {index === 3 || (index >= 8 && index <= 10) || index === 13 ? <GridLayout slide={slide} index={index} /> : null}
-              {index === 16 ? <RoadmapLayout slide={slide} index={index} /> : null}
-              {index === 17 || index === 14 ? <ChecklistLayout slide={slide} index={index} /> : null}
-              {![0, 1, 3, 8, 9, 10, 13, 16, 17, 14].includes(index) && <StandardLayout slide={slide} index={index} />}
+              {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
+              {[6, 12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
+              {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
+              {[7, 10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
+              {![0, 1, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
             </section>
           ))}
         </div>
