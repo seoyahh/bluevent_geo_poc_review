@@ -3,7 +3,7 @@ import { Slide } from './types';
 export const SLIDES: Slide[] = [
   {
     id: 1,
-    title: "Bluevent GEO 수행계획",
+    title: "블루벤트 GEO향 개편 PoC - 수행방안 리뷰",
     oneLiner: "AI 기반 검색 엔진 최적화 및 사용자 경험 고도화 전략",
     bullets: [
       "Project: SEO/GEO Optimization",
