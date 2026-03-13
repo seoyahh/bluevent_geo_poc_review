@@ -73,12 +73,6 @@ export default function App() {
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 py-24 min-h-screen items-start content-center">
       <div className="lg:col-span-12 mb-12">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-1.5 h-6 bg-blue-500 rounded-full" />
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em]">
-            Operational Module 0{index + 1}
-          </span>
-        </div>
         <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight max-w-4xl">
           {slide.title}
         </h2>
@@ -135,7 +129,6 @@ export default function App() {
   const GridLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="flex flex-col justify-center py-24 min-h-screen">
       <div className="space-y-6 mb-16 text-left">
-        <div className="accent-tag">Data Matrix 0{index + 1}</div>
         <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight">{slide.title}</h2>
         <p className="text-lg lg:text-xl text-slate-500 font-medium max-w-3xl leading-relaxed">{slide.oneLiner}</p>
       </div>
@@ -174,7 +167,6 @@ export default function App() {
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="flex flex-col justify-center py-24 min-h-screen">
       <div className="space-y-6 mb-20 text-center">
-        <div className="accent-tag">Timeline 0{index + 1}</div>
         <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight">{slide.title}</h2>
         <p className="text-xl text-blue-600 font-bold tracking-tight">{slide.oneLiner}</p>
       </div>
@@ -203,7 +195,6 @@ export default function App() {
   const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-24 min-h-screen items-center">
       <div className="lg:col-span-5 flex flex-col justify-center text-left">
-        <div className="accent-tag border-blue-200 bg-blue-50 text-blue-600 mb-8 inline-block self-start">Final Audit 0{index + 1}</div>
         <h2 className="text-2xl lg:text-4xl font-bold text-slate-900 mb-8 leading-tight tracking-tight">{slide.title}</h2>
         <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-md">{slide.oneLiner}</p>
       </div>
