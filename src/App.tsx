@@ -195,6 +195,60 @@ export default function App() {
     </div>
   );
 
+  const MethodologyLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const summaries = slide.bullets.filter(b => b.startsWith('SUMMARY:')).map(b => b.replace('SUMMARY:', '').split('|'));
+    const questions = slide.bullets.filter(b => b.startsWith('QUESTION:')).map(b => b.replace('QUESTION:', '').split('|'));
+    const models = slide.bullets.filter(b => b.startsWith('MODEL:')).map(b => b.replace('MODEL:', ''));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        {/* Top Summary Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {summaries.map(([label, content], idx) => (
+            <div key={idx} className="bg-blue-50/30 border border-blue-100/50 rounded-[2rem] p-8 backdrop-blur-sm">
+              <span className="label-caps mb-4 block" dangerouslySetInnerHTML={{ __html: label }} />
+              <p className="text-lg text-slate-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Big Questions Section */}
+        <div className="space-y-4 mb-16">
+          {questions.map(([category, q], idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex items-center gap-8 bg-white/60 border border-slate-100 p-6 rounded-[1.5rem] shadow-sm hover:border-blue-200 hover:bg-white transition-all group"
+            >
+              <div className="px-4 py-1.5 rounded-full bg-slate-50 text-slate-400 font-bold text-xs whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white transition-colors uppercase tracking-wider">
+                {category}
+              </div>
+              <div className="w-[1px] h-6 bg-slate-100" />
+              <p className="text-lg lg:text-xl font-bold text-slate-800" dangerouslySetInnerHTML={{ __html: q }} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom Models */}
+        <div className="flex flex-wrap items-center gap-12 pt-10 border-t border-slate-100">
+          <span className="label-caps !text-slate-300">Test Platforms</span>
+          <div className="flex gap-12">
+            {models.map((model, idx) => (
+              <div key={idx} className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-blue-600/20" />
+                <span className="text-xl font-black text-slate-300 uppercase tracking-[0.2em]">{model}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
       {/* Refined Sidebar Navigation */}
@@ -227,10 +281,11 @@ export default function App() {
           >
             {index === 0 && <IntroLayout slide={slide} />}
             {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
+            {index === 2 && <MethodologyLayout slide={slide} />}
             {[6, 12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
             {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
             {[7, 10].includes(index) ? <ChecklistLayout slide={slide} index={index} /> : null}
-            {![0, 1, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {![0, 1, 2, 5, 6, 7, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
