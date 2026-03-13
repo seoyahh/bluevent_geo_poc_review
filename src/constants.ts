@@ -65,24 +65,24 @@ export const SLIDES: Slide[] = [
   {
     id: 7,
     title: "2-1. 진단 방법론",
-    oneLiner: "<strong>크롤링 가용성</strong> 및 <strong>구조화 데이터 정합성</strong> 기반 진단 프레임워크",
+    oneLiner: "<strong>이트라이브 자가 진단 프레임워크</strong> 및 수행계획서 기반 정밀 점검",
     bullets: [
-      "Robots Analysis: <strong>AI 크롤러의 접근성</strong> 및 차단 정책 분석",
-      "Semantic Structure: 텍스트 콘텐츠의 <strong>의미론적 마크업</strong> 진단",
-      "Data Markup: <strong>Schema.org 표준 규격</strong> 준수 여부 검증",
-      "Response Speed: AI봇의 수집 효율을 결정하는 <strong>서버 응답 진단</strong>"
+      "<strong>이트라이브 내부 진단 도구</strong>: AI의 사이트 이해도 및 데이터 추출 효율성을 측정하는 독자적 메트릭 활용",
+      "<strong>인덱싱 가능성</strong>: robots.txt, sitemap, canonical 정책 등 AI 봇의 접근성 검토",
+      "<strong>사이트 구조 및 본문 비중</strong>: SSR 한계성, 템플릿 반복 영역 분석 및 본문 텍스트 밀도 진단",
+      "<strong>의미론적 최적화</strong>: 헤딩 위계(H1-H6), 내부 링크 품질 및 JSON-LD 구조화 데이터 적용 여부"
     ],
     visualGuide: "4대 진단 영역을 도식화한 다이아몬드 모델 인포그래픽."
   },
   {
     id: 8,
     title: "2-1-b. 사이트 인프라 진단 결과",
-    oneLiner: "도메인 전체에 영향을 미치는 <strong>AI 봇 접근 제어</strong> 설정 진단",
+    oneLiner: "주요 AI 봇의 <strong>접근 차단 이슈</strong> 식별 및 인프라 정합성 진단 결과",
     bullets: [
-      "Robots.txt: 주요 봇(GPT, Claude)의 <strong>접근 차단(Disallow)</strong> 현황",
-      "Sitemap.xml: 페이지 갱신 정보의 <strong>검색 엔진 전달 효율성</strong>",
-      "SSL & Security: 보안 정책에 따른 <strong>봇 차단 케이스</strong> 유무 점검",
-      "Mobile Friendly: 구글 <strong>모바일 퍼스트 인덱싱</strong> 최적화 수준"
+      "<strong>robots.txt 진단</strong>: 고도몰 기본 정책에 의해 <strong>GPTBot, ClaudeBot 전면 차단(Disallow: /)</strong> 상태",
+      "<strong>봇별 허용 현황</strong>: Perplexity, Gemini는 허용 / 네이버, 다음 등 검색 봇은 부분 차단",
+      "<strong>인프라 임팩트</strong>: 접근 차단 해결 전까지는 <strong>ChatGPT/Claude 대상 PoC 효과 검증 불가</strong>",
+      "<strong>Sitemap & Canonical</strong>: 현재 사이트맵 부재 및 캐노니컬 정책 최적화 미비 발견"
     ],
     visualGuide: "인프라 진단 항목별 Pass/Fail 체크리스트 대시보드."
   },
