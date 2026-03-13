@@ -175,7 +175,7 @@ export const SLIDES: Slide[] = [
     title: "3-1. 메인 홈페이지 — 비주얼 프리뷰",
     oneLiner: "UI/UX 및 테크니컬 구조 개편에 따른 <strong>시각적 변화 미리보기</strong>",
     bullets: [
-      "ASIS:images/main_asis1.png",
+      "ASIS:images/main_tobe1.png",
       "TOBE:images/main_tobe.png"
     ],
     visualGuide: "As-Is와 To-Be 이미지를 좌우로 배치하여 직관적인 변화를 보여주는 레이아웃."
