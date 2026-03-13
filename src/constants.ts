@@ -65,26 +65,26 @@ export const SLIDES: Slide[] = [
   {
     id: 7,
     title: "2-1. 진단 방법론",
-    oneLiner: "<strong>이트라이브 자가 진단 프레임워크</strong> 및 수행계획서 기반 정밀 점검",
+    oneLiner: "<strong>데이터 기반 정밀 진단</strong>을 위한 이트라이브 고유 방법론 적용",
     bullets: [
-      "<strong>이트라이브 내부 진단 도구</strong>: AI의 사이트 이해도 및 데이터 추출 효율성을 측정하는 독자적 메트릭 활용",
-      "<strong>인덱싱 가능성</strong>: robots.txt, sitemap, canonical 정책 등 AI 봇의 접근성 검토",
-      "<strong>사이트 구조 및 본문 비중</strong>: SSR 한계성, 템플릿 반복 영역 분석 및 본문 텍스트 밀도 진단",
-      "<strong>의미론적 최적화</strong>: 헤딩 위계(H1-H6), 내부 링크 품질 및 JSON-LD 구조화 데이터 적용 여부"
+      "<strong>이트라이브 내부 진단 도구</strong>: AI의 사이트 구조 이해도와 데이터 추출 효율성을 정량적으로 측정하는 독자 도구 활용",
+      "<strong>인덱싱 및 접근성 점검</strong>: robots.txt, sitemap, canonical 정책 등 검색 엔진 및 AI 봇의 가용성 전수 조사",
+      "<strong>사이트 구조 및 SSR 분석</strong>: SSR 한계성, 템플릿 반복 영역, 본문 밀도 분석을 통한 크롤링 최적화 진단",
+      "<strong>시맨틱 및 데이터 구조화</strong>: 헤딩 구조(H1-H6) 위계, 내부 링크 품질, Schema.org(JSON-LD) 적용 정합성 검토"
     ],
-    visualGuide: "4대 진단 영역을 도식화한 다이아몬드 모델 인포그래픽."
+    visualGuide: "이트라이브만의 진단 로직이 담긴 다이아몬드 모델 프레임워크."
   },
   {
     id: 8,
     title: "2-1-b. 사이트 인프라 진단 결과",
-    oneLiner: "주요 AI 봇의 <strong>접근 차단 이슈</strong> 식별 및 인프라 정합성 진단 결과",
+    oneLiner: "도메인 루트의 <strong>robots.txt 크리티컬 이슈</strong> 및 인프라 설정 진단",
     bullets: [
-      "<strong>robots.txt 진단</strong>: 고도몰 기본 정책에 의해 <strong>GPTBot, ClaudeBot 전면 차단(Disallow: /)</strong> 상태",
-      "<strong>봇별 허용 현황</strong>: Perplexity, Gemini는 허용 / 네이버, 다음 등 검색 봇은 부분 차단",
-      "<strong>인프라 임팩트</strong>: 접근 차단 해결 전까지는 <strong>ChatGPT/Claude 대상 PoC 효과 검증 불가</strong>",
-      "<strong>Sitemap & Canonical</strong>: 현재 사이트맵 부재 및 캐노니컬 정책 최적화 미비 발견"
+      "<strong>robots.txt 차단 이슈</strong>: 고도몰 기본 정책에 의해 <strong>ClaudeBot, GPTBot이 전면 차단(Disallow: /)</strong>된 상태 확인",
+      "<strong>AI 봇별 영향도</strong>: Perplexity/Gemini는 허용되나, <strong>ChatGPT/Claude는 사이트 직접 크롤링이 불가능</strong>하여 PoC 검증 불가",
+      "<strong>Sitemap.xml 상태</strong>: 페이지 갱신 정보 누락 및 AI 봇 대상의 별도 사이트맵 경로 제공 미비",
+      "<strong>Canonical 정책</strong>: 중복 페이지 처리 로직 미흡으로 인한 AI 엔티티 인식 분산 위험 식별"
     ],
-    visualGuide: "인프라 진단 항목별 Pass/Fail 체크리스트 대시보드."
+    visualGuide: "인프라 차단 이슈(Red Signal)가 페이지별 개선 효과를 저해하는 로직 도식화."
   },
   {
     id: 9,
@@ -136,7 +136,7 @@ export const SLIDES: Slide[] = [
     bullets: [
       "플랫폼 제약: FTP 접근 및 DB 커스텀 불가능한 <strong>표준형 모델의 한계</strong>",
       "전략적 우회: <strong>스크립트 매니저</strong>를 활용한 클라이언트 사이드 데이터 삽입",
-      "수동 가공: AI봇을 위한 별도 <strong>텍스트 레이어 삽입</strong> 및 시맨틱 보정",
+      "수동 가공: AI봇을 위한 별도 텍스트 레이어 삽입 및 시맨틱 보정",
       "협업 구조: 플랫폼사 지원 범위 외의 <strong>기술적 가용 범위</strong> 확정"
     ],
     visualGuide: "플랫폼 제약사항과 기술적 돌파구를 매칭한 솔루션 맵."
