@@ -472,6 +472,70 @@ export default function App() {
     );
   };
 
+  const StrategyLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const constrs = slide.bullets.filter(b => b.startsWith('CONSTR:')).map(b => b.replace('CONSTR:', '').split('|'));
+    const strats = slide.bullets.filter(b => b.startsWith('STRAT:')).map(b => b.replace('STRAT:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
+        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Section 1: Constraints */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col gap-8 bg-slate-50/50 border border-slate-100 p-12 rounded-[3rem]"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center">
+                <Settings size={20} className="text-slate-500" />
+              </div>
+              <h3 className="text-2xl font-black text-slate-800">고도몰 기술 제약사항</h3>
+            </div>
+            <div className="space-y-6">
+              {constrs.map(([title, content], idx) => (
+                <div key={idx} className="flex flex-col gap-2">
+                  <span className="text-blue-600 font-bold text-sm uppercase tracking-wider">{title}</span>
+                  <p className="text-lg text-slate-700 font-light leading-relaxed">{content}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Section 2: Strategy */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col gap-8 bg-white border border-blue-50 p-12 rounded-[3rem] shadow-xl shadow-blue-500/5"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                <Compass size={20} className="text-white" />
+              </div>
+              <h3 className="text-2xl font-black text-slate-800">제약 하 접근 전략</h3>
+            </div>
+            <div className="space-y-4">
+              {strats.map(([title, content], idx) => (
+                <div key={idx} className="p-6 rounded-2xl bg-blue-50/30 border border-blue-100 flex items-start gap-5 hover:bg-blue-50 transition-colors">
+                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
+                    <Check size={12} className="text-white" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-slate-900 font-bold" dangerouslySetInnerHTML={{ __html: title }} />
+                    <p className="text-slate-600 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
       {/* Refined Sidebar Navigation */}
@@ -509,7 +573,7 @@ export default function App() {
             {index === 7 && <InfraAuditLayout slide={slide} />}
             {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
             {index === 10 && <HypothesesLayout slide={slide} />}
-            {[12].includes(index) ? <GridLayout slide={slide} index={index} /> : null}
+            {index === 12 && <StrategyLayout slide={slide} />}
             {index === 15 ? <RoadmapLayout slide={slide} index={index} /> : null}
             {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 15].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
