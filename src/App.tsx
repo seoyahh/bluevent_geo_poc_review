@@ -44,7 +44,7 @@ export default function App() {
         <span className="text-[11px] font-bold tracking-[0.1em] uppercase">Project Execution Plan</span>
       </motion.div>
 
-      <h1 className="text-5xl lg:text-8xl font-bold tracking-tight text-slate-900 leading-none max-w-6xl mb-8">
+      <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-tight max-w-5xl mb-8">
         {slide.title}
       </h1>
 
@@ -79,7 +79,7 @@ export default function App() {
             Operational Module 0{index + 1}
           </span>
         </div>
-        <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight max-w-4xl">
+        <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight max-w-4xl">
           {slide.title}
         </h2>
       </div>
@@ -136,7 +136,7 @@ export default function App() {
     <div className="flex flex-col justify-center py-24 min-h-screen">
       <div className="space-y-6 mb-16 text-left">
         <div className="accent-tag">Data Matrix 0{index + 1}</div>
-        <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight">{slide.title}</h2>
+        <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight">{slide.title}</h2>
         <p className="text-lg lg:text-xl text-slate-500 font-medium max-w-3xl leading-relaxed">{slide.oneLiner}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -175,7 +175,7 @@ export default function App() {
     <div className="flex flex-col justify-center py-24 min-h-screen">
       <div className="space-y-6 mb-20 text-center">
         <div className="accent-tag">Timeline 0{index + 1}</div>
-        <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight">{slide.title}</h2>
+        <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight">{slide.title}</h2>
         <p className="text-xl text-blue-600 font-bold tracking-tight">{slide.oneLiner}</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
@@ -204,7 +204,7 @@ export default function App() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-24 min-h-screen items-center">
       <div className="lg:col-span-5 flex flex-col justify-center text-left">
         <div className="accent-tag border-blue-200 bg-blue-50 text-blue-600 mb-8 inline-block self-start">Final Audit 0{index + 1}</div>
-        <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight tracking-tight">{slide.title}</h2>
+        <h2 className="text-2xl lg:text-4xl font-bold text-slate-900 mb-8 leading-tight tracking-tight">{slide.title}</h2>
         <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-md">{slide.oneLiner}</p>
       </div>
       <div className="lg:col-span-7 grid grid-cols-1 gap-4">
