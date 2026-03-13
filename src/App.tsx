@@ -67,11 +67,11 @@ export default function App() {
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 py-20 min-h-screen items-center text-left">
-        <div className="lg:col-span-12 mb-8">
+      <div className="flex flex-col gap-12 py-20 min-h-screen justify-center text-left">
+        <div className="mb-4">
           <h2 className="h2-header max-w-5xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
         </div>
-        <div className="lg:col-span-7 space-y-12">
+        <div className="space-y-12 max-w-5xl">
           <div className="relative pl-12 border-l-[6px] border-blue-600/10">
             <div className="absolute left-[-6px] top-0 bottom-0 w-[6px] bg-blue-600 rounded-full" />
             <p className="text-lg lg:text-2xl text-slate-900 font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -91,21 +91,6 @@ export default function App() {
                 <p className="body-main group-hover:text-slate-900 transition-colors duration-500 pt-0.5" dangerouslySetInnerHTML={{ __html: bullet }} />
               </motion.div>
             ))}
-          </div>
-        </div>
-        <div className="lg:col-span-5">
-          <div className="glass-card p-10 relative overflow-hidden group">
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-200">
-                  <Compass size={24} />
-                </div>
-                <h3 className="label-caps !text-slate-400">Strategic Guide</h3>
-              </div>
-              <p className="text-lg text-slate-800 font-medium leading-relaxed border-l-2 border-blue-100 pl-8 group-hover:border-blue-600 transition-colors duration-700">
-                {slide.visualGuide}
-              </p>
-            </div>
           </div>
         </div>
       </div>
