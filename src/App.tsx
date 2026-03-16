@@ -168,47 +168,7 @@ export default function App() {
           <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#F5F8FA] border border-[#E1E1E1]" /> 0~19% (미흡)</div>
         </div>
         
-        {/* Key Findings Card - FOCUS AREA style */}
-        <div className="w-full bg-[#ECF1FE] rounded-[2rem] border border-[#3C76F1]/20 p-12 overflow-hidden">
-          <div className="space-y-8">
-            <span className="label-caps !text-[#3C76F1]">Key Findings</span>
-            <h3 className="text-xl lg:text-2xl font-bold tracking-[-0.02em] text-[#082253]">
-              주요 AI 모델 대상 블루벤트 인용 현황 점검에 따른 <span className="text-[#3C76F1]">주요 발견 사항</span>
-            </h3>
 
-            <div className="w-full h-[1px] bg-[#3C76F1]/20" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-              <div className="flex gap-4 items-start">
-                <div className="text-[#3C76F1] shrink-0 mt-1">
-                  <CheckCircle2 size={20} strokeWidth={2} />
-                </div>
-                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q2(추천)·Q3(비교): 4개 모델 모두 블루벤트 미인용 &rarr; <strong class='text-[#3C76F1]'>경쟁사만 노출</strong>" }} />
-              </div>
-              
-              <div className="flex gap-4 items-start">
-                <div className="text-[#3C76F1] shrink-0 mt-1">
-                  <CheckCircle2 size={20} strokeWidth={2} />
-                </div>
-                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q4(앱 원격제어): Claude·Perplexity <strong class='text-[#3C76F1]'>57%</strong> &rarr; 앱스토어 텍스트가 유일한 출처" }} />
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="text-[#3C76F1] shrink-0 mt-1">
-                  <CheckCircle2 size={20} strokeWidth={2} />
-                </div>
-                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q5(ID 스펙): 전 모델 <strong class='text-[#3C76F1]'>0%</strong> &rarr; 상세페이지 이미지 통짜로 텍스트 크롤링 불가" }} />
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="text-[#3C76F1] shrink-0 mt-1">
-                  <CheckCircle2 size={20} strokeWidth={2} />
-                </div>
-                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "전체 모델 통합 인용률 최고 <strong class='text-[#3C76F1]'>17%</strong>(Claude·Perplexity), 최저 <strong class='text-[#3C76F1]'>6%</strong>(Gemini)" }} />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   };

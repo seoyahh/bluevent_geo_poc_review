@@ -41,7 +41,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 4,
-    title: "1-2. AI 모델별 인용률 분석 — 인용률 매트릭스",
+    title: "1-2. AI 모델별 인용률 분석 결과",
     oneLiner: "4대 주요 모델 대상 <strong>정량적 인용 매트릭스</strong> 산출 결과",
     bullets: [],
     visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)"
