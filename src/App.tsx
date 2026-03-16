@@ -194,31 +194,31 @@ export default function App() {
             ))}
         </div>
 
-        {/* Visual Guide: Triple Chevron Gradient to Key Findings */}
-        <div className="flex flex-col items-center justify-center mb-16 py-4">
+        {/* Visual Guide: Compact Triple Chevron Gradient to Key Findings */}
+        <div className="flex flex-col items-center justify-center mb-10 py-2">
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="flex flex-col items-center -gap-1"
+            className="flex flex-col items-center -space-y-3"
           >
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
                 animate={{ 
-                  opacity: [0.3, 1, 0.3],
-                  y: [0, 5, 0]
+                  opacity: [0.2, 1, 0.2],
+                  y: [0, 3, 0]
                 }}
                 transition={{ 
                   repeat: Infinity, 
-                  duration: 1.5, 
+                  duration: 1.8, 
                   delay: i * 0.2,
                   ease: "easeInOut" 
                 }}
               >
                 <ChevronDown 
-                  size={32} 
-                  strokeWidth={3}
+                  size={24} 
+                  strokeWidth={4}
                   className={i === 0 ? "text-[#3C76F1]" : i === 1 ? "text-[#3C76F1]/60" : "text-[#3C76F1]/30"} 
                 />
               </motion.div>
