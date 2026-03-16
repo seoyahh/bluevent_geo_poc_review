@@ -197,7 +197,7 @@ export const SLIDES: Slide[] = [
   {
     id: 17,
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
-    oneLiner: "테크니컬 GEO 신호 개선 및 <strong>텍스트 레이어 확보</strong> 전략",
+    oneLiner: "테크니컬 GEO 개선 및 <strong>텍스트 레이어 확보</strong> 전략",
     bullets: [
       "ASIDE_TITLE:본 PoC 범위에서는 상세페이지 이미지 ‘순서 재배치’는 제외하고, GEO 개선에 집중합니다.",
       "ASIDE_BULLET:<strong>AI 인용/정확도 개선의 핵심 레버</strong>는 이미지 위치보다 ‘텍스트로 읽히는 구조’(alt, hidden text, H1~H3)입니다.",
