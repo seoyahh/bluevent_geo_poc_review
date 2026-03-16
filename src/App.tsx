@@ -481,18 +481,21 @@ export default function App() {
                   <p className="text-sm text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
                   
                   {idx === 2 && (
-                    <div className="flex flex-wrap gap-4 mt-8">
+                    <div className="flex flex-wrap gap-5 mt-10">
                       {[1, 2, 3, 4, 5].map((num) => (
                         <div 
                           key={num} 
-                          className="w-40 aspect-square rounded-xl overflow-hidden border border-[#E1E1E1] shadow-sm hover:scale-[1.05] hover:border-[#3C76F1] transition-all cursor-zoom-in bg-white"
+                          className="w-48 aspect-video rounded-xl overflow-hidden border border-[#E1E1E1] shadow-md hover:shadow-xl hover:scale-[1.05] hover:border-[#3C76F1] transition-all cursor-zoom-in bg-white group/thumb"
                           onClick={() => setExpandedImage(`/images/error${num}.png`)}
                         >
                           <img 
                             src={`/images/error${num}.png`} 
                             alt={`Fact error ${num}`} 
-                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
+                            className="w-full h-full object-cover transition-all duration-700 group-hover/thumb:scale-110" 
                           />
+                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/thumb:opacity-100 transition-opacity">
+                            <span className="text-white text-[10px] font-bold tracking-widest uppercase">Error Example {num}</span>
+                          </div>
                         </div>
                       ))}
                     </div>
