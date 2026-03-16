@@ -126,6 +126,13 @@ export default function App() {
       { model: 'ChatGPT', q1: 0, q2: 14, q3: 0, q4: 43, q5: 0, total: 11 },
       { model: 'Perplexity', q1: 29, q2: 0, q3: 0, q4: 57, q5: 0, total: 17 },
     ];
+    const ratioData = [
+      { type: '외부 기사/매거진', ratio: '~45%', url: 'magazine.hankyung.com 등', desc: 'PR 기사에서 원핸드그립·슬림 키워드 인용', highlight: true },
+      { type: '앱스토어', ratio: '~25%', url: 'apps.apple.com', desc: '앱 기능 정보의 유일한 텍스트 출처', highlight: true },
+      { type: '블루벤트 공식몰', ratio: '~15%', url: 'bluevent.co.kr', desc: '제품 목록만 인용, 상세 스펙 텍스트 없음', highlight: false },
+      { type: '유튜브/블로그', ratio: '~10%', url: 'youtube, blog.naver 등', desc: '다나와 리뷰에서 일부 스펙 추출', highlight: false },
+      { type: '쇼핑몰', ratio: '~5%', url: '이마트/쿠팡', desc: 'ChatGPT에서 간헐적 인용(가격 위주)', highlight: false },
+    ];
     const getColor = (val: number) => {
       if (val === 0) return 'text-[#969696] bg-[#F5F8FA]'; 
       if (val >= 50) return 'text-[#FFFFFF] bg-[#3C76F1]'; 
@@ -133,13 +140,13 @@ export default function App() {
     };
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
-        <div className="mb-16">
+        <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
           <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
         </div>
         
-        {/* Color System Table representation */}
-        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-12">
+        {/* 1. Matrix Table */}
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-6">
             <div className="grid grid-cols-7 bg-[#082253] text-[#ECF1FE] px-6 py-5 text-center text-[15px] font-bold tracking-widest border-b border-[#082253]">
               <span className="text-left pl-6 text-[#FFFFFF] font-extrabold">Models</span>
               <span>Q1. 인지</span>
@@ -162,79 +169,78 @@ export default function App() {
             ))}
         </div>
         
-        <div className="flex gap-8 mb-16 pl-6 text-sm text-[#4B4B4B] font-bold tracking-wide uppercase">
+        <div className="flex gap-8 mb-16 pl-6 text-[13px] text-[#4B4B4B] font-bold tracking-wide">
           <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#3C76F1]" /> 50%+ (우수)</div>
           <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#ECF1FE]" /> 20~49% (보통)</div>
-          <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#F5F8FA] border border-[#E1E1E1]" /> 0~19% (미흡)</div>
+          <div className="flex items-center gap-3"><div className="w-4 h-4 border border-[#E1E1E1] bg-white rounded" /> 0~19% (미흡)</div>
         </div>
-        
 
-      </div>
-    );
-  };
+        {/* 2. Key Findings Card */}
+        <div className="w-full bg-[#ECF1FE]/50 rounded-[2rem] border border-[#3C76F1]/20 p-12 overflow-hidden mb-16">
+          <div className="space-y-8">
+            <span className="label-caps !text-[#3C76F1]">Key Findings</span>
+            <h3 className="text-xl lg:text-2xl font-bold tracking-[-0.02em] text-[#082253]">
+              주요 AI 모델 대상 블루벤트 인용 현황 점검에 따른 <span className="text-[#3C76F1]">주요 발견 사항</span>
+            </h3>
 
-  const SourceRatioLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
-    const ratioData = [
-      { type: '외부 기사/매거진', ratio: '~45%', url: 'magazine.hankyung.com 등', desc: 'PR 기사에서 원핸드그립·슬림 키워드 인용', highlight: true },
-      { type: '앱스토어', ratio: '~25%', url: 'apps.apple.com', desc: '앱 기능 정보의 유일한 텍스트 출처', highlight: true },
-      { type: '블루벤트 공식몰', ratio: '~15%', url: 'bluevent.co.kr', desc: '제품 목록만 인용, 상세 스펙 텍스트 없음', highlight: false },
-      { type: '유튜브/블로그', ratio: '~10%', url: 'youtube, blog.naver 등', desc: '다나와 리뷰에서 일부 스펙 추출', highlight: false },
-      { type: '쇼핑몰', ratio: '~5%', url: '이마트/쿠팡', desc: 'ChatGPT에서 간헐적 인용(가격 위주)', highlight: false },
-    ];
-    return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
-        <div className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
-          <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+            <div className="w-full h-[1px] bg-[#3C76F1]/20" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q2(추천)·Q3(비교): 4개 모델 모두 블루벤트 미인용 &rarr; <strong class='text-[#3C76F1]'>경쟁사만 노출</strong>" }} />
+              </div>
+              
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q4(앱 원격제어): Claude·Perplexity <strong class='text-[#3C76F1]'>57%</strong> &rarr; 앱스토어 텍스트가 유일한 출처" }} />
+              </div>
+
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q5(ID 스펙): 전 모델 <strong class='text-[#3C76F1]'>0%</strong> &rarr; 상세페이지 이미지 통짜로 텍스트 크롤링 불가" }} />
+              </div>
+
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "전체 모델 통합 인용률 최고 <strong class='text-[#3C76F1]'>17%</strong>(Claude·Perplexity), 최저 <strong class='text-[#3C76F1]'>6%</strong>(Gemini)" }} />
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* 3. Source Ratio Table */}
+        <h3 className="text-xl font-extrabold text-[#082253] mb-6 flex items-center gap-3">근거 URL 출처 비율 <span className="text-base text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
         
-        <h3 className="text-2xl font-extrabold text-[#082253] mb-8 flex items-center gap-3">근거 URL 출처 비율 <span className="text-lg text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
-        
-        {/* Color System Table */}
-        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-16">
-            <div className="grid grid-cols-[1.5fr_1fr_2fr_3fr] bg-[#082253] px-6 py-5 text-center lg:text-left text-[15px] font-bold tracking-widest text-[#FFFFFF] border-b border-[#082253]">
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-16">
+            <div className="grid grid-cols-[1.5fr_1fr_2fr_3fr] bg-[#082253] px-6 py-4 text-center lg:text-left text-[14px] font-bold tracking-widest text-[#FFFFFF] border-b border-[#082253]">
               <span className="lg:pl-6 text-[#FFFFFF] font-extrabold">출처 유형</span>
               <span className="text-center font-extrabold">비율</span>
               <span className="font-extrabold">주요 URL</span>
               <span className="font-extrabold">특징</span>
             </div>
             {ratioData.map((row, idx) => (
-              <div key={idx} className={`grid grid-cols-[1.5fr_1fr_2fr_3fr] border-b border-[#E1E1E1] last:border-0 hover:bg-[#F5F8FA]/50 transition-colors text-base font-medium ${row.highlight ? 'bg-[#ECF1FE]/20 text-[#191919]' : 'bg-white text-[#969696]'}`}>
-                <div className={`p-7 flex items-center font-extrabold lg:pl-12 border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1] text-lg' : 'text-[#4B4B4B]'}`}>{row.type}</div>
-                <div className={`p-7 flex items-center justify-center font-black tracking-tighter text-2xl border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1]' : 'text-[#969696]'}`}>{row.ratio}</div>
-                <div className={`p-7 flex items-center text-base border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#082253]' : 'text-[#969696]'}`}>{row.url}</div>
-                <div className={`p-7 flex items-center font-semibold ${row.highlight ? 'text-[#191919]' : 'text-[#969696]'}`}>{row.desc}</div>
+              <div key={idx} className="grid grid-cols-[1.5fr_1fr_2fr_3fr] border-b border-[#E1E1E1] last:border-0 hover:bg-[#F5F8FA]/50 transition-colors text-[15px] font-medium bg-white">
+                <div className={`p-5 flex items-center font-extrabold lg:pl-12 border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1] text-[16px]' : 'text-[#4B4B4B]'}`}>{row.type}</div>
+                <div className={`p-5 flex items-center justify-center font-black tracking-tighter text-xl border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1]' : 'text-[#969696]'}`}>{row.ratio}</div>
+                <div className={`p-5 flex items-center border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#082253]' : 'text-[#969696]'}`}>{row.url}</div>
+                <div className={`p-5 flex items-center font-medium ${row.highlight ? 'text-[#191919]' : 'text-[#969696]'}`}>{row.desc}</div>
               </div>
             ))}
-        </div>
-
-        {/* Competitor Notice Card - Refined Natural Style */}
-        <div className="bg-[#ECF1FE] p-12 flex flex-col gap-8 rounded-[2rem] border-l-[12px] border-[#3C76F1] shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden group">
-           <div className="relative z-10 flex flex-col gap-4">
-             <div className="text-[#3C76F1] font-bold text-xs tracking-[0.2em] uppercase opacity-70 mb-2">Technical Insight</div>
-             <p className="font-bold text-2xl text-[#191919] tracking-tight">Q2·Q3에서 블루벤트 대신 반복 노출된 경쟁사</p>
-             <p className="text-xl text-[#3C76F1] font-bold tracking-tight leading-relaxed">
-               스마트카라 · 쿠쿠(에코웨일) · 미닉스 · 아이닉 · 에코체 · 린클 · 루펜
-             </p>
-           </div>
-           
-           <div className="relative z-10 w-full h-[1px] bg-[#E1E1E1] my-2" />
-           
-           <div className="relative z-10 flex flex-col gap-6">
-             <div className="space-y-6">
-               <p className="text-[19px] text-[#4B4B4B] font-semibold tracking-tight leading-relaxed max-w-5xl">
-                 경쟁사는 공식 사이트에 <strong className="text-[#3C76F1] border-b-2 border-[#3C76F1]/30 pb-0.5">HTML 텍스트 기반 스펙 테이블</strong>, 비교 콘텐츠, FAQ가 구조식으로 설계되어 정보 수집이 용이함 확인.
-               </p>
-               
-               <div className="bg-white/60 backdrop-blur-sm p-8 rounded-2xl border border-[#3C76F1]/10 shadow-sm">
-                 <p className="text-[17px] font-bold text-[#191919] tracking-tight leading-relaxed" dangerouslySetInnerHTML={{ __html: "블루벤트가 이 수준의 텍스트 구조를 갖추면 동일하게 AI 답변에 포함될 수 있다는 것이 이번 PoC의 핵심 전제입니다." }} />
-               </div>
-             </div>
-           </div>
         </div>
       </div>
     );
   };
+
+
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-center bg-[#F5F8FA]">
@@ -1177,24 +1183,23 @@ export default function App() {
           <section
               key={index}
               id={`section-${index}`}
-              className={`w-full ${[13, 15].includes(index) ? '' : 'overflow-hidden'}`}
+              className={`w-full ${[12, 14].includes(index) ? '' : 'overflow-hidden'}`}
             >
             {index === 0 && <IntroLayout slide={slide} />}
-            {[1, 6, 11].includes(index) && <DividerLayout slide={slide} />}
+            {[1, 5, 10].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
             {index === 3 && <CitationMatrixLayout slide={slide} />}
-            {index === 4 && <SourceRatioLayout slide={slide} />}
-            {index === 5 && <ChecklistLayout slide={slide} index={index} />}
-            {index === 7 && <DiagnosticCombinedLayout slide={slide} />}
-            {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
-            {index === 10 && <HypothesesLayout slide={slide} />}
-            {index === 12 && <StrategyLayout slide={slide} />}
-            {index === 13 && <ComparisonTableLayout slide={slide} />}
-            {index === 14 && <VisualPreviewLayout slide={slide} />}
-            {index === 15 && <DecisionGridLayout slide={slide} />}
-            {index === 16 && <TechnicalDetailLayout slide={slide} />}
-            {index === 17 && <ValidationKpiLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 4 && <ChecklistLayout slide={slide} index={index} />}
+            {index === 6 && <DiagnosticCombinedLayout slide={slide} />}
+            {[7, 8].includes(index) && <DiagnosticResultsLayout slide={slide} />}
+            {index === 9 && <HypothesesLayout slide={slide} />}
+            {index === 11 && <StrategyLayout slide={slide} />}
+            {index === 12 && <ComparisonTableLayout slide={slide} />}
+            {index === 13 && <VisualPreviewLayout slide={slide} />}
+            {index === 14 && <DecisionGridLayout slide={slide} />}
+            {index === 15 && <TechnicalDetailLayout slide={slide} />}
+            {index === 16 && <ValidationKpiLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

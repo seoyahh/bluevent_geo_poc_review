@@ -47,13 +47,6 @@ export const SLIDES: Slide[] = [
     visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)"
   },
   {
-    id: 41,
-    title: "1-2. 근거 URL 출처 비율 + 경쟁사 현황",
-    oneLiner: "주요 모델 답변 내 <strong>출처 분석</strong> 및 특이 사항",
-    bullets: [],
-    visualGuide: "출처 비율 테이블 및 경쟁사 현황 정보"
-  },
-  {
     id: 5,
     title: "1-3. 인사이트 도출 — 가설 설정의 배경",
     oneLiner: "진단 데이터 기반 <strong>'테크니컬 개선을 통한 인용 신뢰도 확보'</strong> 가설 설정",
