@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2, Layout, BarChart3, Settings, AlertTriangle,
   PlayCircle, ArrowRight, ArrowUp, ArrowDown, FileText,
   Activity, ChevronRight, Sparkles, Check, Compass, AlertCircle,
-  Target, Calendar
+  Target, Calendar, X, ZoomIn
 } from 'lucide-react';
 import { SLIDES } from './constants';
 import React from 'react';
@@ -55,58 +55,58 @@ export default function App() {
   // --- Specialized Layout Components ---
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="relative flex flex-col items-center text-center justify-center min-h-screen overflow-hidden py-24 w-full px-12">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-[940px] overflow-hidden py-24 w-full px-12 bg-[#F5F8FA]">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-[#3C76F1]/10 to-[#9747FF]/10 rounded-full blur-[120px] pointer-events-none" />
+      
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 w-full max-w-[1240px]"
       >
-        <div className="label-caps mb-12 flex items-center justify-center gap-3 bg-white/50 backdrop-blur-sm px-5 py-2 rounded-full border border-slate-100/50 shadow-sm mx-auto w-fit">
-          <Sparkles size={14} />
+        <div className="label-caps mb-8 text-[#969696]">
           <span>Strategic Review 2026</span>
         </div>
 
-        <h1 className="h1-hero mb-10 text-gradient" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <h1 className="h1-hero mb-8 text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <p className="text-xl lg:text-3xl text-slate-500 font-light leading-relaxed max-w-4xl mx-auto mb-20" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <p className="text-lg md:text-xl lg:text-2xl font-medium tracking-tight text-[#969696] leading-relaxed max-w-4xl mx-auto mb-20" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-4 opacity-40"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-4 opacity-70"
         >
-          <div className="w-[1px] h-16 bg-gradient-to-b from-blue-600 to-transparent" />
-          <span className="label-caps !text-[9px]">Scroll to Begin</span>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-[#969696] to-transparent" />
+          <span className="label-caps !text-[10px]">Scroll to Begin</span>
         </motion.div>
       </motion.div>
     </div>
   );
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12">
-      <div className="flex flex-col gap-10 py-20 min-h-screen justify-center text-left">
+    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 bg-[#F5F8FA] text-[#191919]">
+      <div className="flex flex-col gap-12 py-32 min-h-[940px] justify-center text-left">
         <div className="mb-4">
-          <h2 className="h2-header max-w-5xl" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <h2 className="h2-header max-w-5xl text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
         </div>
-        <div className="space-y-12 max-w-5xl">
-          <div className="relative pl-12 border-l-[6px] border-blue-600/10">
-            <div className="absolute left-[-6px] top-0 bottom-0 w-[6px] bg-blue-600 rounded-full" />
-            <p className="text-lg lg:text-2xl text-slate-900 font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <div className="space-y-16 max-w-5xl">
+          <div className="relative pl-10 border-l-[2px] border-[#E1E1E1]">
+            <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
           </div>
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-12">
             {slide.bullets.map((bullet, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.05 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
                 className="flex gap-6 items-start group"
               >
-                <div className="w-8 h-8 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-blue-600 transition-all duration-500 shadow-sm">
-                  <Check size={16} className="text-blue-600 group-hover:text-white transition-colors" />
+                <div className="text-[#3C76F1] mt-1 shrink-0">
+                  <CheckCircle2 size={24} strokeWidth={1.5} />
                 </div>
-                <p className="body-main group-hover:text-slate-900 transition-colors duration-500 pt-0.5" dangerouslySetInnerHTML={{ __html: bullet }} />
+                <p className="body-main group-hover:text-[#191919] transition-colors duration-500 pt-0.5" dangerouslySetInnerHTML={{ __html: bullet }} />
               </motion.div>
             ))}
           </div>
@@ -115,53 +115,148 @@ export default function App() {
     </div>
   );
 
-  const GridLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-20 min-h-screen text-left">
-      <div className="space-y-6 mb-12">
-        <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-base lg:text-xl text-slate-500 font-light max-w-3xl leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {slide.bullets.map((bullet, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="clean-card p-10 flex flex-col gap-8 group hover:-translate-y-2"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-slate-50 text-blue-600 flex items-center justify-center font-black text-xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-700 shadow-sm">
-              {String(idx + 1).padStart(2, '0')}
+  const CitationMatrixLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const matrixData = [
+      { model: 'Gemini', q1: 29, q2: 0, q3: 0, q4: 0, q5: 0, total: 6 },
+      { model: 'Claude', q1: 29, q2: 0, q3: 0, q4: 57, q5: 0, total: 17 },
+      { model: 'ChatGPT', q1: 0, q2: 14, q3: 0, q4: 43, q5: 0, total: 11 },
+      { model: 'Perplexity', q1: 29, q2: 0, q3: 0, q4: 57, q5: 0, total: 17 },
+    ];
+    const getColor = (val: number) => {
+      if (val === 0) return 'text-[#969696] bg-[#F5F8FA]'; 
+      if (val >= 50) return 'text-[#FFFFFF] bg-[#3C76F1] shadow-[inset_0_0_0_1px_#082253]'; 
+      return 'text-[#3C76F1] bg-[#ECF1FE] font-black'; 
+    };
+    return (
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
+        <div className="space-y-6 mb-16 max-w-4xl text-left">
+          <h2 className="text-xl md:text-2xl font-black tracking-[-0.03em] text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-lg md:text-2xl text-[#969696] font-semibold tracking-[-0.015em] leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
+        
+        {/* Color System Table representation */}
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-12">
+            <div className="grid grid-cols-7 bg-[#082253] text-[#ECF1FE] px-6 py-5 text-center text-[15px] font-bold tracking-widest border-b border-[#082253]">
+              <span className="text-left pl-6 text-[#FFFFFF] font-extrabold">Models</span>
+              <span>Q1. 인지</span>
+              <span>Q2. 추천</span>
+              <span>Q3. 비교</span>
+              <span>Q4. 제어</span>
+              <span>Q5. 스펙</span>
+              <span className="text-[#FFFFFF] font-extrabold">전체 인용률</span>
             </div>
-            <div className="space-y-4">
-              <p className="text-xl font-extrabold leading-tight text-slate-900 group-hover:text-blue-700 transition-colors duration-500" dangerouslySetInnerHTML={{ __html: bullet.includes(':') ? bullet.split(':')[0] : bullet }} />
-              {bullet.includes(':') && (
-                <p className="text-base lg:text-lg text-slate-500 font-normal leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] }} />
-              )}
-            </div>
-          </motion.div>
-        ))}
+            {matrixData.map((row, idx) => (
+              <div key={idx} className="grid grid-cols-7 text-center border-b border-[#E1E1E1] last:border-0 hover:bg-[#F5F8FA]/50 transition-colors">
+                <div className="p-7 flex items-center justify-start pl-12 text-[#191919] font-black text-lg bg-white">{row.model}</div>
+                <div className={`p-7 flex items-center justify-center font-bold text-xl tracking-tight border-l border-[#E1E1E1]/50 ${getColor(row.q1)}`}>{row.q1}%</div>
+                <div className={`p-7 flex items-center justify-center font-bold text-xl tracking-tight border-l border-[#E1E1E1]/50 ${getColor(row.q2)}`}>{row.q2}%</div>
+                <div className={`p-7 flex items-center justify-center font-bold text-xl tracking-tight border-l border-[#E1E1E1]/50 ${getColor(row.q3)}`}>{row.q3}%</div>
+                <div className={`p-7 flex items-center justify-center font-bold text-xl tracking-tight border-l border-[#E1E1E1]/50 ${getColor(row.q4)}`}>{row.q4}%</div>
+                <div className={`p-7 flex items-center justify-center font-bold text-xl tracking-tight border-l border-[#E1E1E1]/50 ${getColor(row.q5)}`}>{row.q5}%</div>
+                <div className={`p-7 flex items-center justify-center font-black text-xl tracking-tight border-l border-[#E1E1E1]/50 ${getColor(row.total)}`}>{row.total}%</div>
+              </div>
+            ))}
+        </div>
+        
+        <div className="flex gap-8 mb-16 pl-6 text-sm text-[#4B4B4B] font-bold tracking-wide uppercase">
+          <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#3C76F1]" /> 50%+ (우수)</div>
+          <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#ECF1FE]" /> 20~49% (보통)</div>
+          <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#F5F8FA] border border-[#E1E1E1]" /> 0~19% (미흡)</div>
+        </div>
+        
+        {/* Key Findings Card - Blue Accent */}
+        <div className="bg-[#ECF1FE] border border-[#3C76F1]/20 border-l-8 border-l-[#3C76F1] p-12 rounded-r-[2rem] rounded-l-md shadow-lg">
+           <div className="flex items-center gap-4 mb-8">
+             <div className="text-[#3C76F1] bg-white p-3 rounded-full shadow-sm">
+               <Sparkles size={28} strokeWidth={2.5} />
+             </div>
+             <h3 className="text-[#082253] font-black text-2xl tracking-tight">핵심 발견</h3>
+           </div>
+           <ul className="space-y-6 text-lg text-[#4B4B4B] font-semibold tracking-tight">
+             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> <span dangerouslySetInnerHTML={{ __html: "Q2(추천)·Q3(비교): 4개 모델 모두 블루벤트 미인용 &rarr; <strong class='text-[#3C76F1] text-xl font-black ml-2'>경쟁사만 노출</strong>" }} /></li>
+             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> <span dangerouslySetInnerHTML={{ __html: "Q4(앱 원격제어): Claude·Perplexity <strong class='text-[#3C76F1] text-2xl font-black mx-1'>57%</strong> &rarr; 앱스토어 텍스트가 유일한 출처" }} /></li>
+             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> <span dangerouslySetInnerHTML={{ __html: "Q5(ID 스펙): 전 모델 <strong class='text-[#3C76F1] text-2xl font-black mx-1'>0%</strong> &rarr; 상세페이지 이미지 통짜로 텍스트 크롤링 불가" }} /></li>
+             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> 전체 인용률 최고 17%(Claude·Perplexity), 최저 6%(Gemini)</li>
+           </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+
+  const SourceRatioLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const ratioData = [
+      { type: '외부 기사/매거진', ratio: '~45%', url: 'magazine.hankyung.com 등', desc: 'PR 기사에서 원핸드그립·슬림 키워드 인용', highlight: true },
+      { type: '앱스토어', ratio: '~25%', url: 'apps.apple.com', desc: '앱 기능 정보의 유일한 텍스트 출처', highlight: true },
+      { type: '블루벤트 공식몰', ratio: '~15%', url: 'bluevent.co.kr', desc: '제품 목록만 인용, 상세 스펙 텍스트 없음', highlight: false },
+      { type: '유튜브/블로그', ratio: '~10%', url: 'youtube, blog.naver 등', desc: '다나와 리뷰에서 일부 스펙 추출', highlight: false },
+      { type: '쇼핑몰', ratio: '~5%', url: '이마트/쿠팡', desc: 'ChatGPT에서 간헐적 인용(가격 위주)', highlight: false },
+    ];
+    return (
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
+        <h2 className="text-xl md:text-2xl font-black tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        
+        <h3 className="text-2xl font-extrabold text-[#082253] mb-6 flex items-center gap-3"><BarChart3 size={32} strokeWidth={2.5}/> 근거 URL 출처 비율 <span className="text-lg text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
+        
+        {/* Color System Table */}
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-16">
+            <div className="grid grid-cols-[1.5fr_1fr_2fr_3fr] bg-[#082253] px-6 py-5 text-center lg:text-left text-[15px] font-bold tracking-widest text-[#FFFFFF] border-b border-[#082253]">
+              <span className="lg:pl-6 text-[#FFFFFF] font-extrabold">출처 유형</span>
+              <span className="text-center font-extrabold">비율</span>
+              <span className="font-extrabold">주요 URL</span>
+              <span className="font-extrabold">특징</span>
+            </div>
+            {ratioData.map((row, idx) => (
+              <div key={idx} className={`grid grid-cols-[1.5fr_1fr_2fr_3fr] border-b border-[#E1E1E1] last:border-0 hover:bg-[#F5F8FA]/50 transition-colors text-base font-medium ${row.highlight ? 'bg-[#ECF1FE]/20 text-[#191919]' : 'bg-white text-[#969696]'}`}>
+                <div className={`p-7 flex items-center font-extrabold lg:pl-12 border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1] text-lg' : 'text-[#4B4B4B]'}`}>{row.type}</div>
+                <div className={`p-7 flex items-center justify-center font-black tracking-tighter text-2xl border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1]' : 'text-[#969696]'}`}>{row.ratio}</div>
+                <div className={`p-7 flex items-center text-base border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#082253]' : 'text-[#969696]'}`}>{row.url}</div>
+                <div className={`p-7 flex items-center font-semibold ${row.highlight ? 'text-[#191919]' : 'text-[#969696]'}`}>{row.desc}</div>
+              </div>
+            ))}
+        </div>
+
+        {/* Competitor Notice Card - VERY STRONG Blue Accent */}
+        <div className="bg-[#3C76F1] p-12 flex flex-col gap-6 rounded-[2rem] shadow-[0_12px_40px_rgba(17,83,237,0.3)] relative overflow-hidden group">
+           <div className="absolute top-0 right-0 w-80 h-80 bg-[#082253] rounded-full blur-[80px] -translate-y-1/2 translate-x-1/4 opacity-60 pointer-events-none group-hover:opacity-80 transition-opacity duration-1000" />
+           <div className="relative z-10 flex items-center gap-4 mb-2">
+             <AlertTriangle size={32} className="text-[#ECF1FE]" strokeWidth={2.5} />
+             <p className="font-extrabold text-2xl text-[#FFFFFF] tracking-tight">Q2·Q3에서 블루벤트 대신 반복 노출된 경쟁사</p>
+           </div>
+           <p className="relative z-10 text-xl text-[#ECF1FE] font-bold tracking-tight leading-relaxed pl-[4rem]">스마트카라 · 쿠쿠(에코웨일) · 미닉스 · 아이닉 · 에코체 · 린클 · 루펜</p>
+           
+           <div className="relative z-10 w-full h-[1px] bg-[#ECF1FE]/30 my-4" />
+           
+           <div className="relative z-10 pl-[4rem] flex flex-col gap-3">
+             <p className="text-xl text-[#FFFFFF] font-bold tracking-tight leading-relaxed flex items-center gap-3">
+               <span className="shrink-0 text-[#ECF1FE]"><Sparkles size={24} /></span>
+               <span>경쟁사는 공식 사이트에 <strong className="text-[#3C76F1] bg-[#FFFFFF] px-3 py-1 rounded-md mx-1 shadow-sm">HTML 텍스트 기반 스펙 테이블</strong>, 비교 콘텐츠, FAQ가 구조화되어 있음.</span>
+             </p>
+             <p className="text-lg font-bold text-[#ECF1FE] tracking-tight mt-1 ml-[2.25rem] opacity-90" dangerouslySetInnerHTML={{ __html: "<span class='font-black text-xl mr-2'>&rarr;</span> 블루벤트가 이 수준의 텍스트 구조를 갖추면 동일하게 AI 답변에 포함될 수 있다는 것이 PoC의 전제." }} />
+           </div>
+        </div>
+      </div>
+    );
+  };
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-24 min-h-screen text-center">
-      <div className="space-y-6 mb-16">
-        <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-base lg:text-xl text-blue-600 font-bold bg-blue-50/50 px-6 py-2.5 rounded-full inline-block" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-center bg-[#F5F8FA]">
+      <div className="space-y-6 mb-20 max-w-4xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-lg md:text-2xl text-[#969696] font-medium tracking-[-0.015em] leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {slide.bullets.map((bullet, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="clean-card p-10 flex flex-col items-start text-left relative overflow-hidden group hover:-translate-y-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
+            className="clean-card p-10 flex flex-col items-start text-left relative overflow-hidden group bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
           >
-            <span className="label-caps mb-8 bg-blue-50/50 px-4 py-1.5 rounded-full border border-blue-100/50 shadow-sm">Phase {String(idx + 1).padStart(2, '0')}</span>
-            <p className="text-2xl font-black text-slate-900 mb-6 leading-tight group-hover:text-blue-700 transition-colors" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
-            <div className="w-full h-[1.5px] bg-slate-50 mb-8 group-hover:bg-blue-100 transition-colors" />
-            <p className="text-lg text-slate-500 font-normal leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] }} />
+            <span className="label-caps mb-6 text-[#191919]">Phase {String(idx + 1).padStart(2, '0')}</span>
+            <p className="text-xl font-bold tracking-[-0.02em] text-[#191919] mb-4 leading-tight" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
+            <div className="w-full h-[1px] bg-[#E1E1E1] mb-6" />
+            <p className="text-base text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] }} />
           </motion.div>
         ))}
       </div>
@@ -169,31 +264,32 @@ export default function App() {
   );
 
   const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 py-24 min-h-screen items-center text-left">
+    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 py-32 min-h-[940px] items-center text-left bg-[#F5F8FA]">
       <div className="lg:col-span-12 mb-8">
-        <h2 className="h2-header" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <h2 className="text-xl md:text-2xl font-semibold tracking-[-0.03em] text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
       </div>
-      <div className="lg:col-span-4 flex flex-col justify-center">
-        <p className="text-lg lg:text-xl text-slate-500 font-light leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+      <div className="lg:col-span-5 flex flex-col justify-center pl-8">
+        <p className="text-lg lg:text-xl text-[#969696] font-medium tracking-[-0.015em] leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
       </div>
-      <div className="lg:col-span-8 grid grid-cols-1 gap-8">
+      <div className="lg:col-span-7 grid grid-cols-1 gap-6">
         {slide.bullets.map((bullet, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="clean-card p-10 flex items-center justify-between group hover:border-blue-500 cursor-pointer shadow-lg shadow-slate-200/10"
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
+            className="dark-card p-8 flex items-center justify-between group cursor-pointer border border-[#E1E1E1]/80 bg-white hover:border-[#191919]/40 hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
           >
-            <div className="flex items-center gap-10">
-              <div className="w-16 h-16 rounded-2xl bg-slate-50 group-hover:bg-blue-600 flex items-center justify-center transition-all duration-700">
-                <CheckCircle2 className="text-slate-200 group-hover:text-white transition-colors duration-700" size={32} />
+            <div className="flex items-center gap-8">
+              <div className="text-[#969696] group-hover:text-[#3C76F1] transition-colors duration-500">
+                <CheckCircle2 size={32} strokeWidth={1.5} />
               </div>
-              <div className="space-y-2">
-                <span className="label-caps !text-slate-300" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
-                <p className="text-2xl font-extrabold text-slate-900 group-hover:text-blue-700 transition-colors duration-500" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] || bullet }} />
+              <div className="space-y-1">
+                <span className="label-caps !text-[#969696]" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
+                <p className="text-xl font-semibold text-[#191919] tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] || bullet }} />
               </div>
             </div>
-            <ArrowRight className="text-slate-200 group-hover:text-blue-600 group-hover:translate-x-3 transition-all duration-700" size={24} />
+            <ArrowRight className="text-[#E1E1E1] group-hover:text-[#191919] transition-all duration-500" size={24} />
           </motion.div>
         ))}
       </div>
@@ -201,15 +297,17 @@ export default function App() {
   );
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col items-center text-center justify-center min-h-[70vh] py-24">
+    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col items-center text-center justify-center min-h-[70vh] py-32 bg-[#F5F8FA]">
       <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        className="w-24 h-[2px] bg-blue-600 rounded-full mb-14"
-      />
-      <h2 className="h1-display mb-10 text-gradient" dangerouslySetInnerHTML={{ __html: slide.title }} />
-      <p className="text-2xl lg:text-4xl text-slate-400 font-light max-w-4xl mx-auto" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-[#969696] mb-6 font-semibold tracking-[0.2em] uppercase text-sm"
+      >
+        Next Chapter
+      </motion.div>
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#191919] mb-6 leading-[1.15]" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <p className="text-base md:text-xl text-[#969696] font-medium max-w-4xl mx-auto tracking-[-0.015em] leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
     </div>
   );
 
@@ -219,21 +317,21 @@ export default function App() {
     const models = slide.bullets.filter(b => b.startsWith('MODEL:')).map(b => b.replace('MODEL:', ''));
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         {/* Top Summary Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {summaries.map(([label, content], idx) => (
-            <div key={idx} className="bg-blue-50/30 border border-blue-100/50 rounded-[2rem] p-8 backdrop-blur-sm">
-              <span className="label-caps mb-4 block" dangerouslySetInnerHTML={{ __html: label }} />
-              <p className="text-lg text-slate-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />
+            <div key={idx} className="bg-white border border-[#E1E1E1]/50 rounded-[2rem] p-8 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+              <span className="label-caps mb-4 block text-[#191919]" dangerouslySetInnerHTML={{ __html: label }} />
+              <p className="text-base text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           ))}
         </div>
 
         {/* Big Questions Section */}
-        <div className="space-y-4 mb-16">
+        <div className="space-y-4 mb-20">
           {questions.map(([category, q], idx) => (
             <motion.div
               key={idx}
@@ -241,25 +339,24 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.1 }}
-              className="flex items-center gap-8 bg-white/60 border border-slate-100 p-6 rounded-[1.5rem] shadow-sm hover:border-blue-200 hover:bg-white transition-all group"
+              className="flex flex-col md:flex-row items-start md:items-center gap-6 bg-white border border-[#E1E1E1]/50 p-6 rounded-[2rem] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:scale-[1.005] transition-all group"
             >
-              <div className="w-40 flex-shrink-0 px-4 py-1.5 rounded-full bg-slate-50 text-slate-400 font-bold text-xs group-hover:bg-blue-600 group-hover:text-white transition-colors uppercase tracking-wider text-center">
+              <div className="w-32 flex-shrink-0 px-4 py-2 rounded-full bg-[#F5F8FA] text-[#191919] font-semibold text-xs tracking-[0.05em] uppercase text-center group-hover:bg-[#191919] group-hover:text-[#F5F8FA] transition-colors">
                 {category}
               </div>
-              <div className="w-[1px] h-6 bg-slate-100" />
-              <p className="text-lg lg:text-xl font-bold text-slate-800" dangerouslySetInnerHTML={{ __html: q }} />
+              <div className="hidden md:block w-[1px] h-6 bg-[#E1E1E1]" />
+              <p className="text-lg lg:text-xl font-semibold text-[#191919] tracking-tight" dangerouslySetInnerHTML={{ __html: q }} />
             </motion.div>
           ))}
         </div>
 
         {/* Bottom Models */}
-        <div className="flex flex-wrap items-center gap-12 pt-10 border-t border-slate-100">
-          <span className="label-caps !text-slate-400">Test Platforms</span>
-          <div className="flex gap-12">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-8 pt-10 border-t border-[#E1E1E1]">
+          <span className="label-caps !text-[#969696] !mb-0">Test Platforms</span>
+          <div className="flex flex-wrap gap-8">
             {models.map((model, idx) => (
               <div key={idx} className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-blue-600/40" />
-                <span className="text-xl lg:text-2xl font-black text-slate-500 uppercase tracking-[0.2em]">{model}</span>
+                <span className="text-lg lg:text-xl font-bold text-[#191919] uppercase tracking-[-0.01em]">{model}</span>
               </div>
             ))}
           </div>
@@ -273,23 +370,23 @@ export default function App() {
     const pillar2 = slide.bullets.filter(b => b.startsWith('PILLAR:수행계획서')).map(b => b.replace(/PILLAR:.*?\|/, ''));
 
     return (
-      <div className="w-full max-w-6xl mx-auto px-12 lg:px-24 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Pillar 1 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="clean-card p-12 bg-white flex flex-col gap-10 border-blue-100/50 shadow-xl shadow-blue-500/5"
+            className="dark-card p-12 flex flex-col gap-10 border border-[#E1E1E1]/50 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:border-[#191919]/30 transition-all"
           >
-            <div className="space-y-4">
-              <span className="label-caps !text-blue-600">Methodology 01</span>
-              <h3 className="text-3xl font-black text-slate-900">이트라이브 내부 진단 도구</h3>
+            <div className="space-y-2">
+              <span className="label-caps !text-[#969696]">Methodology 01</span>
+              <h3 className="text-2xl font-bold text-[#191919] tracking-tight">이트라이브 내부 진단 도구</h3>
             </div>
-            <div className="w-full h-1 bg-gradient-to-r from-blue-600 to-transparent rounded-full opacity-20" />
-            <p className="text-xl text-slate-600 leading-relaxed font-light">
+            <div className="w-full h-[1px] bg-[#E1E1E1]" />
+            <p className="text-lg text-[#969696] leading-relaxed font-medium">
               {pillar1[0]}
             </p>
           </motion.div>
@@ -300,20 +397,20 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.2 }}
-            className="clean-card p-12 bg-white flex flex-col gap-10 border-slate-200"
+            className="dark-card p-12 flex flex-col gap-10 border border-[#E1E1E1]/50 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:border-[#191919]/30 transition-all"
           >
-            <div className="space-y-4">
-              <span className="label-caps !text-slate-400">Methodology 02</span>
-              <h3 className="text-3xl font-black text-slate-900">수행계획서 1-2 기준 점검 항목</h3>
+            <div className="space-y-2">
+              <span className="label-caps !text-[#969696]">Methodology 02</span>
+              <h3 className="text-2xl font-bold text-[#191919] tracking-tight">수행계획서 1-2 기준 점검 항목</h3>
             </div>
-            <div className="w-full h-1 bg-gradient-to-r from-slate-200 to-transparent rounded-full" />
+            <div className="w-full h-[1px] bg-[#E1E1E1]" />
             <div className="grid grid-cols-1 gap-6">
               {pillar2.map((item, idx) => (
-                <div key={idx} className="flex gap-5 items-start group">
-                  <div className="w-6 h-6 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-blue-600 group-hover:border-blue-600 transition-all">
-                    <Check size={12} className="text-slate-300 group-hover:text-white" />
+                <div key={idx} className="flex gap-4 items-start group">
+                  <div className="text-[#969696] group-hover:text-[#3C76F1] transition-colors mt-1 shrink-0">
+                    <CheckCircle2 size={20} strokeWidth={2} />
                   </div>
-                  <p className="text-lg text-slate-600 group-hover:text-slate-900 transition-colors font-medium" dangerouslySetInnerHTML={{ __html: item }} />
+                  <p className="text-base text-[#969696] group-hover:text-[#191919] transition-colors font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: item }} />
                 </div>
               ))}
             </div>
@@ -329,31 +426,30 @@ export default function App() {
     const canonical = slide.bullets.filter(b => b.startsWith('INFAR:CANONICAL')).map(b => b.split('|')[1]);
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <h2 className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Robots.txt Analysis */}
           <div className="lg:col-span-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="bg-white border-2 border-red-100 rounded-[3rem] p-12 relative overflow-hidden group shadow-xl shadow-red-500/5"
+              className="bg-white border border-[#E1E1E1] rounded-[2rem] p-10 lg:p-14 relative overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
             >
-              <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:rotate-12 transition-transform duration-700">
-                <AlertCircle size={120} className="text-red-600" />
-              </div>
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="px-4 py-1.5 rounded-full bg-red-50 text-red-600 font-black text-xs uppercase tracking-widest">Global Blocker</div>
-                  <h3 className="text-3xl font-black text-slate-900">robots.txt 진단 결과</h3>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="px-3 py-1 bg-[#FF4040]/10 text-[#FF4040] font-bold text-xs uppercase tracking-widest rounded-md">Critical</div>
+                  <h3 className="text-2xl font-bold text-[#191919] tracking-tight">robots.txt 진단 결과</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
                   {robots.map((item, idx) => (
                     <div key={idx} className="flex gap-4 items-start">
-                      <div className="w-2 h-2 rounded-full bg-red-400 mt-2.5 flex-shrink-0" />
-                      <p className="text-lg text-slate-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: item }} />
+                      <div className="text-[#FF4040] shrink-0 mt-1">
+                        <AlertCircle size={20} strokeWidth={2} />
+                      </div>
+                      <p className="text-base text-[#191919] leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: item }} />
                     </div>
                   ))}
                 </div>
@@ -367,31 +463,30 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="bg-slate-900 rounded-[2rem] p-8 flex items-center justify-between group"
+              className="bg-[#082253] rounded-[2rem] p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between group"
             >
-              <div className="flex items-center gap-8">
-                <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
-                  <Activity size={32} />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-[#FF4040]/10 flex items-center justify-center text-[#FF4040] group-hover:bg-[#FF4040] group-hover:text-white transition-all">
+                  <AlertTriangle size={28} />
                 </div>
-                <p className="text-xl lg:text-2xl text-white font-medium" dangerouslySetInnerHTML={{ __html: conclusion[0] }} />
+                <p className="text-lg lg:text-2xl text-white font-semibold tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: conclusion[0] }} />
               </div>
-              <ArrowRight className="text-white/20 group-hover:translate-x-4 transition-all" size={32} />
             </motion.div>
           </div>
 
           {/* Secondary Items */}
           <div className="lg:col-span-6">
-            <div className="clean-card p-10 h-full">
-              <h4 className="label-caps mb-6">Infrastructure 02</h4>
-              <p className="text-xl font-bold text-slate-900 mb-6" dangerouslySetInnerHTML={{ __html: sitemap[0]?.split(':')[0] }} />
-              <p className="text-lg text-slate-500 leading-relaxed font-light">{sitemap[0]?.split(':')[1]}</p>
+            <div className="bg-white border border-[#E1E1E1] rounded-[2rem] p-10 h-full shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+              <h4 className="label-caps mb-4 text-[#969696]">Infrastructure 02</h4>
+              <p className="text-xl font-bold text-[#191919] mb-4 tracking-tight" dangerouslySetInnerHTML={{ __html: sitemap[0]?.split(':')[0] }} />
+              <p className="text-base text-[#969696] leading-relaxed font-medium">{sitemap[0]?.split(':')[1]}</p>
             </div>
           </div>
           <div className="lg:col-span-6">
-            <div className="clean-card p-10 h-full">
-              <h4 className="label-caps mb-6">Infrastructure 03</h4>
-              <p className="text-xl font-bold text-slate-900 mb-6" dangerouslySetInnerHTML={{ __html: canonical[0]?.split(':')[0] }} />
-              <p className="text-lg text-slate-500 leading-relaxed font-light">{canonical[0]?.split(':')[1]}</p>
+            <div className="bg-white border border-[#E1E1E1] rounded-[2rem] p-10 h-full shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+              <h4 className="label-caps mb-4 text-[#969696]">Infrastructure 03</h4>
+              <p className="text-xl font-bold text-[#191919] mb-4 tracking-tight" dangerouslySetInnerHTML={{ __html: canonical[0]?.split(':')[0] }} />
+              <p className="text-base text-[#969696] leading-relaxed font-medium">{canonical[0]?.split(':')[1]}</p>
             </div>
           </div>
         </div>
@@ -403,41 +498,43 @@ export default function App() {
     const issues = slide.bullets.filter(b => b.startsWith('ISSUE:')).map(b => b.replace('ISSUE:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
           {scores.map(([label, status, desc], idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.1 }}
-              className="clean-card p-10 flex flex-col gap-6"
+              className="dark-card p-8 flex flex-col gap-6 border border-[#E1E1E1]/80 bg-white hover:border-[#191919]/30 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all group"
             >
               <div className="flex justify-between items-start">
-                <span className="label-caps !text-slate-400">{label}</span>
-                <span className={`px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest ${status.includes('Fail') ? 'bg-red-50 text-red-600' :
-                  status.includes('Warning') ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'
+                <span className="label-caps !text-[#969696] !mb-0">{label}</span>
+                <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest ${status.includes('Fail') ? 'text-[#FF4040] bg-[#FF4040]/10 border border-[#FF4040]/20' :
+                  status.includes('Warning') ? 'text-[#FFBB38] bg-[#FFBB38]/10 border border-[#FFBB38]/20' : 'text-[#00C781] bg-[#00C781]/10 border border-[#00C781]/20'
                   }`} dangerouslySetInnerHTML={{ __html: status }} />
               </div>
-              <p className="text-lg text-slate-700 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+              <p className="text-lg text-[#191919] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: desc }} />
             </motion.div>
           ))}
         </div>
 
-        {issues.map(([label, content], idx) => (
-          <div key={idx} className="bg-slate-900 rounded-[2.5rem] p-12 flex flex-col md:flex-row items-center gap-12">
-            <div className="w-20 h-20 rounded-[1.5rem] bg-blue-600 flex items-center justify-center flex-shrink-0 animate-pulse">
-              <FileText size={40} className="text-white" />
+        <div className="space-y-6">
+          {issues.map(([label, content], idx) => (
+            <div key={idx} className="bg-white rounded-[2rem] p-10 flex flex-col md:flex-row items-center gap-8 border border-[#E1E1E1]/80 hover:border-[#191919]/40 hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all">
+              <div className="text-[#969696]">
+                <FileText size={48} strokeWidth={1} />
+              </div>
+              <div>
+                <span className="label-caps !text-[#969696] mb-2 block">{label}</span>
+                <p className="text-xl lg:text-2xl text-[#191919] font-semibold leading-snug tracking-tight" dangerouslySetInnerHTML={{ __html: content }} />
+              </div>
             </div>
-            <div>
-              <span className="label-caps !text-blue-400 mb-4 block">{label}</span>
-              <p className="text-2xl lg:text-3xl text-white font-light leading-snug" dangerouslySetInnerHTML={{ __html: content }} />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
   };
@@ -447,40 +544,40 @@ export default function App() {
     const table = slide.bullets.filter(b => b.startsWith('TABLE:')).map(b => b.replace('TABLE:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           {hypos.map(([title, desc], idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="clean-card p-12 bg-white flex flex-col gap-8 hover:border-blue-300 transition-colors"
+              className="dark-card p-12 flex flex-col gap-8 border border-[#E1E1E1]/80 bg-white hover:border-[#191919]/40 hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all group"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-black">
-                {String.fromCharCode(65 + idx)}
+              <div className="w-12 h-12 flex items-center justify-start font-bold text-[#969696] text-xl group-hover:text-[#191919] transition-colors">
+                {String.fromCharCode(65 + idx)}.
               </div>
               <div className="space-y-4">
-                <h3 className="text-2xl font-black text-slate-900" dangerouslySetInnerHTML={{ __html: title }} />
-                <p className="text-lg text-slate-500 leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+                <h3 className="text-xl font-bold text-[#191919] tracking-tight group-hover:text-[#3C76F1] transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-base text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="overflow-hidden rounded-[2rem] border border-slate-100 bg-white/50 backdrop-blur-sm shadow-sm">
-          <div className="grid grid-cols-4 bg-slate-50 p-6 border-b border-slate-100">
+        <div className="rounded-[2rem] border border-[#E1E1E1]/50 overflow-hidden bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+          <div className="grid grid-cols-4 bg-[#F5F8FA] p-6 border-b border-[#E1E1E1]/50">
             {table[0]?.map((col, idx) => (
-              <span key={idx} className="label-caps !text-slate-500 text-center">{col}</span>
+              <span key={idx} className="label-caps !text-[#969696] !mb-0 text-center tracking-tight">{col}</span>
             ))}
           </div>
           <div className="grid grid-cols-4 p-8">
             {table[0]?.map((_, idx) => (
               <div key={idx} className="flex justify-center">
-                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
-                  <Check size={20} />
+                <div className="text-[#191919]">
+                  <CheckCircle2 size={24} strokeWidth={2} />
                 </div>
               </div>
             ))}
@@ -495,28 +592,28 @@ export default function App() {
     const strats = slide.bullets.filter(b => b.startsWith('STRAT:')).map(b => b.replace('STRAT:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Section 1: Constraints */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-8 bg-slate-50/50 border border-slate-100 p-12 rounded-[3rem]"
+            className="flex flex-col gap-10 bg-[#e8e8ed]/50 border border-[#E1E1E1]/50 p-12 rounded-[2rem]"
           >
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center">
-                <Settings size={20} className="text-slate-500" />
+              <div className="text-[#969696]">
+                <Settings size={28} strokeWidth={1.5} />
               </div>
-              <h3 className="text-2xl font-black text-slate-800">고도몰 기술 제약사항</h3>
+              <h3 className="text-xl font-bold text-[#191919] tracking-tight">고도몰 기술 제약사항</h3>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {constrs.map(([title, content], idx) => (
                 <div key={idx} className="flex flex-col gap-2">
-                  <span className="text-blue-600 font-bold text-sm uppercase tracking-wider">{title}</span>
-                  <p className="text-lg text-slate-700 font-light leading-relaxed">{content}</p>
+                  <span className="text-[#191919] font-semibold text-sm uppercase tracking-widest">{title}</span>
+                  <p className="text-base text-[#969696] font-medium leading-relaxed">{content}</p>
                 </div>
               ))}
             </div>
@@ -527,23 +624,23 @@ export default function App() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-8 bg-white border border-blue-50 p-12 rounded-[3rem] shadow-xl shadow-blue-500/5"
+            className="flex flex-col gap-10 bg-white border border-[#E1E1E1]/50 p-12 rounded-[2rem] shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
           >
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
-                <Compass size={20} className="text-white" />
+              <div className="text-[#3C76F1]">
+                <Compass size={28} strokeWidth={2} />
               </div>
-              <h3 className="text-2xl font-black text-slate-800">제약 하 접근 전략</h3>
+              <h3 className="text-xl font-bold text-[#191919] tracking-tight">제약 하 접근 전략</h3>
             </div>
             <div className="space-y-4">
               {strats.map(([title, content], idx) => (
-                <div key={idx} className="p-6 rounded-2xl bg-blue-50/30 border border-blue-100 flex items-start gap-5 hover:bg-blue-50 transition-colors">
-                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check size={12} className="text-white" />
+                <div key={idx} className="p-6 rounded-2xl bg-[#F5F8FA] flex items-start gap-5 hover:bg-[#e8e8ed] transition-colors border border-transparent">
+                  <div className="text-[#191919] mt-1 shrink-0">
+                    <CheckCircle2 size={20} strokeWidth={2} />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-slate-900 font-bold" dangerouslySetInnerHTML={{ __html: title }} />
-                    <p className="text-slate-600 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
+                    <span className="text-[#191919] font-semibold tracking-tight" dangerouslySetInnerHTML={{ __html: title }} />
+                    <p className="text-[#969696] leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: content }} />
                   </div>
                 </div>
               ))}
@@ -557,36 +654,38 @@ export default function App() {
     const rows = slide.bullets.filter(b => b.startsWith('COMPARE:')).map(b => b.replace('COMPARE:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1400px] mx-auto px-8 lg:px-16 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full bg-[#082253] relative py-32 min-h-[940px]">
+        <div className="w-full max-w-[1770px] mx-auto px-8 lg:px-16 flex flex-col justify-center min-h-[940px]">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#FFFFFF] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="overflow-hidden rounded-[2.5rem] border border-slate-100 bg-white shadow-2xl shadow-blue-500/5">
-          <div className="grid grid-cols-[1.5fr_2fr_3fr] bg-slate-900 p-8 text-white sticky top-0 z-20">
-            <span className="label-caps !text-slate-400">항목</span>
-            <span className="label-caps !text-slate-400 text-center">As-Is</span>
-            <span className="label-caps !text-slate-400 text-center">To-Be</span>
-          </div>
-          <div className="divide-y divide-slate-100">
-            {rows.map(([item, asis, tobe], idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: idx * 0.1 }}
-                className="grid grid-cols-[1.5fr_2fr_3fr] group"
-              >
-                <div className="p-10 bg-slate-50/50 flex items-center border-r border-slate-100 group-hover:bg-blue-50/30 transition-colors">
-                  <h3 className="text-xl font-bold text-slate-800" dangerouslySetInnerHTML={{ __html: item }} />
-                </div>
-                <div className="p-10 flex items-center justify-center border-r border-slate-100 text-slate-400 text-lg leading-relaxed text-center font-light">
-                  <p dangerouslySetInnerHTML={{ __html: asis }} />
-                </div>
-                <div className="p-10 flex items-center bg-blue-50/10 text-slate-700 text-xl leading-relaxed font-medium group-hover:bg-blue-50/30 transition-colors">
-                  <p dangerouslySetInnerHTML={{ __html: tobe }} />
-                </div>
-              </motion.div>
-            ))}
+          <div className="overflow-hidden rounded-2xl border border-[#3C76F1]/30 bg-[#0a2d6b] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+            <div className="grid grid-cols-[1.5fr_2fr_3fr] bg-[#061b40] p-8 text-[#ECF1FE] sticky top-0 z-20 border-b border-[#3C76F1]/20">
+              <span className="text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#969696]">항목</span>
+              <span className="text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#969696] text-center">As-Is</span>
+              <span className="text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#3C76F1] text-center font-bold">To-Be</span>
+            </div>
+            <div className="divide-y divide-[#3C76F1]/10">
+              {rows.map(([item, asis, tobe], idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="grid grid-cols-[1.5fr_2fr_3fr] group hover:bg-[#0e3578] transition-colors"
+                >
+                  <div className="p-8 flex items-center border-r border-[#3C76F1]/10">
+                    <h3 className="text-lg font-bold text-[#ECF1FE] tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: item }} />
+                  </div>
+                  <div className="p-8 flex items-center justify-center border-r border-[#3C76F1]/10 text-[#969696] text-sm leading-relaxed text-center font-medium tracking-tight">
+                    <p dangerouslySetInnerHTML={{ __html: asis }} />
+                  </div>
+                  <div className="p-8 flex items-center text-[#FFFFFF] text-base leading-relaxed font-semibold tracking-[-0.01em]">
+                    <p dangerouslySetInnerHTML={{ __html: tobe }} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -596,55 +695,128 @@ export default function App() {
   const DecisionGridLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const options = slide.bullets.filter(b => b.startsWith('OPTION:')).map(b => b.replace('OPTION:', '').split('|'));
     const confirm = slide.bullets.filter(b => b.startsWith('CONFIRM:')).map(b => b.replace('CONFIRM:', '').split('|'));
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center">
-        <h2 className="h2-header mb-4" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-xl text-slate-400 font-light mb-12" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+      <div className="w-full bg-[#191919] relative py-32 border-y border-[#4B4B4B]/50">
+        <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 min-h-[940px] flex flex-col justify-center relative z-10">
+          <div className="mb-20">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.04em] text-[#F5F8FA] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+            <p className="text-xl text-[#969696] font-medium tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {options.map(([title, subtitle, ...choices], idx) => (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Column: To-Be Image */}
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="clean-card p-10 bg-white flex flex-col gap-6 border-slate-100"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-4 sticky top-24"
             >
-              <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-black text-slate-900">{title}</h3>
-                {subtitle && <p className="text-lg text-blue-600 font-medium leading-relaxed">{subtitle}</p>}
+              <div className="rounded-[2rem] border border-[#4B4B4B] bg-[#082253] relative overflow-hidden group/preview shadow-[0_4px_40px_rgba(0,0,0,0.5)]">
+                <img src="/images/main_tobe2.png" alt="To-Be Main" className="w-full h-auto object-contain scale-[1.02] transition-transform duration-700" />
+                <div className="absolute top-4 left-4 px-4 py-2 bg-[#3C76F1] text-[#F5F8FA] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase z-10 transition-opacity">TO-BE Preview</div>
+                
+                {/* Hover Highlight Overlay */}
+                <AnimatePresence>
+                  {(hoveredIndex === 1 || hoveredIndex === 2) && (
+                    <motion.div
+                      key="summary-highlight"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="absolute z-20 pointer-events-none rounded-xl bg-[#3C76F1]/20 border-2 border-[#3C76F1] flex items-center justify-center overflow-hidden"
+                      style={{ top: '10.5%', left: '1%', width: '98%', height: '11%' }}
+                    >
+                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#3C76F1] rounded-full flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
+                      </div>
+                    </motion.div>
+                  )}
+                  {hoveredIndex === 3 && (
+                    <motion.div
+                      key="faq-highlight"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="absolute z-20 pointer-events-none rounded-xl bg-[#3C76F1]/20 border-2 border-[#3C76F1] flex items-center justify-center overflow-hidden"
+                      style={{ top: '77.5%', left: '1%', width: '98%', height: '15%' }}
+                    >
+                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#3C76F1] rounded-full flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <div className="flex flex-col gap-3">
-                {choices.map((choice, cIdx) => (
-                  <div key={cIdx} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 transition-all group flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full border-2 border-slate-200 flex items-center justify-center flex-shrink-0 mt-1">
-                      <div className="w-2 h-2 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <p className="text-center text-sm text-[#969696] font-medium tracking-tight mt-6">
+                위 화면의 개선을 위해 아래 의사결정이 필요합니다.
+              </p>
+            </motion.div>
+
+            {/* Right Column: Decision Items */}
+            <div className="lg:col-span-8 flex flex-col gap-6">
+              {options.map(([title, subtitle, ...choices], idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: idx * 0.1 }}
+                  onMouseEnter={() => setHoveredIndex(idx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className={`dark-card p-10 flex flex-col lg:flex-row gap-8 border transition-all duration-500 relative ${hoveredIndex === idx ? 'border-[#969696]' : 'border-[#4B4B4B]/50'}`}
+                >
+                  {/* Active Indicator Line */}
+                  <div className={`absolute left-0 top-8 bottom-8 w-1.5 bg-[#3C76F1] rounded-r-full transition-all duration-500 ${hoveredIndex === idx ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} />
+                  
+                  {/* Title Area */}
+                  <div className="flex flex-col gap-3 lg:w-1/3 flex-shrink-0">
+                    <div className="flex items-center gap-4 mb-2">
+                      <div className="w-10 h-10 flex items-center justify-center font-bold text-lg text-[#969696] group-hover:text-[#3C76F1] transition-colors duration-500">
+                        {String.fromCharCode(65 + idx)}.
+                      </div>
+                      <h3 className="text-2xl font-semibold text-[#F5F8FA] tracking-tight">{title}</h3>
                     </div>
-                    <p className="text-xl text-slate-600 group-hover:text-slate-900" dangerouslySetInnerHTML={{ __html: choice }} />
+                    {subtitle && <p className="text-base text-[#969696] font-medium leading-relaxed lg:pl-14">{subtitle}</p>}
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                  
+                  {/* Choices Area */}
+                  <div className="flex flex-col gap-3 flex-grow">
+                    {choices.map((choice, cIdx) => (
+                      <div key={cIdx} className="p-5 rounded-[1.5rem] bg-[#191919] border border-[#4B4B4B]/50 transition-all flex items-center gap-4 hover:border-[#969696] cursor-pointer group/choice">
+                        <div className="w-5 h-5 rounded-full border border-[#969696] flex items-center justify-center shrink-0 group-hover/choice:border-[#3C76F1] transition-colors">
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#3C76F1] opacity-0 group-hover/choice:opacity-100 transition-opacity" />
+                        </div>
+                        <p className="text-[#969696] text-base font-medium group-hover/choice:text-[#F5F8FA] transition-all" dangerouslySetInnerHTML={{ __html: choice }} />
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
 
-          {confirm.map(([title, content], idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="lg:col-span-2 clean-card p-12 bg-slate-900 border-none flex flex-col md:flex-row items-center gap-10"
-            >
-              <div className="w-20 h-20 rounded-3xl bg-blue-600 flex items-center justify-center flex-shrink-0">
-                <Settings size={40} className="text-white" />
-              </div>
-              <div className="flex-grow">
-                <h3 className="text-3xl font-black text-white mb-4">{title}</h3>
-                <p className="text-xl text-slate-400 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: content }} />
-              </div>
-            </motion.div>
-          ))}
+              {confirm.map(([title, content], idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: options.length * 0.15 }}
+                  className="bg-[#3C76F1] rounded-[2rem] p-10 flex flex-col md:flex-row items-center gap-8 mt-6 relative overflow-hidden group"
+                >
+                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                    <Settings size={32} className="text-[#ffffff]" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-grow z-10">
+                    <h3 className="text-2xl font-bold text-[#ffffff] mb-3 tracking-tight">{title}</h3>
+                    <p className="text-lg text-[#ffffff]/80 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: content }} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -652,53 +824,134 @@ export default function App() {
   const VisualPreviewLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const asis = slide.bullets.find(b => b.startsWith('ASIS:'))?.replace('ASIS:', '');
     const tobe = slide.bullets.find(b => b.startsWith('TOBE:'))?.replace('TOBE:', '');
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [zoomScale, setZoomScale] = useState(1);
+    const [transformOrigin, setTransformOrigin] = useState("50% 50%");
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (!isExpanded) {
+        setZoomScale(1);
+        setTransformOrigin("50% 50%");
+        document.body.style.overflow = 'auto';
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }, [isExpanded]);
+
+    const handleWheel = (e: React.WheelEvent) => {
+      e.stopPropagation();
+      setZoomScale(prev => {
+        const newScale = prev - e.deltaY * 0.005;
+        return Math.min(Math.max(1, newScale), 5);
+      });
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLImageElement>) => {
+      if (zoomScale === 1) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        setTransformOrigin(`${x}% ${y}%`);
+      }
+    };
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-10 min-h-screen flex flex-col justify-center">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center relative bg-[#F5F8FA]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* As-Is Column */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-3 flex flex-col gap-6"
+            className="lg:col-span-4 flex flex-col gap-6"
           >
-            <div className="flex items-center gap-3">
-              <span className="px-5 py-2 bg-slate-100 text-slate-500 rounded-xl text-xs font-black tracking-widest uppercase">AS-IS</span>
-              <div className="h-px flex-grow bg-slate-100" />
+            <div className="flex items-center justify-between">
+              <span className="text-[#969696] font-semibold text-sm tracking-[0.2em] uppercase">AS-IS</span>
             </div>
 
-            <div className="rounded-[2rem] border border-slate-100 shadow-lg shadow-slate-200/5 bg-slate-50 relative group opacity-40 grayscale hover:opacity-80 transition-all duration-700 overflow-hidden h-[50vh] flex items-center justify-center">
+            <div className="rounded-[2rem] border border-[#E1E1E1]/50 bg-white relative group opacity-50 grayscale hover:opacity-100 transition-all duration-700 overflow-hidden h-[50vh] flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
               {asis && <img src={asis} alt="As-Is Main" className="max-w-full max-h-full object-contain" />}
-              <div className="absolute inset-0 shadow-[inner_0_0_60px_rgba(0,0,0,0.02)] pointer-events-none" />
             </div>
-            <p className="text-center text-[10px] text-slate-400 font-medium tracking-tight">기존 메인 홈페이지</p>
           </motion.div>
 
           {/* To-Be Column */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-9 flex flex-col gap-6"
+            className="lg:col-span-8 flex flex-col gap-6"
           >
-            <div className="flex items-center gap-3">
-              <span className="px-5 py-2 bg-blue-600 text-white rounded-xl text-xs font-black tracking-widest uppercase shadow-lg shadow-blue-500/20">TO-BE 개선안</span>
-              <div className="h-px flex-grow bg-blue-50" />
+            <div className="flex items-center justify-between">
+              <span className="text-[#191919] font-semibold text-sm tracking-[0.2em] uppercase">TO-BE</span>
             </div>
 
-            <div className="relative">
-              {/* Subtle Glow */}
-              <div className="absolute -inset-8 bg-blue-500/5 rounded-[4rem] blur-3xl -z-10 animate-pulse" />
-
-              <div className="rounded-[2.5rem] border-2 border-blue-100 shadow-[0_30px_80px_-20px_rgba(0,102,255,0.12)] bg-white relative group overflow-hidden h-[75vh] flex items-center justify-center ring-4 ring-blue-50/30">
+            <div className="relative group cursor-zoom-in" onClick={() => setIsExpanded(true)}>
+              <div className="rounded-[2rem] border border-[#E1E1E1] shadow-[0_10px_40px_rgba(0,0,0,0.06)] bg-white relative overflow-hidden h-[75vh] flex items-center justify-center">
                 {tobe && <img src={tobe} alt="To-Be Main" className="max-w-full max-h-full object-contain scale-100 group-hover:scale-[1.01] transition-transform duration-[3000ms] ease-out" />}
-                <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                
+                {/* Hover overlay hint */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="bg-[#082253]/80 backdrop-blur-md text-[#F5F8FA] px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl transition-transform duration-300 translate-y-2 group-hover:translate-y-0">
+                    <ZoomIn size={20} strokeWidth={1.5} />
+                    <span className="font-semibold tracking-wide text-sm">확대 보기</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <p className="text-center text-[10px] text-blue-400 font-medium tracking-tight">개선 제안 메인 홈페이지</p>
           </motion.div>
         </div>
+
+        {/* Image Expand Modal */}
+        <AnimatePresence>
+          {isExpanded && tobe && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-[#191919]/95 backdrop-blur-lg p-4 lg:p-10"
+            >
+              <button
+                onClick={() => setIsExpanded(false)}
+                className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-[#082253] hover:bg-[#4B4B4B] flex items-center justify-center transition-colors duration-300 z-[110] border border-[#4B4B4B]"
+              >
+                <X size={24} className="text-[#969696] group-hover:text-[#F5F8FA]" />
+              </button>
+              
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-[#082253] text-[#969696] px-6 py-2 rounded-full border border-[#4B4B4B] text-xs font-semibold z-[110] flex items-center gap-2 shadow-xl">
+                <ZoomIn size={14} className="text-[#3C76F1]" />
+                스크롤 축소/확대 <span>({Math.round(zoomScale * 100)}%)</span>
+              </div>
+              
+              <motion.div
+                ref={containerRef}
+                initial={{ scale: 0.95, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-[95vw] h-[95vh] rounded-2xl overflow-hidden bg-[#082253] border border-[#4B4B4B]/50 flex items-center justify-center cursor-move"
+                onClick={(e) => e.stopPropagation()}
+                onWheel={handleWheel}
+              >
+                <motion.img
+                  src={tobe}
+                  alt="To-Be Main Expanded"
+                  className="max-w-full max-h-full object-contain pointer-events-auto"
+                  style={{ transformOrigin }}
+                  onMouseMove={handleMouseMove}
+                  animate={{ scale: zoomScale }}
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  drag={zoomScale > 1}
+                  dragConstraints={containerRef}
+                  dragElastic={0.2}
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     );
   };
@@ -709,39 +962,33 @@ export default function App() {
     const items = slide.bullets.filter(b => b.startsWith('ITEM:')).map(b => b.replace('ITEM:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center">
-        <div className="mb-10">
-          <h2 className="h2-header mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
-          <p className="text-lg lg:text-xl text-slate-500 font-light" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <div className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-base md:text-lg text-[#969696] font-medium tracking-[-0.015em]" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Primary Scope Card (Aside) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-12 p-10 bg-blue-600 rounded-[2.5rem] text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden"
+            className="lg:col-span-12 p-12 bg-[#ECF1FE] rounded-[2rem] border border-[#3C76F1]/20 overflow-hidden"
           >
-            <div className="absolute top-0 right-0 p-12 opacity-10">
-              <Sparkles size={120} />
-            </div>
+            <div className="space-y-8">
+              <span className="label-caps !text-[#3C76F1]">Focus Area</span>
+              <h3 className="text-lg lg:text-xl font-bold tracking-[-0.02em] text-[#082253]" dangerouslySetInnerHTML={{ __html: asideTitle || '' }} />
 
-            <div className="relative z-10 space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">
-                PoC 집중 영역
-              </div>
-              <h3 className="text-2xl lg:text-3xl font-black leading-tight max-w-4xl" dangerouslySetInnerHTML={{ __html: asideTitle || '' }} />
-
-              <div className="w-24 h-1 bg-white/30 rounded-full" />
+              <div className="w-full h-[1px] bg-[#3C76F1]/20" />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                 {asideBullets.map((bullet, idx) => (
                   <div key={idx} className="flex gap-4 items-start">
-                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check size={14} className="text-white" />
+                    <div className="text-[#3C76F1] shrink-0 mt-1">
+                      <CheckCircle2 size={20} strokeWidth={2} />
                     </div>
-                    <p className="text-base lg:text-lg text-blue-50 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet }} />
+                    <p className="text-sm text-[#4B4B4B] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: bullet }} />
                   </div>
                 ))}
               </div>
@@ -749,24 +996,24 @@ export default function App() {
           </motion.div>
 
           {/* Technical Execution Grid */}
-          <div className="lg:col-span-12 flex flex-col gap-8 pt-4">
+          <div className="lg:col-span-12 flex flex-col gap-6 pt-4">
             {items.map(([title, desc], idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 * idx }}
                 viewport={{ once: true }}
-                className="clean-card p-10 flex flex-col gap-6 group hover:border-blue-500 transition-all shadow-xl shadow-slate-200/5 h-full"
+                className="p-10 flex bg-white rounded-[2rem] border border-[#E1E1E1] flex-col gap-5 hover:border-[#3C76F1]/40 hover:shadow-lg group transition-all"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-sm overflow-hidden">
-                    <Settings className="animate-spin-slow" size={20} />
+                  <div className="text-[#3C76F1] group-hover:text-[#082253] transition-colors">
+                    <Settings size={24} strokeWidth={1.5} />
                   </div>
-                  <h4 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
+                  <h4 className="text-lg font-bold text-[#191919] tracking-tight group-hover:text-[#3C76F1] transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
                 </div>
-                <div className="h-px bg-slate-100 group-hover:bg-blue-100 transition-colors" />
-                <p className="text-base lg:text-lg text-slate-500 font-normal leading-relaxed group-hover:text-slate-700 transition-colors" dangerouslySetInnerHTML={{ __html: desc }} />
+                <div className="h-[1px] bg-[#E1E1E1]" />
+                <p className="text-sm text-[#969696] font-medium leading-relaxed group-hover:text-[#4B4B4B] transition-colors" dangerouslySetInnerHTML={{ __html: desc }} />
               </motion.div>
             ))}
           </div>
@@ -777,42 +1024,45 @@ export default function App() {
 
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white scroll-smooth overflow-x-hidden">
+    <div className="bg-[#F5F8FA] text-[#191919] selection:bg-[#3C76F1] selection:text-white scroll-smooth relative flex flex-col items-center" style={{ fontFamily: "'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif" }}>
 
       {/* Main Content Area */}
-      <main className="relative z-10">
+      <main className="relative z-10 w-full">
         {SLIDES.map((slide, index) => (
           <section
-            key={index}
-            id={`section-${index}`}
-            className="min-h-screen flex flex-col justify-center w-full"
-          >
+              key={index}
+              id={`section-${index}`}
+              className="w-full overflow-hidden"
+            >
             {index === 0 && <IntroLayout slide={slide} />}
-            {[1, 5, 11].includes(index) && <DividerLayout slide={slide} />}
+            {[1, 6, 12].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
-            {index === 6 && <DualPillarLayout slide={slide} />}
-            {index === 7 && <InfraAuditLayout slide={slide} />}
-            {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
-            {index === 10 && <HypothesesLayout slide={slide} />}
-            {index === 12 && <StrategyLayout slide={slide} />}
-            {index === 13 && <ComparisonTableLayout slide={slide} />}
-            {index === 14 && <VisualPreviewLayout slide={slide} />}
-            {index === 15 && <DecisionGridLayout slide={slide} />}
-            {index === 16 && <TechnicalDetailLayout slide={slide} />}
-            {![0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 3 && <CitationMatrixLayout slide={slide} />}
+            {index === 4 && <SourceRatioLayout slide={slide} />}
+            {index === 5 && <ChecklistLayout slide={slide} index={index} />}
+            {index === 7 && <DualPillarLayout slide={slide} />}
+            {index === 8 && <InfraAuditLayout slide={slide} />}
+            {[9, 10].includes(index) && <DiagnosticResultsLayout slide={slide} />}
+            {index === 11 && <HypothesesLayout slide={slide} />}
+            {index === 13 && <StrategyLayout slide={slide} />}
+            {index === 14 && <ComparisonTableLayout slide={slide} />}
+            {index === 15 && <VisualPreviewLayout slide={slide} />}
+            {index === 16 && <DecisionGridLayout slide={slide} />}
+            {index === 17 && <TechnicalDetailLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
 
       {/* Simplified Footer */}
-      <footer className="py-20 bg-slate-50/40 border-t border-slate-100 relative z-10 text-center">
+      <footer className="py-20 bg-[#F5F8FA] border-t border-[#E1E1E1]/50 relative z-10 text-center">
         <div className="max-w-7xl mx-auto px-16">
           <button
             onClick={() => scrollToSection(0)}
-            className="group inline-flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-600 transition-all shadow-xl"
+            className="group inline-flex items-center gap-4 bg-white text-[#191919] px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-[#191919] hover:text-[#F5F8FA] border border-[#E1E1E1] transition-all"
           >
             Back to Top
-            <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
+            <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />
           </button>
         </div>
       </footer>

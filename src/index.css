@@ -1,95 +1,97 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #0066ff;
-  --color-brand-primary-dark: #0052cc;
-  --color-brand-primary-light: #f0f7ff;
-  --color-bg-page: #ffffff;
-  --color-text-main: #1a1a1a;
-  --color-text-sub: #666666;
-  --color-border: #f0f0f0;
-
-  --font-sans: "Pretendard", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-apple-blue: #3C76F1;
+  --color-apple-blue-dark: #3C76F1;
+  --color-apple-text: #191919;
+  --color-apple-text-light: #F5F8FA;
+  --color-apple-text-gray: #969696;
+  --color-apple-bg: #ffffff;
+  --color-apple-bg-gray: #F5F8FA;
+  --color-apple-bg-dark: #191919;
+  --color-apple-bg-dark-gray: #082253;
 }
 
 @layer base {
   body {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    color: var(--color-text-main);
-    @apply antialiased tracking-tight overflow-x-hidden;
-    background:
-      radial-gradient(circle at 10% 10%, rgba(0, 102, 255, 0.06), transparent 35%),
-      radial-gradient(circle at 90% 10%, rgba(0, 102, 255, 0.03), transparent 35%),
-      radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.02), transparent 50%),
-      radial-gradient(circle at 90% 90%, rgba(0, 102, 255, 0.06), transparent 35%),
-      radial-gradient(circle at 10% 90%, rgba(0, 102, 255, 0.03), transparent 35%),
-      #fafbfc;
-    background-attachment: fixed;
-    position: relative;
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #191919;
+    @apply antialiased overflow-x-hidden;
+    background-color: #F5F8FA;
+    letter-spacing: -0.015em;
   }
 }
 
 @layer components {
-
-  /* Typography Scale - Reduced for better balance */
+  /* Apple Typography Scale */
   .h1-hero {
-    @apply text-4xl lg:text-[4.5rem] font-extrabold tracking-[-0.04em] text-[#0f172a] leading-[1.1];
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] leading-[1.15];
   }
-
+  
   .h1-display {
-    @apply text-3xl lg:text-6xl font-extrabold tracking-[-0.03em] text-[#0f172a] leading-[1.1];
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold tracking-[-0.03em] leading-[1.15];
   }
 
   .h2-header {
-    @apply text-xl lg:text-4xl font-bold tracking-[-0.02em] text-[#0f172a] leading-tight;
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.02em] leading-[1.2] mb-4;
   }
 
   .h3-subhead {
-    @apply text-base lg:text-xl font-medium tracking-tight text-slate-500 leading-relaxed;
+    @apply text-lg md:text-xl font-semibold tracking-[-0.015em] leading-[1.2];
   }
 
   .body-main {
-    @apply text-sm lg:text-lg font-normal text-slate-600 leading-[1.7];
+    @apply text-base lg:text-[1.3rem] font-medium leading-[1.6] tracking-[-0.01em];
   }
-
   .body-main strong {
-    @apply font-bold text-blue-600 px-1 rounded-sm bg-blue-50/50;
+    @apply font-semibold text-[#191919];
   }
 
-  .label-caps {
-    @apply text-[9px] font-black uppercase tracking-[0.25em] text-blue-600/80;
-  }
-
+  /* Text Gradients (Apple Style Glow) */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#3C76F1] via-[#b651ff] to-[#FF4040];
+  }
+  
+  .text-gradient-subtle {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#969696] to-[#191919];
   }
 
-  /* Component Styles */
+  /* Eyebrow Label */
+  .label-caps {
+    @apply text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#969696] mb-4 block;
+  }
+
+  /* Apple Style Cards */
   .clean-card {
-    @apply bg-white border border-slate-100 rounded-[2.5rem] transition-all duration-500;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    @apply bg-[#ffffff] rounded-[2rem] transition-transform duration-500 overflow-hidden border border-[#E1E1E1]/50;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  }
+  .clean-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   }
 
-  .clean-card:hover {
-    box-shadow: 0 20px 50px rgba(0, 102, 255, 0.08);
-    transform: translateY(-4px);
+  .dark-card {
+    @apply bg-[#082253] rounded-[2rem] transition-transform duration-500 overflow-hidden;
+  }
+  .dark-card:hover {
+    transform: scale(1.01);
   }
 
   .glass-card {
-    @apply bg-white/70 backdrop-blur-2xl border border-white/50 rounded-[3rem];
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    @apply bg-[#ffffff]/80 backdrop-blur-3xl border border-[#ffffff]/50 rounded-[2rem];
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
   }
 
   .soft-gradient-bg {
-    background: radial-gradient(circle at top right, rgba(0, 102, 255, 0.05), transparent 40%),
-      radial-gradient(circle at bottom left, rgba(0, 102, 255, 0.03), transparent 40%),
-      #fafbfc;
+    background: #F5F8FA;
   }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -97,10 +99,10 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
+  background: #E1E1E1;
   border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 102, 255, 0.2);
+  background: #969696;
 }

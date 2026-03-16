@@ -41,15 +41,17 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 4,
-    title: "1-2. AI 모델별 인용률 분석 결과",
+    title: "1-2. AI 모델별 인용률 분석 — 인용률 매트릭스",
     oneLiner: "4대 주요 모델 대상 <strong>정량적 인용 매트릭스</strong> 산출 결과",
-    bullets: [
-      "인용 매트릭스: 모델별 답변에 대한 <strong>인용 유무</strong> 및 근거 URL 적절성 평가",
-      "오류 식별: <strong>Hallucination(사실 오류)</strong> 패턴 정리 및 경쟁사 오인용 사례 분석",
-      "출처 분석: 공식 홈페이지 vs 상세페이지 vs <strong>외부 리소스</strong>(블로그/뉴스) 인용 비중",
-      "인용 패턴: 텍스트 정보 부족 시 크롤러가 참조하는 <strong>외부 소스 현황</strong> 파악"
-    ],
-    visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)과 출처별 비율 파이 차트."
+    bullets: [],
+    visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)"
+  },
+  {
+    id: 41,
+    title: "1-2. 근거 URL 출처 비율 + 경쟁사 현황",
+    oneLiner: "주요 모델 답변 내 <strong>출처 분석</strong> 및 특이 사항",
+    bullets: [],
+    visualGuide: "출처 비율 테이블 및 경쟁사 현황 정보"
   },
   {
     id: 5,
@@ -176,7 +178,7 @@ export const SLIDES: Slide[] = [
     oneLiner: "UI/UX 및 테크니컬 구조 개편에 따른 <strong>시각적 변화 미리보기</strong>",
     bullets: [
       "ASIS:/images/main_asis1.png",
-      "TOBE:https://placehold.co/1200x800/2563eb/white?text=To-Be+Preview"
+      "TOBE:/images/main_tobe2.png"
     ],
     visualGuide: "As-Is와 To-Be 이미지를 좌우로 배치하여 직관적인 변화를 보여주는 레이아웃."
   },
@@ -188,7 +190,7 @@ export const SLIDES: Slide[] = [
       "OPTION:A. Title Tag 후보|웹사이트의 각 페이지에 붙이는 '이름표'|음식물 처리의 한 손 시대 개막 (기존)|원핸드그립 음식물처리기, 블루벤트 ID (제품형)|한 손으로 끝내는 음식물처리기 공식 온라인몰",
       "OPTION:B. H1 Tag 후보|페이지의 핵심 주제를 정의하는 대제목|한 손으로 끝내는 음식물처리기, 블루벤트 (브랜드)|한 손으로 넣고 AI로 처리하는 음식물처리기 (AI 강조)|블루벤트, AI 음식물처리기의 새로운 기준",
       "OPTION:C. 스펙 요약 영역|핵심 제품 정보를 요약한 텍스트 블록|대표 제품(블루벤트 ID) 단일 모델 중심 구성|무무 / S 포함 전 라인업 통합 요약 구성",
-      "OPTION:D. FAQ 5개 선정|사용자 의도를 반영한 텍스트 블록|필터는 얼마나 자주 교체해야 하나요?|닭뼈나 생선뼈도 갈리나요?|작동 시 소음은 어느 정도인가요?"
+      "OPTION:D. FAQ 5개 선정|사용자 의도를 반영한 텍스트 블록|필터는 얼마나 자주 교체해야 하나요?|닭뼈나 생선뼈도 갈리나요?|작동 시 소음은 어느 정도인가요?|처리 중 음식물을 투입해도 되나요?|처리 완료까지 시간은 얼마나 걸리나요?"
     ],
     visualGuide: "의사결정이 필요한 항목들을 대조표 및 선택형 카드 형태로 시각화."
   },
