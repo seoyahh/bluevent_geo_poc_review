@@ -90,7 +90,7 @@ export default function App() {
 
   const StandardLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 bg-[#F5F8FA] text-[#191919]">
-      <div className="flex flex-col gap-12 py-32 min-h-[940px] justify-center text-left">
+      <div className="flex flex-col gap-12 py-20 min-h-screen justify-center text-left">
         <div className="mb-4">
           <h2 className="h2-header max-w-5xl text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
         </div>
@@ -138,7 +138,7 @@ export default function App() {
       return 'text-[#3C76F1] bg-[#ECF1FE] font-black'; 
     };
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-20 min-h-screen text-left bg-[#F5F8FA]">
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
           <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -271,7 +271,7 @@ export default function App() {
 
   const CompetitorStatusLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-20 min-h-screen text-left bg-[#F5F8FA]">
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
           <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -411,7 +411,7 @@ export default function App() {
   };
 
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-center bg-[#F5F8FA]">
+    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-20 min-h-screen text-center bg-[#F5F8FA]">
       <div className="space-y-6 mb-20 max-w-4xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
         <p className="text-lg md:text-2xl text-[#969696] font-medium tracking-[-0.015em] leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -445,7 +445,7 @@ export default function App() {
     const numberColors = ['bg-[#3C76F1]', 'bg-[#FFBB38]', 'bg-[#FF4040]'];
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center text-left bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center text-left bg-[#F5F8FA]">
         <h2 className="text-xl md:text-2xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="flex flex-col gap-6 mb-10">
@@ -513,7 +513,7 @@ export default function App() {
     const models = slide.bullets.filter(b => b.startsWith('MODEL:')).map(b => b.replace('MODEL:', ''));
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center bg-[#F5F8FA]">
         <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         {/* Top Summary Grid */}
@@ -567,7 +567,7 @@ export default function App() {
   };
   const DiagnosticCombinedLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-start bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-start bg-[#F5F8FA]">
         <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 items-start mb-12">
@@ -680,7 +680,7 @@ export default function App() {
     const isSlide23 = slide.title.includes('2-3');
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center bg-[#F5F8FA]">
         <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         {/* ISSUE 박스 */}
@@ -730,7 +730,7 @@ export default function App() {
     };
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center bg-[#F5F8FA]">
         <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         {/* 교차 분석 테이블 */}
@@ -881,7 +881,7 @@ export default function App() {
     };
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex justify-center flex-col bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex justify-center flex-col bg-[#F5F8FA]">
         <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
         <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
@@ -918,7 +918,7 @@ export default function App() {
     const constrs = slide.bullets.filter(b => b.startsWith('CONSTR:')).map(b => b.replace('CONSTR:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center bg-[#F5F8FA]">
         <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
         <div className="flex flex-col gap-16">
@@ -982,7 +982,7 @@ export default function App() {
     const requirement = slide.bullets.find(b => b.startsWith('REQUIREMENT:'))?.replace('REQUIREMENT:', '').split('|');
 
     return (
-      <div className="w-full bg-[#F5F8FA] relative pt-32 pb-8">
+      <div className="w-full bg-[#F5F8FA] relative min-h-screen flex flex-col justify-center pt-24 pb-12">
         <div className="w-full max-w-[1770px] mx-auto px-8 lg:px-16 flex flex-col justify-center">
           <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
@@ -1050,7 +1050,7 @@ export default function App() {
         <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#3C76F1]/10 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#3C76F1]/10 to-transparent pointer-events-none" />
 
-        <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 min-h-[940px] flex flex-col justify-center relative z-10">
+        <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 min-h-screen flex flex-col justify-center relative z-10 py-20">
           <div className="mb-20 text-center">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#ECF1FE] text-[#3C76F1] text-sm font-bold tracking-widest mb-6 border border-[#3C76F1]/20">DECISION POINT</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.04em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
@@ -1214,7 +1214,7 @@ export default function App() {
     };
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 pt-8 pb-32 flex flex-col justify-center relative bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center relative bg-[#F5F8FA]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* As-Is Column */}
           <motion.div
@@ -1326,7 +1326,7 @@ export default function App() {
     const rows = slide.bullets.filter(b => b.startsWith('COMPARE:')).map(b => b.replace('COMPARE:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center bg-[#F5F8FA]">
         <div className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
           <p className="text-base md:text-lg text-[#969696] font-medium tracking-[-0.015em]" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -1400,7 +1400,7 @@ export default function App() {
     const kpiRows = slide.bullets.filter(b => b.startsWith('KPI:')).map(b => b.replace('KPI:', '').split('|'));
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center bg-[#F5F8FA]">
         <div className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
           <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
@@ -1468,7 +1468,7 @@ export default function App() {
   };
 
   const EodLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="relative flex flex-col items-center text-center justify-center min-h-[940px] py-32 w-full px-6 lg:px-12 overflow-hidden bg-[#F5F8FA]">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-screen py-20 w-full px-6 lg:px-12 overflow-hidden bg-[#F5F8FA]">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
