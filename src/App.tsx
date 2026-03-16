@@ -761,19 +761,79 @@ export default function App() {
               className="fixed inset-0 z-[100] flex items-center justify-center bg-[#082253]/80 backdrop-blur-sm p-8"
               onClick={() => setIsHypoCModalOpen(false)}
             >
-              <div className="relative max-w-5xl w-full flex flex-col items-center">
-                <button
-                  onClick={() => setIsHypoCModalOpen(false)}
-                  className="absolute -top-12 right-0 text-white hover:text-white/80 transition-colors flex items-center gap-2 font-bold"
-                >
-                  <X size={24} /> Close
-                </button>
-                <img
-                  src="/assets/step6.png"
-                  alt="GEO 6단계 정보 구조 정의"
-                  className="w-full h-auto object-contain rounded-xl shadow-2xl"
-                  onClick={(e) => e.stopPropagation()}
-                />
+              <div
+                className="relative max-w-5xl w-full bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header */}
+                <div className="bg-[#082253] px-8 py-6 flex justify-between items-center">
+                  <h3 className="text-2xl font-bold text-white tracking-tight">2-4 보충. GEO 6단계 정보 구조 정의 (가설 C)</h3>
+                  <button
+                    onClick={() => setIsHypoCModalOpen(false)}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    <X size={28} />
+                  </button>
+                </div>
+                
+                {/* Content */}
+                <div className="p-8 pb-10 flex flex-col gap-8 bg-white max-h-[80vh] overflow-y-auto">
+                  {/* Table */}
+                  <div className="border border-[#E1E1E1] rounded-lg overflow-hidden">
+                    <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#082253] text-white text-[15px] font-bold">
+                      <div className="py-4 px-4 text-center border-r border-[#153470]">단계</div>
+                      <div className="py-4 px-6 text-center border-r border-[#153470]">콘텐츠 유형</div>
+                      <div className="py-4 px-6 text-center border-r border-[#153470]">역할</div>
+                      <div className="py-4 px-6 text-center">현재 상태</div>
+                    </div>
+                    <div className="divide-y divide-[#E1E1E1] text-[15px]">
+                      <div className="grid grid-cols-[80px_1fr_2fr_1fr]">
+                        <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">1</div>
+                        <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">TL;DR 요약문</div>
+                        <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">AI가 가장 먼저 참조하는 1~2문장 핵심 정의</div>
+                        <div className="py-4 px-6 text-[#D64040] font-bold">없음</div>
+                      </div>
+                      <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#F9F9F9]">
+                        <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">2</div>
+                        <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">스펙 데이터 테이블</div>
+                        <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">용량, 소음, 크기, 소비전력 등 정량 데이터</div>
+                        <div className="py-4 px-6 text-[#D64040] font-bold">이미지 내에만 존재</div>
+                      </div>
+                      <div className="grid grid-cols-[80px_1fr_2fr_1fr]">
+                        <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">3</div>
+                        <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">기능·특장점 설명</div>
+                        <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">원핸드그립, AI 모드, 7중 필터 등 상세 텍스트</div>
+                        <div className="py-4 px-6 text-[#D64040] font-bold">이미지 내에만 존재</div>
+                      </div>
+                      <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#F9F9F9]">
+                        <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">4</div>
+                        <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">경쟁 비교 정보</div>
+                        <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">동급 제품 대비 차별점(소음 dB, 필터 수명 등)</div>
+                        <div className="py-4 px-6 text-[#D64040] font-bold">완전 부재</div>
+                      </div>
+                      <div className="grid grid-cols-[80px_1fr_2fr_1fr]">
+                        <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">5</div>
+                        <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">FAQ</div>
+                        <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">자주 묻는 질문 5~10개 (FAQPage Schema 연동)</div>
+                        <div className="py-4 px-6 text-[#D64040] font-bold">없음</div>
+                      </div>
+                      <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#F9F9F9]">
+                        <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">6</div>
+                        <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">사용자 리뷰·평점</div>
+                        <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">실사용 후기 (Review Schema 연동)</div>
+                        <div className="py-4 px-6 text-[#FF8B00] font-bold">Schema 미적용</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Summary Box */}
+                  <div className="bg-[#EAF6ED] border border-[#CDE1D1] border-l-[6px] border-l-[#32A852] p-6 rounded-lg">
+                    <h4 className="font-bold text-[#32A852] text-[18px] mb-3">Q2·Q3에서 블루벤트가 노출되지 않는 핵심 원인:</h4>
+                    <p className="text-[#4B4B4B] text-[15px] leading-relaxed">
+                      4단계(경쟁 비교)와 2단계(스펙 테이블)가 완전 부재. 경쟁사(스마트카라 등)는 이 두 단계가 텍스트로 구조화되어 있어 AI가 비교·추천 답변에 포함시킬 수 있음. 블루벤트도 동일 구조를 적용하면 노출 가능성이 높아진다.
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
