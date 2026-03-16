@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2, Layout, BarChart3, Settings, AlertTriangle,
   PlayCircle, ArrowRight, ArrowUp, ArrowDown, FileText,
-  Activity, ChevronRight, Sparkles, Check, Compass, AlertCircle,
+  Activity, ChevronRight, ChevronLeft, Sparkles, Check, Compass, AlertCircle,
   Target, Calendar, X, ZoomIn, ChevronDown
 } from 'lucide-react';
 import { SLIDES } from './constants';
@@ -456,13 +456,13 @@ export default function App() {
     });
     const hypothesis = slide.bullets.find(b => b.startsWith('HYPOTHESIS:'))?.replace('HYPOTHESIS:', '');
     const numberColors = ['bg-[#3C76F1]', 'bg-[#FFBB38]', 'bg-[#FF4040]'];
-    const [expandedImage, setExpandedImage] = useState<string | null>(null);
+    const [currentImageIdx, setCurrentImageIdx] = useState<number | null>(null);
     const [zoomScale, setZoomScale] = useState(1);
     const [transformOrigin, setTransformOrigin] = useState("50% 50%");
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      if (!expandedImage) {
+      if (currentImageIdx === null) {
         setZoomScale(1);
         setTransformOrigin("50% 50%");
         document.body.style.overflow = 'auto';
@@ -472,7 +472,7 @@ export default function App() {
       return () => {
         document.body.style.overflow = 'auto';
       };
-    }, [expandedImage]);
+    }, [currentImageIdx]);
 
     const handleWheel = (e: React.WheelEvent) => {
       e.stopPropagation();
@@ -489,6 +489,26 @@ export default function App() {
         const y = ((e.clientY - rect.top) / rect.height) * 100;
         setTransformOrigin(`${x}% ${y}%`);
       }
+    };
+
+    const handlePrev = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setZoomScale(1);
+      setCurrentImageIdx(prev => (prev && prev > 1 ? prev - 1 : 5));
+    };
+
+    const handleNext = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setZoomScale(1);
+      setCurrentImageIdx(prev => (prev && prev < 5 ? prev + 1 : 1));
+    };
+
+    const getErrorLabel = (num: number) => {
+      if (num === 1) return '모델명 오류1';
+      if (num === 2) return '모델명 오류2';
+      if (num === 3) return '모델명 오류3';
+      if (num === 4) return '주소 정보 오류';
+      return '외부 기사 인용';
     };
 
     return (
@@ -519,7 +539,7 @@ export default function App() {
                         <div 
                           key={num} 
                           className="w-48 aspect-video rounded-xl overflow-hidden border border-[#E1E1E1] shadow-md hover:shadow-xl hover:scale-[1.05] hover:border-[#3C76F1] transition-all cursor-zoom-in bg-white group/thumb"
-                          onClick={() => setExpandedImage(`/images/error${num}.png`)}
+                          onClick={() => setCurrentImageIdx(num)}
                         >
                           <img 
                             src={`/images/error${num}.png`} 
@@ -528,10 +548,7 @@ export default function App() {
                           />
                           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 opacity-0 group-hover/thumb:opacity-100 transition-opacity">
                             <span className="text-white text-[10px] font-bold tracking-widest">
-                              {num === 1 ? '모델명 오류1' : 
-                               num === 2 ? '모델명 오류2' : 
-                               num === 3 ? '모델명 오류3' : 
-                               num === 4 ? '주소 정보 오류' : '외부 기사 인용'}
+                              {getErrorLabel(num)}
                             </span>
                           </div>
                         </div>
@@ -561,7 +578,7 @@ export default function App() {
 
         {/* Image Modal */}
         <AnimatePresence>
-          {expandedImage && (
+          {currentImageIdx !== null && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -569,15 +586,37 @@ export default function App() {
               className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-lg p-4 lg:p-10"
             >
               <button
-                onClick={() => setExpandedImage(null)}
-                className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-white hover:bg-[#F5F8FA] flex items-center justify-center transition-colors duration-300 z-[110] border border-[#E1E1E1] shadow-sm group"
+                onClick={() => setCurrentImageIdx(null)}
+                className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-white hover:bg-[#F5F8FA] flex items-center justify-center transition-colors duration-300 z-[120] border border-[#E1E1E1] shadow-sm group"
               >
                 <X size={24} className="text-[#4B4B4B] group-hover:text-[#191919]" />
               </button>
 
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-white text-[#4B4B4B] px-6 py-2 rounded-full border border-[#E1E1E1] text-xs font-semibold z-[110] flex items-center gap-2 shadow-sm">
-                <ZoomIn size={14} className="text-[#3C76F1]" />
-                스크롤 축소/확대 <span>({Math.round(zoomScale * 100)}%)</span>
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-white text-[#4B4B4B] px-6 py-2 rounded-full border border-[#E1E1E1] text-xs font-semibold z-[110] flex items-center gap-4 shadow-sm">
+                <div className="flex items-center gap-2 border-r border-[#E1E1E1] pr-4">
+                  <ZoomIn size={14} className="text-[#3C76F1]" />
+                  <span>{Math.round(zoomScale * 100)}%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#3C76F1] font-bold">{currentImageIdx} / 5</span>
+                  <span className="text-[#969696]">{getErrorLabel(currentImageIdx)}</span>
+                </div>
+              </div>
+
+              {/* Prev/Next Buttons */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-6 lg:px-12 pointer-events-none z-[115]">
+                <button
+                  onClick={handlePrev}
+                  className="w-16 h-16 rounded-full bg-white border border-[#E1E1E1] flex items-center justify-center shadow-lg pointer-events-auto hover:bg-[#F5F8FA] hover:scale-110 transition-all group"
+                >
+                  <ChevronLeft size={32} className="text-[#4B4B4B] group-hover:text-[#3C76F1]" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="w-16 h-16 rounded-full bg-white border border-[#E1E1E1] flex items-center justify-center shadow-lg pointer-events-auto hover:bg-[#F5F8FA] hover:scale-110 transition-all group"
+                >
+                  <ChevronRight size={32} className="text-[#4B4B4B] group-hover:text-[#3C76F1]" />
+                </button>
               </div>
 
               <motion.div
@@ -591,7 +630,8 @@ export default function App() {
                 onWheel={handleWheel}
               >
                 <motion.img
-                  src={expandedImage}
+                  key={currentImageIdx} // Key change ensures image resets its motion state when index changes
+                  src={`/images/error${currentImageIdx}.png`}
                   alt="Expanded error"
                   className="max-w-full max-h-full object-contain pointer-events-auto"
                   style={{ transformOrigin }}
