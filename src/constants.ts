@@ -74,7 +74,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 7,
-    title: "2-1. 진단 방법론 + 2-1-b. 도메인 인프라 진단",
+    title: "2-1. 진단 방법론 및 도메인 인프라 진단",
     oneLiner: "",
     bullets: [],
     visualGuide: "진단 기준과 도메인 레벨 핵심 진단 표, 그리고 하단 robots.txt 이슈 블록 배치"

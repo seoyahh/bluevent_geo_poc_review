@@ -519,7 +519,7 @@ export default function App() {
         </div>
 
         {/* Bottom Alert Card */}
-        <div className="bg-[#FAEBEB] border border-[#D64040]/30 border-l-8 border-l-[#D64040] p-10 flex flex-col gap-6 shadow-[0_4px_24px_rgba(214,64,64,0.08)] overflow-hidden rounded-r-2xl">
+        <div className="bg-[#FAEBEB] border border-[#D64040]/30 border-l-8 border-l-[#D64040] p-10 flex flex-col gap-6 shadow-[0_4px_24px_rgba(214,64,64,0.08)] overflow-hidden rounded-2xl">
            <div className="flex items-center gap-3">
              <div className="w-3.5 h-3.5 rounded-full bg-[#D64040] shadow-sm" />
              <p className="font-extrabold text-2xl lg:text-3xl text-[#D64040] tracking-tight">PoC Blocker — robots.txt AI 크롤러 완전 차단</p>
