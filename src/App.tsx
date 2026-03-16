@@ -690,6 +690,7 @@ export default function App() {
   };
 
   const HypothesesLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const [isHypoCModalOpen, setIsHypoCModalOpen] = useState(false);
     const hypos = slide.bullets.filter(b => b.startsWith('HYPO:')).map(b => b.replace('HYPO:', '').split('|'));
     const crossRows = slide.bullets.filter(b => b.startsWith('CROSS:')).map(b => b.replace('CROSS:', '').split('|'));
 
@@ -729,7 +730,10 @@ export default function App() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="p-10 flex flex-col gap-6 border border-[#E1E1E1] bg-white rounded-2xl hover:border-[#3C76F1]/40 hover:shadow-lg transition-all group"
+              onClick={() => {
+                if (idx === 2) setIsHypoCModalOpen(true);
+              }}
+              className={`p-10 flex flex-col gap-6 border border-[#E1E1E1] bg-white rounded-2xl hover:border-[#3C76F1]/40 hover:shadow-lg transition-all group ${idx === 2 ? 'cursor-pointer' : ''}`}
             >
               <div className="w-10 h-10 flex items-center justify-center font-black text-white text-base rounded-full bg-[#3C76F1]">
                 {String.fromCharCode(65 + idx)}
@@ -738,9 +742,42 @@ export default function App() {
                 <h3 className="text-base font-bold text-[#191919] tracking-tight group-hover:text-[#3C76F1] transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
                 <p className="text-sm text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
               </div>
+              {idx === 2 && (
+                <div className="mt-auto text-xs font-bold text-[#3C76F1] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ZoomIn size={14} /> <span>GEO 6단계 정보 구조 자세히 보기</span>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
+
+        {/* Hypo C Modal */}
+        <AnimatePresence>
+          {isHypoCModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-[#082253]/80 backdrop-blur-sm p-8"
+              onClick={() => setIsHypoCModalOpen(false)}
+            >
+              <div className="relative max-w-5xl w-full flex flex-col items-center">
+                <button
+                  onClick={() => setIsHypoCModalOpen(false)}
+                  className="absolute -top-12 right-0 text-white hover:text-white/80 transition-colors flex items-center gap-2 font-bold"
+                >
+                  <X size={24} /> Close
+                </button>
+                <img
+                  src="/assets/step6.png"
+                  alt="GEO 6단계 정보 구조 정의"
+                  className="w-full h-auto object-contain rounded-xl shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     );
   };
