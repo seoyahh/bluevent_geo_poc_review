@@ -58,10 +58,10 @@ export const SLIDES: Slide[] = [
     title: "1-3. 인사이트 도출 — 가설 설정의 배경",
     oneLiner: "진단 데이터 기반 <strong>'테크니컬 개선을 통한 인용 신뢰도 확보'</strong> 가설 설정",
     bullets: [
-      "핵심 발견: 인용은 주로 정보 밀도가 높은 <strong>외부 사이트</strong>에 의존함",
-      "오류 패턴: <strong>이미지 기반 콘텐츠</strong>를 AI가 오인하거나 누락하는 경향 뚜렷",
-      "상위 가설: 자사몰 테크니컬 최적화 시 <strong>인용률 및 데이터 신뢰도</strong> 대폭 상승",
-      "수행 근거: 공식 데이터 우위를 점하기 위한 <strong>구조화 데이터(JSON-LD)</strong> 적용 필수"
+      "INSIGHT:인용되는 페이지는 외부 기사의 블로그 컨텐츠로 특정된다.|공식 사이트보다 매거진한경, 아시아경제, 블로그 등에서 AI가 정보를 수집. 공식 페이지의 구조화된 텍스트 부재.",
+      "INSIGHT:인용될 때 vs 안 될 때의 차이는 '텍스트 접근성'이다.|Q5(스펙)가 인용 안 되는 이유: 상세페이지가 이미지로만 구성.",
+      "INSIGHT:사실 오류 패턴: 공식 텍스트 부재 시 AI가 '추론'으로 정보를 생성.|Gemini: 모델명 FG-ADM240N 오기(실제 BV-A12S-BKR). ChatGPT: 주소 수원시로 오기(실제 판교).",
+      "HYPOTHESIS:메인 홈페이지와 제품 상세페이지의 테크니컬 구조를 개선하면, AI가 정확하게 인용할 확률이 높아진다."
     ],
     visualGuide: "현상 발견(Low Direct Citation)에서 가설 수립(Technical Optimization)으로 이어지는 로직 플로우."
   },
@@ -105,11 +105,14 @@ export const SLIDES: Slide[] = [
     title: "2-2. 메인 홈페이지 진단 결과",
     oneLiner: "브랜드 인식의 핵심인 <strong>메인 페이지 테크니컬 요소</strong> 심층 분석",
     bullets: [
-      "SCORE:Title & Meta|<strong>Warning</strong>|기본 정보인 제목과 설명은 존재하나 브랜드 키워드 최적화 부족",
-      "SCORE:Heading Level|<strong>Fail</strong>|H1 태그가 존재하지 않으며 논리적 위계 구조 전무",
-      "SCORE:Content Ratio|<strong>Fail</strong>|이미지 비중 90% 이상으로 AI 인식 가능 텍스트 극소량",
-      "SCORE:Structured Data|<strong>Fail</strong>|JSON-LD 등 검색 기여 구조화 데이터 미적용",
-      "ISSUE:요약|본문 텍스트 비율이 낮고 구조화가 안 되어 AI의 의미론적 분석이 불가능한 상태"
+      "SCORE:Meta Description|<strong>Fail</strong>|미설정 — AI 요약 시 정보 부재",
+      "SCORE:og 태그|<strong>Warning</strong>|'한 손 시대의 개막, 블루벤트'로 단순함",
+      "SCORE:H1 태그|<strong>Fail</strong>|'CUSTOMER CENTER'에 사용 — 브랜드·제품 키워드 미포함",
+      "SCORE:JSON-LD|<strong>Fail</strong>|Organization, Product, FAQ 등 구조화 데이터 0건",
+      "SCORE:본문 텍스트 비율|<strong>Fail</strong>|이미지 96개 중심, 텍스트 콘텐츠 극히 부족",
+      "SCORE:이미지 Alt|<strong>Warning</strong>|96개 중 59개(61%)만 설정, '' 등 무의미 값 다수",
+      "SCORE:Canonical URL|<strong>Warning</strong>|미확인 — 파라미터 기반 중복 페이지 가능",
+      "ISSUE:Fail 4건 · Warning 3건 &#124; GEO/SEO 종합 점수: 34/100 (등급 F)|본문 텍스트 극히 부족 + H1이 브랜드와 무관 + JSON-LD 0건 → AI 크롤러가 브랜드 정보를 파악할 수 없는 상태.<br/><span class='text-sm text-[#969696]'>점수 기준: 콘텐츠 구조 6/20, 정보 가치 4/20, 권위·신뢰성 8/20, 기술 요소 10/20, 명확성 6/20</span>"
     ],
     visualGuide: "항목별 Pass/Fail 스코어 카드 및 검색 가용성 정밀 분석 그래프."
   },
@@ -118,11 +121,14 @@ export const SLIDES: Slide[] = [
     title: "2-3. 제품 상세페이지(블루벤트 ID) 진단 결과",
     oneLiner: "제품 정보 정확도를 결정하는 <strong>데이터 추출 효율성</strong> 정밀 진단",
     bullets: [
-      "SCORE:Image Structure|<strong>Fail</strong>|상세페이지 전체가 통 이미지로 구성되어 텍스트 데이터 추출 불가",
-      "SCORE:Alt Metadata|<strong>Fail</strong>|핵심 제품 스펙에 대한 대체 텍스트(alt) 지원 전무",
-      "SCORE:Heading Hierarchy|<strong>Fail</strong>|제품명, 스펙 표 등을 구분하는 헤딩 구조 실종",
-      "SCORE:Schema Product|<strong>Fail</strong>|Product/Offer 구조화 데이터 부재로 AI 답변 내 추천 소스 제외",
-      "ISSUE:요약|데이터 크롤링의 '블랙홀' 상태로, AI가 인용할 수 있는 텍스트 데이터 레이어 부재"
+      "SCORE:제품 정보 구성|<strong>Fail</strong>|전체 스펙·기능이 이미지 통짜 → 텍스트 크롤링 완전 불가",
+      "SCORE:이미지 Alt|<strong>Fail</strong>|alt가 '' 또는 '본문 슬라이드 배너' 등 무의미한 값",
+      "SCORE:헤딩 (H1~H3)|<strong>Fail</strong>|제품명·스펙 헤딩 없음 → AI가 페이지 구조 파악 불가",
+      "SCORE:Product Schema|<strong>Fail</strong>|JSON-LD Product 미적용 → 품명/가격/쇼핑 DB 구조화 부재",
+      "SCORE:텍스트 스펙 표|<strong>Fail</strong>|2L, 19.7dB, 790W 등이 HTML 텍스트로 존재하지 않음",
+      "SCORE:FAQ/리뷰 구조화|<strong>Fail</strong>|Schema 마크업 없이 존재 → AI 답변 패널 미노출",
+      "SCORE:로딩 속도|<strong>Warning</strong>|CDN 사용 중이나 이미지 최적화 미흡",
+      "ISSUE:7개 항목 중 6개 Fail → Q5 인용률 0%의 직접적 원인|상세페이지는 AI 크롤러가 정보를 추출할 수 없는 구조. AI 모델은 다나와·기사에서 부정확한 스펙을 '추론'하여 생성하며,<br/>이것이 모델명 오기(Gemini), 주소 오기(ChatGPT) 등 사실 오류의 근본 원인이다."
     ],
     visualGuide: "데이터 인지 불가 지점(이미지 영역)을 붉게 표시한 상세페이지 히트맵 시각화."
   },
@@ -134,7 +140,14 @@ export const SLIDES: Slide[] = [
       "HYPO:<strong>가설 A (상세페이지)</strong>|이미지를 분할하고 alt + 히든 텍스트를 삽입하면 AI가 제품 정보를 정확히 인용한다.",
       "HYPO:<strong>가설 B (메인페이지)</strong>|JSON-LD 구조화 데이터를 적용하면 브랜드 인지 질문에서 자사몰 인용률이 상승한다.",
       "HYPO:<strong>가설 C (정보 구조)</strong>|GEO 6단계 구조로 정보 순서를 재배치하면 AI가 핵심 스펙 데이터를 우선 참조한다.",
-      "TABLE:가설별 검증 여부|가설A:PoC적용(상세)|가설B:PoC적용(메인)|가설C:전술적용(공통)"
+      "CROSS:(신규 발견) robots.txt AI 크롤러 완전 차단|Claude·ChatGPT가 공식 사이트 접근 불가|사전 조건: robots.txt AI봇 허용 전환",
+      "CROSS:Q5 스펙 인용률 0% 4개 모델 모두 미인용|상세페이지 이미지 통짜 alt·헤딩 부재|가설 A: 이미지 분할 + alt + 시맨틱 텍스트",
+      "CROSS:Q1 브랜드 인지 낮음 외부 기사 의존|메인 JSON-LD 미적용 meta description 미설정|가설 B: JSON-LD + 메타 최적화",
+      "CROSS:Q2·Q3 경쟁사만 노출 비교 정보 부재|정보 순서 미구조화 스펙 데이터 텍스트 부재|가설 C: GEO 6단계 정보 구조 적용",
+      "VERIFY:사전 조건|도메인|AI봇 접근 가능 여부|필수|0순위",
+      "VERIFY:가설 A|상세페이지|Q5 인용률, 스펙 정확도|높음|1순위",
+      "VERIFY:가설 B|메인페이지|Q1 인용률, 공식 URL 비율|높음|1순위",
+      "VERIFY:가설 C|메인+상세|Q2·Q3 노출, 경쟁사 순위|중간|2순위"
     ],
     visualGuide: "과제 도출 매트릭스 및 가설 수립 플로우차트."
   },
@@ -164,11 +177,12 @@ export const SLIDES: Slide[] = [
     title: "3-1. 메인 홈페이지 — As-Is & To-Be",
     oneLiner: "브랜드 실체 강화를 위한 <strong>인프라 정상화 및 시맨틱 보정</strong> 비교",
     bullets: [
-      "COMPARE:인덱싱 인프라|robots.txt에서 GPT·Claude 차단 상태|<strong>전면 허용으로 전환</strong> 및 사이트맵 수동 제출",
-      "COMPARE:메타 태그|타이틀 태그 후보가 복수로 혼재, Meta Description·OG 태그 미정규화|<strong>타이틀 1개 확정 적용</strong> 및 메타 정보 일괄 정규화",
-      "COMPARE:본문 텍스트 구조|본문 텍스트 비율 낮음, 헤딩 태그 미사용, 정보가 영상·이미지에만 의존|<strong>H1 및 TL;DR 텍스트 삽입</strong>, 스펙/인증 요약 텍스트 블록 추가",
-      "COMPARE:JSON-LD|미적용|Organization / WebSite 스키마 우선 적용",
-      "COMPARE:FAQ|없음|핵심 5개 FAQ 텍스트 블록 삽입 (FAQPage 스키마 연동)"
+      "COMPARE:① 크롤링 인프라|GPTBot·ClaudeBot 차단<br/>sitemap 미확인<br/>canonical 미정규화|AI봇 허용 전환<br/>sitemap 확인/제출<br/>canonical 정규화<br/>(선택) llms.txt 검토",
+      "COMPARE:② 메타 태그|타이틀 복수 혼재<br/>Meta Desc·OG 미정규화|타이틀 1개 확정 ● 컨펌<br/>Meta Desc·OG·Canonical 일괄 정규화",
+      "COMPARE:③ 본문 텍스트|텍스트 비율 극히 낮음<br/>헤딩 미사용<br/>영상·이미지만 의존|H1 브랜드+키워드 삽입 ● 컨펌<br/>TL;DR 정의문·스펙 요약 텍스트<br/>영상 요약 블록·앵커 텍스트 설계",
+      "COMPARE:④ JSON-LD|미적용|Organization / WebSite / BreadcrumbList",
+      "COMPARE:⑤ FAQ|없음|핵심 5개 FAQ 텍스트 + FAQPage Schema",
+      "PRIORITY:우선순위: ① 인프라(선결) → ② 메타 태그 확정 → ③ 본문 텍스트 → ④ JSON-LD → ⑤ FAQ"
     ],
     visualGuide: "메인 페이지의 시각적/기술적 변화를 비교한 전/후 레이아웃 도식."
   },
@@ -187,7 +201,7 @@ export const SLIDES: Slide[] = [
     title: "3-1. 메인 홈페이지 — As-Is & To-Be",
     oneLiner: "성공적인 PoC 수행을 위한 <strong>개선 시 의사결정 필요 사항</strong>",
     bullets: [
-      "OPTION:A. Title Tag 후보|웹사이트의 각 페이지에 붙이는 '이름표'|음식물 처리의 한 손 시대 개막 (기존)|원핸드그립 음식물처리기, 블루벤트 ID (제품형)|한 손으로 끝내는 음식물처리기 공식 온라인몰",
+      "OPTION:A. 타이틀 태그 후보|웹사이트의 각 페이지에 붙이는 '이름표'|블루벤트 &#124; 음식물 처리의 한 손 시대 개막|블루벤트 &#124; 가정용 음식물처리기 공식 온라인몰|블루벤트 &#124; 원핸드그립 음식물처리기, 블루벤트 ID|블루벤트 &#124; 한 손으로 끝내는 음식물처리기 공식 온라인몰",
       "OPTION:B. H1 Tag 후보|페이지의 핵심 주제를 정의하는 대제목|한 손으로 끝내는 음식물처리기, 블루벤트 (브랜드)|한 손으로 넣고 AI로 처리하는 음식물처리기 (AI 강조)|블루벤트, AI 음식물처리기의 새로운 기준",
       "OPTION:C. 스펙 요약 영역|핵심 제품 정보를 요약한 텍스트 블록|대표 제품(블루벤트 ID) 단일 모델 중심 구성|무무 / S 포함 전 라인업 통합 요약 구성",
       "OPTION:D. FAQ 5개 선정|사용자 의도를 반영한 텍스트 블록|필터는 얼마나 자주 교체해야 하나요?|닭뼈나 생선뼈도 갈리나요?|작동 시 소음은 어느 정도인가요?|처리 중 음식물을 투입해도 되나요?|처리 완료까지 시간은 얼마나 걸리나요?"
@@ -204,8 +218,30 @@ export const SLIDES: Slide[] = [
       "ASIDE_BULLET:<strong>alt 텍스트 품질이 확보</strong>되면 이미지 위치와 상관없이 크롤러의 정보 인식률이 대폭 상승합니다.",
       "ASIDE_BULLET:순서 재배치는 검증보다 <strong>UX/CRO 성격이 강해</strong> 이번 PoC 기술 검증 항목과는 분리합니다.",
       "ASIDE_BULLET:PoC 우선순위는 <strong>① 이미지 Alt 텍스트 전면 적용 → ② 섹션별 헤딩 구조 정비 및 데이터 구조화</strong> 순입니다.",
-      "ITEM:PoC 기술적 구현 범위|순서 재배치 등 UI/UX 개편이 아닌, <strong>이미지 Alt 텍스트(Alternative Text) 정밀 마크업</strong>을 통한 데이터 가독성 확보에 집중합니다."
+      "COMPARE:① JSON-LD|미적용|Product + FAQPage/HowTo Schema",
+      "COMPARE:② 메타 태그|(점검 필요)|Meta Title·Desc·OG·Canonical 정규화",
+      "COMPARE:③ 이미지 구조|통 이미지 1장|13개 기능 단위 분할",
+      "COMPARE:③ Alt 텍스트|없음 / '.' 등 비규격|\"블루벤트 ID [기능명] — [설명]\" 규격",
+      "COMPARE:③ 시맨틱 텍스트|없음|이미지 아래 H2/H3/p 텍스트 블록 삽입<br/>(시각적 노출 또는 sr-only, 클로킹 금지 준수)",
+      "COMPARE:③ 헤딩 계층|없음|섹션별 H2/H3 계층 적용",
+      "COMPARE:④ 인프라|(2-1-b 동일)|robots.txt 허용 + sitemap + (선택) llms.txt"
     ],
     visualGuide: "상세 페이지의 테크니컬 개선 핵심 포인트(Aside)와 4대 실행 항목(Grid)을 결합한 정보 중심 레이아웃."
+  },
+  {
+    id: 18,
+    title: "3-3. 검증 계획 — 프로토콜 · KPI · 7주 로드맵",
+    oneLiner: "성과 측정을 위한 <strong>정밀 검증 프로토콜</strong> 및 목표 지표 설정",
+    bullets: [
+      "PROTO:방법|1-1과 동일 프롬프트 세트(5개 질문)로 전/후 비교",
+      "PROTO:모델|Gemini, Claude, ChatGPT, Perplexity (4개)",
+      "PROTO:반복|개선 적용 후 2주 대기(크롤러 반영) &rarr; 10일 매일 1회 = 모델당 50건, 총 200건",
+      "KPI:Q5 인용률|0% &rarr; 30%+ (가설 A)|text-[#F43F5E]",
+      "KPI:Q1 인용률|29% &rarr; 50%+ (가설 B)|text-[#3C76F1]",
+      "KPI:공식 URL 비율|15% &rarr; 40%+|text-[#10B981]",
+      "KPI:Q2·Q3 노출|최소 1개 모델 (가설 C)|text-[#059669]",
+      "KPI:사실 오류|오류 건수 50%+ 감소|text-[#F59E0B]"
+    ],
+    visualGuide: "검증 프로토콜과 KPI 지표를 대조표 형태로 배치한 성과 중심 레이아웃."
   }
 ];

@@ -32,18 +32,23 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // 이미지 확대 모달 등이 열려있을 때는 페이지 이동 방지
+      if (document.body.style.overflow === 'hidden') return;
+      
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
         if (activeSection < SLIDES.length - 1) {
           scrollToSection(activeSection + 1);
         }
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
         if (activeSection > 0) {
           scrollToSection(activeSection - 1);
         }
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, { passive: false });
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeSection]);
 
@@ -56,7 +61,6 @@ export default function App() {
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
     <div className="relative flex flex-col items-center text-center justify-center min-h-[940px] overflow-hidden py-24 w-full px-12 bg-[#F5F8FA]">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-[#3C76F1]/10 to-[#9747FF]/10 rounded-full blur-[120px] pointer-events-none" />
       
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -124,14 +128,14 @@ export default function App() {
     ];
     const getColor = (val: number) => {
       if (val === 0) return 'text-[#969696] bg-[#F5F8FA]'; 
-      if (val >= 50) return 'text-[#FFFFFF] bg-[#3C76F1] shadow-[inset_0_0_0_1px_#082253]'; 
+      if (val >= 50) return 'text-[#FFFFFF] bg-[#3C76F1]'; 
       return 'text-[#3C76F1] bg-[#ECF1FE] font-black'; 
     };
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
-        <div className="space-y-6 mb-16 max-w-4xl text-left">
-          <h2 className="text-xl md:text-2xl font-black tracking-[-0.03em] text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
-          <p className="text-lg md:text-2xl text-[#969696] font-semibold tracking-[-0.015em] leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <div className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
         </div>
         
         {/* Color System Table representation */}
@@ -164,20 +168,46 @@ export default function App() {
           <div className="flex items-center gap-3"><div className="w-4 h-4 rounded bg-[#F5F8FA] border border-[#E1E1E1]" /> 0~19% (미흡)</div>
         </div>
         
-        {/* Key Findings Card - Blue Accent */}
-        <div className="bg-[#ECF1FE] border border-[#3C76F1]/20 border-l-8 border-l-[#3C76F1] p-12 rounded-r-[2rem] rounded-l-md shadow-lg">
-           <div className="flex items-center gap-4 mb-8">
-             <div className="text-[#3C76F1] bg-white p-3 rounded-full shadow-sm">
-               <Sparkles size={28} strokeWidth={2.5} />
-             </div>
-             <h3 className="text-[#082253] font-black text-2xl tracking-tight">핵심 발견</h3>
-           </div>
-           <ul className="space-y-6 text-lg text-[#4B4B4B] font-semibold tracking-tight">
-             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> <span dangerouslySetInnerHTML={{ __html: "Q2(추천)·Q3(비교): 4개 모델 모두 블루벤트 미인용 &rarr; <strong class='text-[#3C76F1] text-xl font-black ml-2'>경쟁사만 노출</strong>" }} /></li>
-             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> <span dangerouslySetInnerHTML={{ __html: "Q4(앱 원격제어): Claude·Perplexity <strong class='text-[#3C76F1] text-2xl font-black mx-1'>57%</strong> &rarr; 앱스토어 텍스트가 유일한 출처" }} /></li>
-             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> <span dangerouslySetInnerHTML={{ __html: "Q5(ID 스펙): 전 모델 <strong class='text-[#3C76F1] text-2xl font-black mx-1'>0%</strong> &rarr; 상세페이지 이미지 통짜로 텍스트 크롤링 불가" }} /></li>
-             <li className="flex gap-4"><span className="text-[#3C76F1] mt-1 shrink-0"><CheckCircle2 size={26} strokeWidth={2.5} /></span> 전체 인용률 최고 17%(Claude·Perplexity), 최저 6%(Gemini)</li>
-           </ul>
+        {/* Key Findings Card - FOCUS AREA style */}
+        <div className="w-full bg-[#ECF1FE] rounded-[2rem] border border-[#3C76F1]/20 p-12 overflow-hidden">
+          <div className="space-y-8">
+            <span className="label-caps !text-[#3C76F1]">Key Findings</span>
+            <h3 className="text-xl lg:text-2xl font-bold tracking-[-0.02em] text-[#082253]">
+              주요 AI 모델 대상 블루벤트 인용 현황 점검에 따른 <span className="text-[#3C76F1]">주요 발견 사항</span>
+            </h3>
+
+            <div className="w-full h-[1px] bg-[#3C76F1]/20" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q2(추천)·Q3(비교): 4개 모델 모두 블루벤트 미인용 &rarr; <strong class='text-[#3C76F1]'>경쟁사만 노출</strong>" }} />
+              </div>
+              
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q4(앱 원격제어): Claude·Perplexity <strong class='text-[#3C76F1]'>57%</strong> &rarr; 앱스토어 텍스트가 유일한 출처" }} />
+              </div>
+
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q5(ID 스펙): 전 모델 <strong class='text-[#3C76F1]'>0%</strong> &rarr; 상세페이지 이미지 통짜로 텍스트 크롤링 불가" }} />
+              </div>
+
+              <div className="flex gap-4 items-start">
+                <div className="text-[#3C76F1] shrink-0 mt-1">
+                  <CheckCircle2 size={20} strokeWidth={2} />
+                </div>
+                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "전체 모델 통합 인용률 최고 <strong class='text-[#3C76F1]'>17%</strong>(Claude·Perplexity), 최저 <strong class='text-[#3C76F1]'>6%</strong>(Gemini)" }} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -193,9 +223,12 @@ export default function App() {
     ];
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
-        <h2 className="text-xl md:text-2xl font-black tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <div className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
         
-        <h3 className="text-2xl font-extrabold text-[#082253] mb-6 flex items-center gap-3"><BarChart3 size={32} strokeWidth={2.5}/> 근거 URL 출처 비율 <span className="text-lg text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
+        <h3 className="text-2xl font-extrabold text-[#082253] mb-8 flex items-center gap-3">근거 URL 출처 비율 <span className="text-lg text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
         
         {/* Color System Table */}
         <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-16">
@@ -215,23 +248,28 @@ export default function App() {
             ))}
         </div>
 
-        {/* Competitor Notice Card - VERY STRONG Blue Accent */}
-        <div className="bg-[#3C76F1] p-12 flex flex-col gap-6 rounded-[2rem] shadow-[0_12px_40px_rgba(17,83,237,0.3)] relative overflow-hidden group">
-           <div className="absolute top-0 right-0 w-80 h-80 bg-[#082253] rounded-full blur-[80px] -translate-y-1/2 translate-x-1/4 opacity-60 pointer-events-none group-hover:opacity-80 transition-opacity duration-1000" />
-           <div className="relative z-10 flex items-center gap-4 mb-2">
-             <AlertTriangle size={32} className="text-[#ECF1FE]" strokeWidth={2.5} />
-             <p className="font-extrabold text-2xl text-[#FFFFFF] tracking-tight">Q2·Q3에서 블루벤트 대신 반복 노출된 경쟁사</p>
-           </div>
-           <p className="relative z-10 text-xl text-[#ECF1FE] font-bold tracking-tight leading-relaxed pl-[4rem]">스마트카라 · 쿠쿠(에코웨일) · 미닉스 · 아이닉 · 에코체 · 린클 · 루펜</p>
-           
-           <div className="relative z-10 w-full h-[1px] bg-[#ECF1FE]/30 my-4" />
-           
-           <div className="relative z-10 pl-[4rem] flex flex-col gap-3">
-             <p className="text-xl text-[#FFFFFF] font-bold tracking-tight leading-relaxed flex items-center gap-3">
-               <span className="shrink-0 text-[#ECF1FE]"><Sparkles size={24} /></span>
-               <span>경쟁사는 공식 사이트에 <strong className="text-[#3C76F1] bg-[#FFFFFF] px-3 py-1 rounded-md mx-1 shadow-sm">HTML 텍스트 기반 스펙 테이블</strong>, 비교 콘텐츠, FAQ가 구조화되어 있음.</span>
+        {/* Competitor Notice Card - Refined Natural Style */}
+        <div className="bg-[#ECF1FE] p-12 flex flex-col gap-8 rounded-[2rem] border-l-[12px] border-[#3C76F1] shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden group">
+           <div className="relative z-10 flex flex-col gap-4">
+             <div className="text-[#3C76F1] font-bold text-xs tracking-[0.2em] uppercase opacity-70 mb-2">Technical Insight</div>
+             <p className="font-bold text-2xl text-[#191919] tracking-tight">Q2·Q3에서 블루벤트 대신 반복 노출된 경쟁사</p>
+             <p className="text-xl text-[#3C76F1] font-bold tracking-tight leading-relaxed">
+               스마트카라 · 쿠쿠(에코웨일) · 미닉스 · 아이닉 · 에코체 · 린클 · 루펜
              </p>
-             <p className="text-lg font-bold text-[#ECF1FE] tracking-tight mt-1 ml-[2.25rem] opacity-90" dangerouslySetInnerHTML={{ __html: "<span class='font-black text-xl mr-2'>&rarr;</span> 블루벤트가 이 수준의 텍스트 구조를 갖추면 동일하게 AI 답변에 포함될 수 있다는 것이 PoC의 전제." }} />
+           </div>
+           
+           <div className="relative z-10 w-full h-[1px] bg-[#E1E1E1] my-2" />
+           
+           <div className="relative z-10 flex flex-col gap-6">
+             <div className="space-y-6">
+               <p className="text-[19px] text-[#4B4B4B] font-semibold tracking-tight leading-relaxed max-w-5xl">
+                 경쟁사는 공식 사이트에 <strong className="text-[#3C76F1] border-b-2 border-[#3C76F1]/30 pb-0.5">HTML 텍스트 기반 스펙 테이블</strong>, 비교 콘텐츠, FAQ가 구조식으로 설계되어 정보 수집이 용이함 확인.
+               </p>
+               
+               <div className="bg-white/60 backdrop-blur-sm p-8 rounded-2xl border border-[#3C76F1]/10 shadow-sm">
+                 <p className="text-[17px] font-bold text-[#191919] tracking-tight leading-relaxed" dangerouslySetInnerHTML={{ __html: "블루벤트가 이 수준의 텍스트 구조를 갖추면 동일하게 AI 답변에 포함될 수 있다는 것이 이번 PoC의 핵심 전제입니다." }} />
+               </div>
+             </div>
            </div>
         </div>
       </div>
@@ -263,51 +301,75 @@ export default function App() {
     </div>
   );
 
-  const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
-    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 py-32 min-h-[940px] items-center text-left bg-[#F5F8FA]">
-      <div className="lg:col-span-12 mb-8">
-        <h2 className="text-xl md:text-2xl font-semibold tracking-[-0.03em] text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
-      </div>
-      <div className="lg:col-span-5 flex flex-col justify-center pl-8">
-        <p className="text-lg lg:text-xl text-[#969696] font-medium tracking-[-0.015em] leading-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
-      </div>
-      <div className="lg:col-span-7 grid grid-cols-1 gap-6">
-        {slide.bullets.map((bullet, idx) => (
+  const ChecklistLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => {
+    const insights = slide.bullets.filter(b => b.startsWith('INSIGHT:')).map(b => {
+      const content = b.replace('INSIGHT:', '');
+      const [title, desc] = content.split('|');
+      return { title, desc };
+    });
+    const hypothesis = slide.bullets.find(b => b.startsWith('HYPOTHESIS:'))?.replace('HYPOTHESIS:', '');
+    const numberColors = ['bg-[#3C76F1]', 'bg-[#FFBB38]', 'bg-[#FF4040]'];
+
+    return (
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center text-left bg-[#F5F8FA]">
+        <h2 className="text-xl md:text-2xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+
+        <div className="flex flex-col gap-6 mb-10">
+          {insights.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl border border-[#E1E1E1] p-8 hover:shadow-lg hover:border-[#3C76F1]/30 transition-all group"
+            >
+              <div className="flex items-start gap-6">
+                <div className={`${numberColors[idx]} text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-black shrink-0 mt-1`}>
+                  {idx + 1}
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-base font-bold text-[#191919] tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: item.title }} />
+                  <p className="text-sm text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {hypothesis && (
           <motion.div
-            key={idx}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: idx * 0.1 }}
-            className="dark-card p-8 flex items-center justify-between group cursor-pointer border border-[#E1E1E1]/80 bg-white hover:border-[#191919]/40 hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-[#082253] rounded-2xl p-10"
           >
-            <div className="flex items-center gap-8">
-              <div className="text-[#969696] group-hover:text-[#3C76F1] transition-colors duration-500">
-                <CheckCircle2 size={32} strokeWidth={1.5} />
-              </div>
-              <div className="space-y-1">
-                <span className="label-caps !text-[#969696]" dangerouslySetInnerHTML={{ __html: bullet.split(':')[0] }} />
-                <p className="text-xl font-semibold text-[#191919] tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: bullet.split(':')[1] || bullet }} />
-              </div>
-            </div>
-            <ArrowRight className="text-[#E1E1E1] group-hover:text-[#191919] transition-all duration-500" size={24} />
+            <p className="text-base text-[#ECF1FE] font-semibold tracking-tight leading-relaxed">
+              <span className="text-[#3C76F1] font-black text-lg mr-3">상위 가설</span>
+              <span className="italic" dangerouslySetInnerHTML={{ __html: `"${hypothesis}"` }} />
+            </p>
           </motion.div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    );
+  };
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col items-center text-center justify-center min-h-[70vh] py-32 bg-[#F5F8FA]">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-[70vh] py-32 w-full px-6 lg:px-12 overflow-hidden bg-[#F5F8FA]">
+      {/* 장식용 중앙 그라데이션 (표지 색상: Blue to Purple) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-[#3C76F1]/15 to-[#9747FF]/15 rounded-full blur-[90px] pointer-events-none" />
+
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-[#969696] mb-6 font-semibold tracking-[0.2em] uppercase text-sm"
+        className="text-[#969696] mb-6 font-semibold tracking-[0.2em] uppercase text-sm relative z-10"
       >
         Next Chapter
       </motion.div>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#191919] mb-6 leading-[1.15]" dangerouslySetInnerHTML={{ __html: slide.title }} />
-      <p className="text-base md:text-xl text-[#969696] font-medium max-w-4xl mx-auto tracking-[-0.015em] leading-snug" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-[#191919] mb-6 leading-[1.15] relative z-10" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <p className="text-base md:text-xl text-[#969696] font-medium max-w-4xl mx-auto tracking-[-0.015em] leading-snug relative z-10" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
     </div>
   );
 
@@ -341,7 +403,12 @@ export default function App() {
               transition={{ delay: idx * 0.1 }}
               className="flex flex-col md:flex-row items-start md:items-center gap-6 bg-white border border-[#E1E1E1]/50 p-6 rounded-[2rem] shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:scale-[1.005] transition-all group"
             >
-              <div className="w-32 flex-shrink-0 px-4 py-2 rounded-full bg-[#F5F8FA] text-[#191919] font-semibold text-xs tracking-[0.05em] uppercase text-center group-hover:bg-[#191919] group-hover:text-[#F5F8FA] transition-colors">
+              <div className={`w-32 flex-shrink-0 px-4 py-2 rounded-full font-bold text-[13px] tracking-[0.05em] text-center transition-colors shadow-sm ${
+                category.includes('브랜드 인식') ? 'bg-[#ECF1FE] text-[#3C76F1] group-hover:bg-[#3C76F1] group-hover:text-white' :
+                category.includes('카테고리 추천') ? 'bg-[#E5F7ED] text-[#00A15D] group-hover:bg-[#00A15D] group-hover:text-white' :
+                category.includes('제품 스펙') ? 'bg-[#FFF4E5] text-[#FF8A00] group-hover:bg-[#FF8A00] group-hover:text-white' :
+                'bg-[#F5F8FA] text-[#191919] group-hover:bg-[#191919] group-hover:text-white'
+              }`}>
                 {category}
               </div>
               <div className="hidden md:block w-[1px] h-6 bg-[#E1E1E1]" />
@@ -496,42 +563,39 @@ export default function App() {
   const DiagnosticResultsLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const scores = slide.bullets.filter(b => b.startsWith('SCORE:')).map(b => b.replace('SCORE:', '').split('|'));
     const issues = slide.bullets.filter(b => b.startsWith('ISSUE:')).map(b => b.replace('ISSUE:', '').split('|'));
+    const isSlide23 = slide.title.includes('2-3');
 
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
-          {scores.map(([label, status, desc], idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: idx * 0.1 }}
-              className="dark-card p-8 flex flex-col gap-6 border border-[#E1E1E1]/80 bg-white hover:border-[#191919]/30 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all group"
-            >
-              <div className="flex justify-between items-start">
-                <span className="label-caps !text-[#969696] !mb-0">{label}</span>
-                <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest ${status.includes('Fail') ? 'text-[#FF4040] bg-[#FF4040]/10 border border-[#FF4040]/20' :
-                  status.includes('Warning') ? 'text-[#FFBB38] bg-[#FFBB38]/10 border border-[#FFBB38]/20' : 'text-[#00C781] bg-[#00C781]/10 border border-[#00C781]/20'
-                  }`} dangerouslySetInnerHTML={{ __html: status }} />
-              </div>
-              <p className="text-lg text-[#191919] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: desc }} />
-            </motion.div>
+        {/* ISSUE 박스 */}
+        <div className="space-y-6 mb-12">
+          {issues.map(([label, content], idx) => (
+            <div key={idx} className="bg-white p-8 rounded-2xl border border-[#E1E1E1] border-l-4 border-l-[#FF4040] shadow-sm flex flex-col gap-5 overflow-hidden">
+              <div className="text-[#FF4040] font-bold text-[17px] tracking-tight" dangerouslySetInnerHTML={{ __html: label }} />
+              <p className="text-[#191919] font-medium leading-relaxed tracking-tight text-[15px]" dangerouslySetInnerHTML={{ __html: content }} />
+            </div>
           ))}
         </div>
 
-        <div className="space-y-6">
-          {issues.map(([label, content], idx) => (
-            <div key={idx} className="bg-white rounded-[2rem] p-10 flex flex-col md:flex-row items-center gap-8 border border-[#E1E1E1]/80 hover:border-[#191919]/40 hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all">
-              <div className="text-[#969696]">
-                <FileText size={48} strokeWidth={1} />
+        {/* 진단 항목 테이블 */}
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden">
+          <div className="grid grid-cols-[1.5fr_1fr_4fr] bg-[#082253] px-6 py-4 text-[13px] font-bold tracking-wide text-white">
+            <span className="text-center">진단 항목</span>
+            <span className="text-center">상태</span>
+            <span className="text-center">{isSlide23 ? '상세 내용 / AI 인용 영향' : '상세 내용'}</span>
+          </div>
+          {scores.map(([label, status, desc], idx) => (
+            <div key={idx} className="grid grid-cols-[1.5fr_1fr_4fr] border-b border-[#E1E1E1]/60 last:border-0 text-sm items-center">
+              <div className="p-5 text-center text-[#4B4B4B] font-bold border-r border-[#E1E1E1]/40 text-[13px] tracking-tight">{label}</div>
+              <div className="p-5 flex justify-center border-r border-[#E1E1E1]/40">
+                <span className={`w-24 text-center py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest ${
+                  status.includes('Fail') ? 'text-white bg-[#FF4040]' :
+                  status.includes('Warning') ? 'text-white bg-[#FFBB38]' : 'text-white bg-[#00C781]'
+                }`} dangerouslySetInnerHTML={{ __html: status }} />
               </div>
-              <div>
-                <span className="label-caps !text-[#969696] mb-2 block">{label}</span>
-                <p className="text-xl lg:text-2xl text-[#191919] font-semibold leading-snug tracking-tight" dangerouslySetInnerHTML={{ __html: content }} />
-              </div>
+              <div className="p-5 text-left text-[#191919] font-medium" dangerouslySetInnerHTML={{ __html: desc }} />
             </div>
           ))}
         </div>
@@ -541,47 +605,79 @@ export default function App() {
 
   const HypothesesLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const hypos = slide.bullets.filter(b => b.startsWith('HYPO:')).map(b => b.replace('HYPO:', '').split('|'));
-    const table = slide.bullets.filter(b => b.startsWith('TABLE:')).map(b => b.replace('TABLE:', '').split('|'));
+    const crossRows = slide.bullets.filter(b => b.startsWith('CROSS:')).map(b => b.replace('CROSS:', '').split('|'));
+    const verifyRows = slide.bullets.filter(b => b.startsWith('VERIFY:')).map(b => b.replace('VERIFY:', '').split('|'));
+
+    const getVerifyColor = (level: string) => {
+      if (level === '필수') return 'bg-[#00C781] text-white';
+      if (level === '높음') return 'bg-[#FFBB38] text-white';
+      if (level === '중간') return 'bg-[#FF4040] text-white';
+      return 'bg-[#969696] text-white';
+    };
 
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+        {/* 상단 가설 3개 카드 */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {hypos.map(([title, desc], idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="dark-card p-12 flex flex-col gap-8 border border-[#E1E1E1]/80 bg-white hover:border-[#191919]/40 hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all group"
+              className="p-10 flex flex-col gap-6 border border-[#E1E1E1] bg-white rounded-2xl hover:border-[#3C76F1]/40 hover:shadow-lg transition-all group"
             >
-              <div className="w-12 h-12 flex items-center justify-start font-bold text-[#969696] text-xl group-hover:text-[#191919] transition-colors">
-                {String.fromCharCode(65 + idx)}.
+              <div className="w-10 h-10 flex items-center justify-center font-black text-white text-base rounded-full bg-[#3C76F1]">
+                {String.fromCharCode(65 + idx)}
               </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-[#191919] tracking-tight group-hover:text-[#3C76F1] transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
-                <p className="text-base text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+              <div className="space-y-3">
+                <h3 className="text-base font-bold text-[#191919] tracking-tight group-hover:text-[#3C76F1] transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-sm text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="rounded-[2rem] border border-[#E1E1E1]/50 overflow-hidden bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-          <div className="grid grid-cols-4 bg-[#F5F8FA] p-6 border-b border-[#E1E1E1]/50">
-            {table[0]?.map((col, idx) => (
-              <span key={idx} className="label-caps !text-[#969696] !mb-0 text-center tracking-tight">{col}</span>
-            ))}
+        {/* 가설별 검증 가능 여부와 PoC 적용 범위 */}
+        <h3 className="text-lg font-bold text-[#191919] mb-4">가설별 검증 가능 여부와 PoC 적용 범위</h3>
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-12">
+          <div className="grid grid-cols-5 bg-[#082253] px-6 py-4 text-[13px] font-bold tracking-wide text-white">
+            <span className="text-center">구분</span>
+            <span className="text-center">적용 대상</span>
+            <span className="text-center">검증 지표</span>
+            <span className="text-center">검증 가능성</span>
+            <span className="text-center">순위</span>
           </div>
-          <div className="grid grid-cols-4 p-8">
-            {table[0]?.map((_, idx) => (
-              <div key={idx} className="flex justify-center">
-                <div className="text-[#191919]">
-                  <CheckCircle2 size={24} strokeWidth={2} />
-                </div>
+          {verifyRows.map(([label, target, metric, feasibility, priority], idx) => (
+            <div key={idx} className="grid grid-cols-5 border-b border-[#E1E1E1]/60 last:border-0 text-sm items-center">
+              <div className={`p-4 text-center font-bold ${idx === 0 ? 'text-[#191919]' : 'text-[#3C76F1]'}`}>{label}</div>
+              <div className="p-4 text-center text-[#4B4B4B] font-medium">{target}</div>
+              <div className="p-4 text-center text-[#969696] font-medium">{metric}</div>
+              <div className="p-4 flex justify-center">
+                <span className={`px-4 py-1 rounded-full text-xs font-bold ${getVerifyColor(feasibility)}`}>{feasibility}</span>
               </div>
-            ))}
+              <div className="p-4 text-center text-[#191919] font-bold">{priority}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* 교차 분석 테이블 */}
+        <h3 className="text-lg font-bold text-[#191919] mb-4">교차 분석: 인용 현황(1장) × 테크니컬 진단(2장)</h3>
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden">
+          <div className="grid grid-cols-3 bg-[#082253] px-6 py-4 text-[13px] font-bold tracking-wide text-white">
+            <span className="text-center">인용 현황</span>
+            <span className="text-center">테크니컬 원인</span>
+            <span className="text-center">대응 가설</span>
           </div>
+          {crossRows.map(([citation, techCause, hypothesis], idx) => (
+            <div key={idx} className="grid grid-cols-3 border-b border-[#E1E1E1]/60 last:border-0 text-sm">
+              <div className="p-5 text-center text-[#4B4B4B] font-medium border-r border-[#E1E1E1]/40" dangerouslySetInnerHTML={{ __html: citation }} />
+              <div className="p-5 text-center text-[#969696] font-medium border-r border-[#E1E1E1]/40" dangerouslySetInnerHTML={{ __html: techCause }} />
+              <div className="p-5 text-center text-[#3C76F1] font-bold" dangerouslySetInnerHTML={{ __html: hypothesis }} />
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -652,40 +748,61 @@ export default function App() {
   };
   const ComparisonTableLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const rows = slide.bullets.filter(b => b.startsWith('COMPARE:')).map(b => b.replace('COMPARE:', '').split('|'));
+    const priority = slide.bullets.find(b => b.startsWith('PRIORITY:'))?.replace('PRIORITY:', '');
+    const requirement = slide.bullets.find(b => b.startsWith('REQUIREMENT:'))?.replace('REQUIREMENT:', '').split('|');
 
     return (
-      <div className="w-full bg-[#082253] relative py-32 min-h-[940px]">
-        <div className="w-full max-w-[1770px] mx-auto px-8 lg:px-16 flex flex-col justify-center min-h-[940px]">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#FFFFFF] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full bg-[#F5F8FA] relative pt-32 pb-8">
+        <div className="w-full max-w-[1770px] mx-auto px-8 lg:px-16 flex flex-col justify-center">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-          <div className="overflow-hidden rounded-2xl border border-[#3C76F1]/30 bg-[#0a2d6b] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-            <div className="grid grid-cols-[1.5fr_2fr_3fr] bg-[#061b40] p-8 text-[#ECF1FE] sticky top-0 z-20 border-b border-[#3C76F1]/20">
-              <span className="text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#969696]">항목</span>
-              <span className="text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#969696] text-center">As-Is</span>
-              <span className="text-[11px] md:text-sm font-semibold tracking-[0.05em] uppercase text-[#3C76F1] text-center font-bold">To-Be</span>
+          <div className="overflow-hidden rounded-2xl border border-[#E1E1E1] bg-white shadow-sm mb-10">
+            <div className="grid grid-cols-[1.5fr_3fr_4fr] bg-[#082253] p-4 border-b border-[#082253]">
+              <span className="text-[13px] font-bold tracking-wide text-white text-center">항목</span>
+              <span className="text-[13px] font-bold tracking-wide text-white text-center">As-Is</span>
+              <span className="text-[13px] font-bold tracking-wide text-[#82B3FF] text-center">To-Be</span>
             </div>
-            <div className="divide-y divide-[#3C76F1]/10">
+            <div className="divide-y divide-[#E1E1E1]/60">
               {rows.map(([item, asis, tobe], idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="grid grid-cols-[1.5fr_2fr_3fr] group hover:bg-[#0e3578] transition-colors"
+                  className="grid grid-cols-[1.5fr_3fr_4fr] group bg-white transition-colors"
                 >
-                  <div className="p-8 flex items-center border-r border-[#3C76F1]/10">
-                    <h3 className="text-lg font-bold text-[#ECF1FE] tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: item }} />
+                  <div className="p-6 flex items-center justify-center border-r border-[#E1E1E1]/50 bg-white">
+                    <h3 className="text-[15px] font-bold text-[#191919] tracking-tight" dangerouslySetInnerHTML={{ __html: item }} />
                   </div>
-                  <div className="p-8 flex items-center justify-center border-r border-[#3C76F1]/10 text-[#969696] text-sm leading-relaxed text-center font-medium tracking-tight">
+                  <div className="p-6 flex items-center border-r border-[#E1E1E1]/50 text-[#4B4B4B] text-[15px] leading-relaxed font-medium tracking-tight bg-white">
                     <p dangerouslySetInnerHTML={{ __html: asis }} />
                   </div>
-                  <div className="p-8 flex items-center text-[#FFFFFF] text-base leading-relaxed font-semibold tracking-[-0.01em]">
+                  <div className="p-6 flex items-center text-[#191919] text-[15px] leading-relaxed font-bold tracking-tight bg-[#ECF1FE]/30 group-hover:bg-[#ECF1FE]/60 transition-colors">
                     <p dangerouslySetInnerHTML={{ __html: tobe }} />
                   </div>
                 </motion.div>
               ))}
             </div>
+          </div>
+
+          {/* 하단 영역: 우선순위 및 요구사항 */}
+          <div className="flex flex-col gap-6 w-full max-w-[1770px]">
+            {priority && (
+              <p className="text-[#3C76F1] font-bold text-lg tracking-tight" dangerouslySetInnerHTML={{ __html: priority }} />
+            )}
+            
+            {requirement && requirement.length > 0 && (
+              <div className="bg-[#FFF9E6] p-8 text-[#191919] text-[15px] font-medium leading-relaxed tracking-tight rounded-2xl shadow-sm">
+                <div className="text-[#FFB020] font-bold text-lg mb-6 flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#FFB020] inline-block"></span>
+                  <span dangerouslySetInnerHTML={{ __html: requirement[0] }} />
+                </div>
+                {requirement[1] && (
+                  <p className="pl-5" dangerouslySetInnerHTML={{ __html: requirement.slice(1).join('<br/>') }} />
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -698,24 +815,29 @@ export default function App() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-      <div className="w-full bg-[#191919] relative py-32 border-y border-[#4B4B4B]/50">
+      <div className="w-full bg-white relative py-32 shadow-[0_0_80px_rgba(0,0,0,0.04)] z-20">
+        {/* 장식용 코너 포인트 */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#3C76F1]/10 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#3C76F1]/10 to-transparent pointer-events-none" />
+
         <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 min-h-[940px] flex flex-col justify-center relative z-10">
-          <div className="mb-20">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.04em] text-[#F5F8FA] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
-            <p className="text-xl text-[#969696] font-medium tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+          <div className="mb-20 text-center">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#ECF1FE] text-[#3C76F1] text-sm font-bold tracking-widest mb-6 border border-[#3C76F1]/20">DECISION POINT</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.04em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+            <p className="text-xl text-[#4B4B4B] font-medium tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: To-Be Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-4 sticky top-24"
-            >
-              <div className="rounded-[2rem] border border-[#4B4B4B] bg-[#082253] relative overflow-hidden group/preview shadow-[0_4px_40px_rgba(0,0,0,0.5)]">
+            <div className="lg:col-span-4 sticky top-24 self-start">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="rounded-[2rem] border border-[#E1E1E1] bg-white relative overflow-hidden group/preview shadow-lg">
                 <img src="/images/main_tobe2.png" alt="To-Be Main" className="w-full h-auto object-contain scale-[1.02] transition-transform duration-700" />
-                <div className="absolute top-4 left-4 px-4 py-2 bg-[#3C76F1] text-[#F5F8FA] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase z-10 transition-opacity">TO-BE Preview</div>
+                <div className="absolute top-4 left-4 px-4 py-2 bg-[#3C76F1] text-[#F5F8FA] rounded-full text-[10px] font-bold tracking-[0.2em] uppercase z-10">TO-BE Preview</div>
                 
                 {/* Hover Highlight Overlay */}
                 <AnimatePresence>
@@ -726,7 +848,7 @@ export default function App() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="absolute z-20 pointer-events-none rounded-xl bg-[#3C76F1]/20 border-2 border-[#3C76F1] flex items-center justify-center overflow-hidden"
+                      className="absolute z-20 pointer-events-none rounded-xl bg-[#3C76F1]/10 border-2 border-[#3C76F1] shadow-[0_0_20px_rgba(60,118,241,0.2)] flex items-center justify-center overflow-hidden"
                       style={{ top: '10.5%', left: '1%', width: '98%', height: '11%' }}
                     >
                       <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#3C76F1] rounded-full flex items-center justify-center">
@@ -741,7 +863,7 @@ export default function App() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="absolute z-20 pointer-events-none rounded-xl bg-[#3C76F1]/20 border-2 border-[#3C76F1] flex items-center justify-center overflow-hidden"
+                      className="absolute z-20 pointer-events-none rounded-xl bg-[#3C76F1]/10 border-2 border-[#3C76F1] shadow-[0_0_20px_rgba(60,118,241,0.2)] flex items-center justify-center overflow-hidden"
                       style={{ top: '77.5%', left: '1%', width: '98%', height: '15%' }}
                     >
                       <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#3C76F1] rounded-full flex items-center justify-center">
@@ -751,10 +873,8 @@ export default function App() {
                   )}
                 </AnimatePresence>
               </div>
-              <p className="text-center text-sm text-[#969696] font-medium tracking-tight mt-6">
-                위 화면의 개선을 위해 아래 의사결정이 필요합니다.
-              </p>
-            </motion.div>
+              </motion.div>
+            </div>
 
             {/* Right Column: Decision Items */}
             <div className="lg:col-span-8 flex flex-col gap-6">
@@ -767,30 +887,34 @@ export default function App() {
                   transition={{ delay: idx * 0.1 }}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className={`dark-card p-10 flex flex-col lg:flex-row gap-8 border transition-all duration-500 relative ${hoveredIndex === idx ? 'border-[#969696]' : 'border-[#4B4B4B]/50'}`}
+                  className={`bg-white rounded-2xl p-10 flex flex-col lg:flex-row gap-8 transition-all duration-300 relative border ${
+                    hoveredIndex === idx ? 'border-[#3C76F1] shadow-[0_10px_40px_rgba(60,118,241,0.08)] scale-[1.01]' : 'border-[#E1E1E1] shadow-sm hover:border-[#E1E1E1] hover:shadow-md'
+                  }`}
                 >
                   {/* Active Indicator Line */}
-                  <div className={`absolute left-0 top-8 bottom-8 w-1.5 bg-[#3C76F1] rounded-r-full transition-all duration-500 ${hoveredIndex === idx ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} />
+                  <div className={`absolute left-0 top-8 bottom-8 w-1.5 bg-[#3C76F1] rounded-r-full transition-all duration-300 ${hoveredIndex === idx ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} />
                   
                   {/* Title Area */}
                   <div className="flex flex-col gap-3 lg:w-1/3 flex-shrink-0">
                     <div className="flex items-center gap-4 mb-2">
-                      <div className="w-10 h-10 flex items-center justify-center font-bold text-lg text-[#969696] group-hover:text-[#3C76F1] transition-colors duration-500">
-                        {String.fromCharCode(65 + idx)}.
+                      <div className={`w-10 h-10 flex items-center justify-center font-bold text-lg rounded-full transition-colors duration-300 ${
+                        hoveredIndex === idx ? 'bg-[#3C76F1] text-white shadow-md' : 'bg-[#F5F8FA] text-[#4B4B4B] border border-[#E1E1E1]'
+                      }`}>
+                        {String.fromCharCode(65 + idx)}
                       </div>
-                      <h3 className="text-2xl font-semibold text-[#F5F8FA] tracking-tight">{title}</h3>
+                      <h3 className="text-xl lg:text-2xl font-bold text-[#191919] tracking-tight">{title}</h3>
                     </div>
-                    {subtitle && <p className="text-base text-[#969696] font-medium leading-relaxed lg:pl-14">{subtitle}</p>}
+                    {subtitle && <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed lg:pl-14">{subtitle}</p>}
                   </div>
                   
                   {/* Choices Area */}
                   <div className="flex flex-col gap-3 flex-grow">
                     {choices.map((choice, cIdx) => (
-                      <div key={cIdx} className="p-5 rounded-[1.5rem] bg-[#191919] border border-[#4B4B4B]/50 transition-all flex items-center gap-4 hover:border-[#969696] cursor-pointer group/choice">
-                        <div className="w-5 h-5 rounded-full border border-[#969696] flex items-center justify-center shrink-0 group-hover/choice:border-[#3C76F1] transition-colors">
+                      <div key={cIdx} className="p-5 rounded-xl bg-[#F5F8FA] border border-[#E1E1E1] transition-all flex items-center gap-4 hover:border-[#3C76F1] hover:bg-white hover:shadow-sm cursor-pointer group/choice">
+                        <div className="w-5 h-5 rounded-full border border-[#969696] flex items-center justify-center shrink-0 group-hover/choice:border-[#3C76F1] transition-colors bg-white">
                           <div className="w-2.5 h-2.5 rounded-full bg-[#3C76F1] opacity-0 group-hover/choice:opacity-100 transition-opacity" />
                         </div>
-                        <p className="text-[#969696] text-base font-medium group-hover/choice:text-[#F5F8FA] transition-all" dangerouslySetInnerHTML={{ __html: choice }} />
+                        <p className="text-[#4B4B4B] text-[15px] font-medium group-hover/choice:text-[#191919] transition-all" dangerouslySetInnerHTML={{ __html: choice }} />
                       </div>
                     ))}
                   </div>
@@ -804,14 +928,14 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: options.length * 0.15 }}
-                  className="bg-[#3C76F1] rounded-[2rem] p-10 flex flex-col md:flex-row items-center gap-8 mt-6 relative overflow-hidden group"
+                  className="bg-[#ECF1FE] border border-[#3C76F1]/30 rounded-2xl p-10 flex flex-col md:flex-row items-center gap-8 mt-6 relative overflow-hidden group shadow-sm"
                 >
-                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                    <Settings size={32} className="text-[#ffffff]" strokeWidth={1.5} />
+                  <div className="w-16 h-16 rounded-full bg-[#3C76F1] flex items-center justify-center shrink-0 shadow-md transform group-hover:scale-110 transition-transform duration-300">
+                    <Settings size={32} className="text-white" strokeWidth={1.5} />
                   </div>
                   <div className="flex-grow z-10">
-                    <h3 className="text-2xl font-bold text-[#ffffff] mb-3 tracking-tight">{title}</h3>
-                    <p className="text-lg text-[#ffffff]/80 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: content }} />
+                    <h3 className="text-2xl font-bold text-[#082253] mb-3 tracking-tight">{title}</h3>
+                    <p className="text-[17px] text-[#4B4B4B] leading-relaxed font-semibold" dangerouslySetInnerHTML={{ __html: content }} />
                   </div>
                 </motion.div>
               ))}
@@ -860,7 +984,7 @@ export default function App() {
     };
 
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center relative bg-[#F5F8FA]">
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 pt-8 pb-32 flex flex-col justify-center relative bg-[#F5F8FA]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* As-Is Column */}
           <motion.div
@@ -912,16 +1036,16 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-[#191919]/95 backdrop-blur-lg p-4 lg:p-10"
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-lg p-4 lg:p-10"
             >
               <button
                 onClick={() => setIsExpanded(false)}
-                className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-[#082253] hover:bg-[#4B4B4B] flex items-center justify-center transition-colors duration-300 z-[110] border border-[#4B4B4B]"
+                className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-white hover:bg-[#F5F8FA] flex items-center justify-center transition-colors duration-300 z-[110] border border-[#E1E1E1] shadow-sm group"
               >
-                <X size={24} className="text-[#969696] group-hover:text-[#F5F8FA]" />
+                <X size={24} className="text-[#4B4B4B] group-hover:text-[#191919]" />
               </button>
               
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-[#082253] text-[#969696] px-6 py-2 rounded-full border border-[#4B4B4B] text-xs font-semibold z-[110] flex items-center gap-2 shadow-xl">
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-white text-[#4B4B4B] px-6 py-2 rounded-full border border-[#E1E1E1] text-xs font-semibold z-[110] flex items-center gap-2 shadow-sm">
                 <ZoomIn size={14} className="text-[#3C76F1]" />
                 스크롤 축소/확대 <span>({Math.round(zoomScale * 100)}%)</span>
               </div>
@@ -932,7 +1056,7 @@ export default function App() {
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative w-[95vw] h-[95vh] rounded-2xl overflow-hidden bg-[#082253] border border-[#4B4B4B]/50 flex items-center justify-center cursor-move"
+                className="relative w-[95vw] h-[95vh] rounded-2xl overflow-hidden bg-white border border-[#E1E1E1] shadow-lg flex items-center justify-center cursor-move"
                 onClick={(e) => e.stopPropagation()}
                 onWheel={handleWheel}
               >
@@ -959,7 +1083,7 @@ export default function App() {
   const TechnicalDetailLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const asideTitle = slide.bullets.find(b => b.startsWith('ASIDE_TITLE:'))?.replace('ASIDE_TITLE:', '');
     const asideBullets = slide.bullets.filter(b => b.startsWith('ASIDE_BULLET:')).map(b => b.replace('ASIDE_BULLET:', ''));
-    const items = slide.bullets.filter(b => b.startsWith('ITEM:')).map(b => b.replace('ITEM:', '').split('|'));
+    const rows = slide.bullets.filter(b => b.startsWith('COMPARE:')).map(b => b.replace('COMPARE:', '').split('|'));
 
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
@@ -995,28 +1119,109 @@ export default function App() {
             </div>
           </motion.div>
 
-          {/* Technical Execution Grid */}
+          {/* Technical Execution Table */}
           <div className="lg:col-span-12 flex flex-col gap-6 pt-4">
-            {items.map(([title, desc], idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * idx }}
-                viewport={{ once: true }}
-                className="p-10 flex bg-white rounded-[2rem] border border-[#E1E1E1] flex-col gap-5 hover:border-[#3C76F1]/40 hover:shadow-lg group transition-all"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="text-[#3C76F1] group-hover:text-[#082253] transition-colors">
-                    <Settings size={24} strokeWidth={1.5} />
-                  </div>
-                  <h4 className="text-lg font-bold text-[#191919] tracking-tight group-hover:text-[#3C76F1] transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
-                </div>
-                <div className="h-[1px] bg-[#E1E1E1]" />
-                <p className="text-sm text-[#969696] font-medium leading-relaxed group-hover:text-[#4B4B4B] transition-colors" dangerouslySetInnerHTML={{ __html: desc }} />
-              </motion.div>
-            ))}
+            <div className="overflow-hidden rounded-2xl border border-[#E1E1E1] bg-white shadow-sm mb-10 w-full mt-4">
+              <div className="grid grid-cols-[1.5fr_2fr_3fr] bg-[#082253] p-4 border-b border-[#082253]">
+                <span className="text-[13px] font-bold tracking-wide text-white text-center">항목</span>
+                <span className="text-[13px] font-bold tracking-wide text-white text-center">As-Is</span>
+                <span className="text-[13px] font-bold tracking-wide text-[#82B3FF] text-center">To-Be</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1]/60">
+                {rows.map(([item, asis, tobe], idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="grid grid-cols-[1.5fr_2fr_3fr] group bg-white transition-colors"
+                  >
+                    <div className="p-5 flex items-center justify-start pl-8 border-r border-[#E1E1E1]/50 bg-white">
+                      <h3 className="text-[15px] font-bold text-[#191919] tracking-tight" dangerouslySetInnerHTML={{ __html: item }} />
+                    </div>
+                    <div className="p-5 flex items-center border-r border-[#E1E1E1]/50 text-[#4B4B4B] text-[15px] leading-relaxed font-medium tracking-tight bg-white">
+                      <p dangerouslySetInnerHTML={{ __html: asis }} />
+                    </div>
+                    <div className="p-5 flex items-center text-[#191919] text-[15px] leading-relaxed font-bold tracking-tight bg-[#ECF1FE]/30 group-hover:bg-[#ECF1FE]/60 transition-colors">
+                      <p dangerouslySetInnerHTML={{ __html: tobe }} />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    );
+  };
+  const ValidationKpiLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const protoRows = slide.bullets.filter(b => b.startsWith('PROTO:')).map(b => b.replace('PROTO:', '').split('|'));
+    const kpiRows = slide.bullets.filter(b => b.startsWith('KPI:')).map(b => b.replace('KPI:', '').split('|'));
+
+    return (
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
+        <div className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Left Table: 검증 프로토콜 */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-6"
+          >
+            <h3 className="text-xl font-bold text-[#191919] pl-2">검증 프로토콜</h3>
+            <div className="overflow-hidden rounded-2xl border border-[#E1E1E1] bg-white shadow-sm">
+              <div className="grid grid-cols-[1fr_3.5fr] bg-[#082253] p-4">
+                <span className="text-[13px] font-bold tracking-wide text-white text-center">항목</span>
+                <span className="text-[13px] font-bold tracking-wide text-white text-center">내용</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1]/60">
+                {protoRows.map(([label, content], idx) => (
+                  <div key={idx} className="grid grid-cols-[1fr_3.5fr] group hover:bg-[#F5F8FA]/50 transition-colors">
+                    <div className="p-5 flex items-center justify-center border-r border-[#E1E1E1]/50 bg-[#FBFBFB] font-bold text-[#191919] text-[15px]">
+                      {label}
+                    </div>
+                    <div className="p-5 text-[#4B4B4B] text-[15px] leading-relaxed font-medium">
+                      <p dangerouslySetInnerHTML={{ __html: content }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Table: 성공 기준 (KPI) */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-6"
+          >
+            <h3 className="text-xl font-bold text-[#191919] pl-2">성공 기준 (KPI)</h3>
+            <div className="overflow-hidden rounded-2xl border border-[#E1E1E1] bg-white shadow-sm">
+              <div className="grid grid-cols-[1.5fr_2fr] bg-[#082253] p-4">
+                <span className="text-[13px] font-bold tracking-wide text-white text-center">지표</span>
+                <span className="text-[13px] font-bold tracking-wide text-white text-center">목표</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1]/60">
+                {kpiRows.map(([label, target, colorClass], idx) => (
+                  <div key={idx} className="grid grid-cols-[1.5fr_2fr] group hover:bg-[#F5F8FA]/50 transition-colors">
+                    <div className="p-5 flex items-center border-r border-[#E1E1E1]/50 bg-[#FBFBFB] font-bold text-[#191919] text-[15px] pl-8">
+                      {label}
+                    </div>
+                    <div className={`p-5 flex items-center font-bold text-[16px] pl-8 ${colorClass || 'text-[#191919]'}`}>
+                      <p dangerouslySetInnerHTML={{ __html: target }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     );
@@ -1032,7 +1237,7 @@ export default function App() {
           <section
               key={index}
               id={`section-${index}`}
-              className="w-full overflow-hidden"
+              className={`w-full ${[14, 16].includes(index) ? '' : 'overflow-hidden'}`}
             >
             {index === 0 && <IntroLayout slide={slide} />}
             {[1, 6, 12].includes(index) && <DividerLayout slide={slide} />}
@@ -1049,7 +1254,8 @@ export default function App() {
             {index === 15 && <VisualPreviewLayout slide={slide} />}
             {index === 16 && <DecisionGridLayout slide={slide} />}
             {index === 17 && <TechnicalDetailLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 18 && <ValidationKpiLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
