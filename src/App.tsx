@@ -253,12 +253,7 @@ export default function App() {
                 <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q2(추천)·Q3(비교): 4개 모델 모두 블루벤트 미인용 &rarr; <strong class='text-[#3C76F1]'>경쟁사만 노출</strong>" }} />
               </div>
               
-              <div className="flex gap-4 items-start">
-                <div className="text-[#3C76F1] shrink-0 mt-1">
-                  <CheckCircle2 size={20} strokeWidth={2} />
-                </div>
-                <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight" dangerouslySetInnerHTML={{ __html: "Q4(앱 원격제어): Claude·Perplexity <strong class='text-[#3C76F1]'>57%</strong> &rarr; 앱스토어 텍스트가 유일한 출처" }} />
-              </div>
+
 
               <div className="flex gap-4 items-start">
                 <div className="text-[#3C76F1] shrink-0 mt-1">
