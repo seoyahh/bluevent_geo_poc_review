@@ -60,7 +60,7 @@ export default function App() {
   // --- Specialized Layout Components ---
 
   const IntroLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="relative flex flex-col items-center text-center justify-center min-h-[940px] overflow-hidden py-24 w-full px-12 bg-[#F5F8FA]">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-screen overflow-hidden w-full px-12 bg-[#F5F8FA]">
       
       <motion.div
         initial={{ opacity: 0, y: 30 }}
