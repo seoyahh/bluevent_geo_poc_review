@@ -241,6 +241,147 @@ export default function App() {
 
 
 
+  const CompetitorStatusLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    return (
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-left bg-[#F5F8FA]">
+        <div className="mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
+
+        {/* 1. 경쟁사 노출 현황 Card */}
+        <div className="bg-[#ECF1FE] p-10 flex flex-col gap-6 rounded-[2rem] border border-[#3C76F1]/20 shadow-sm relative overflow-hidden mb-12">
+           <div className="relative z-10 flex flex-col gap-5">
+             <p className="text-[17px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight">
+               Q2(추천)와 Q3(비교)에서 4개 모델 모두 블루벤트를 언급하지 않았다.<br/>
+               대신 아래 경쟁사가 반복적으로 노출되었다:
+             </p>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+               <div className="bg-white p-5 rounded-xl border border-[#E1E1E1]/50 shadow-sm">
+                 <div className="text-[#3C76F1] font-bold text-sm tracking-widest mb-2 font-mono">TYPE 1</div>
+                 <h4 className="font-extrabold text-[#191919] text-lg mb-2">분쇄건조식</h4>
+                 <p className="text-[15px] font-medium text-[#4B4B4B] tracking-tight leading-relaxed">스마트카라, 쿠쿠(에코웨일), 미닉스(더 플렌더), 아이닉, 에코체, 쉘퍼, 퓨리얼</p>
+               </div>
+               <div className="bg-white p-5 rounded-xl border border-[#E1E1E1]/50 shadow-sm">
+                 <div className="text-[#3C76F1] font-bold text-sm tracking-widest mb-2 font-mono">TYPE 2</div>
+                 <h4 className="font-extrabold text-[#191919] text-lg mb-2">미생물식</h4>
+                 <p className="text-[15px] font-medium text-[#4B4B4B] tracking-tight leading-relaxed">린클</p>
+               </div>
+               <div className="bg-white p-5 rounded-xl border border-[#E1E1E1]/50 shadow-sm">
+                 <div className="text-[#3C76F1] font-bold text-sm tracking-widest mb-2 font-mono">TYPE 3</div>
+                 <h4 className="font-extrabold text-[#191919] text-lg mb-2">건조식</h4>
+                 <p className="text-[15px] font-medium text-[#4B4B4B] tracking-tight leading-relaxed">루펜</p>
+               </div>
+             </div>
+             
+             <div className="mt-2 bg-white/60 p-5 rounded-xl border-l-[6px] border-[#3C76F1]">
+               <p className="text-[16px] font-bold text-[#191919] tracking-tight leading-relaxed">
+                 블루벤트는 <span className="text-[#3C76F1]">‘존재하지 않는 브랜드’</span>처럼 취급되었으며, 이는 공식 사이트에 AI가 참조할 수 있는 비교 정보(스펙 테이블, 경쟁 비교 콘텐츠)가 부재하기 때문으로 분석된다.
+               </p>
+             </div>
+           </div>
+        </div>
+
+        {/* 2. Benchmark Findings */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_2fr] gap-10 items-stretch">
+          
+          <div className="flex flex-col gap-6">
+            <h3 className="text-xl font-bold tracking-tight text-[#082253] flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#082253] text-white flex items-center justify-center text-xs">A</span>
+              참고 — 경쟁사 사이트 크롤링 기반 벤치마크
+            </h3>
+            <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight">
+              블루벤트와 5개 주요 경쟁사의 공식 사이트를 실제 크롤링하여 GEO 인프라를 비교 분석하였다. 핵심 발견은 다음과 같다.
+            </p>
+            <div className="space-y-4">
+              <div className="bg-white border border-[#E1E1E1] rounded-xl p-5 shadow-sm">
+                <h4 className="font-extrabold text-[#3C76F1] text-[16px] mb-1">1) Schema.org 구조화 데이터: 전 브랜드 미적용</h4>
+                <p className="text-[14px] font-medium text-[#4B4B4B] leading-relaxed">조사된 6개 브랜드 모두 Schema.org JSON-LD를 적용하지 않고 있다. 블루벤트가 선제적으로 도입하면 구조화 정보 우위를 점할 수 있다.</p>
+              </div>
+              <div className="bg-white border border-[#E1E1E1] rounded-xl p-5 shadow-sm">
+                <h4 className="font-extrabold text-[#191919] text-[16px] mb-1">2) Sitemap.xml: 블루벤트·쿠쿠만 미존재</h4>
+                <p className="text-[14px] font-medium text-[#4B4B4B] leading-relaxed">스마트카라·미닉스·린클·루메나는 모두 검색 엔진용 페이지 발견 효율을 확보 중.</p>
+              </div>
+              <div className="bg-white border border-[#E1E1E1] rounded-xl p-5 shadow-sm overflow-hidden relative">
+                <h4 className="font-extrabold text-[#D64040] text-[16px] mb-1">3) 메타태그 완성도: 블루벤트 하위권</h4>
+                <p className="text-[14px] font-medium text-[#4B4B4B] leading-relaxed">스마트카라·루메나는 Title/Desc/OG/Canonical 완비. 블루벤트는 Desc 빈 값 및 단순 OG 설정 상태.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-6 h-full">
+            <h3 className="text-xl font-bold tracking-tight text-[#082253] flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#082253] text-white flex items-center justify-center text-xs">B</span>
+              경쟁사 GEO 인프라 비교 테이블
+            </h3>
+            <div className="rounded-xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden h-full flex flex-col">
+              <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] bg-[#082253] text-[#FFFFFF] px-4 py-3 text-center text-[13px] font-bold tracking-wider">
+                <span>브랜드</span>
+                <span>Schema.org</span>
+                <span>메타태그 완성도</span>
+                <span>sitemap.xml</span>
+                <span>H1 구조</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1] text-[14px] font-medium text-center">
+                <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="px-4 py-3 flex items-center justify-center font-extrabold text-[#191919] border-r border-[#E1E1E1]">스마트카라</div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#969696] border-r border-[#E1E1E1]">미적용</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#00A15D] font-bold border-r border-[#E1E1E1]">✅ 완전<br/><span className="text-[12px] font-medium opacity-80">(title·desc·OG·canonical)</span></div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#00A15D] font-bold border-r border-[#E1E1E1]">✅ 존재</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#4B4B4B]">H2 기반<br/><span className="text-[12px] opacity-80">(H1 미사용)</span></div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="px-4 py-3 flex items-center justify-center font-extrabold text-[#191919] border-r border-[#E1E1E1]">미닉스</div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#969696] border-r border-[#E1E1E1]">미적용</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#FF8A00] font-bold border-r border-[#E1E1E1]">⚠️ 불완전<br/><span className="text-[12px] font-medium opacity-80">(desc 누락)</span></div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#00A15D] font-bold border-r border-[#E1E1E1]">✅ 존재</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#00A15D]">✅ H1 "미닉스"</div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="px-4 py-3 flex items-center justify-center font-extrabold text-[#191919] border-r border-[#E1E1E1]">린클</div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#969696] border-r border-[#E1E1E1]">미적용</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#FF8A00] font-bold border-r border-[#E1E1E1]">⚠️ 불완전<br/><span className="text-[12px] font-medium opacity-80">(메인 OG 없음)</span></div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#00A15D] font-bold border-r border-[#E1E1E1]">✅ 존재</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#4B4B4B]">H2 기반<br/><span className="text-[12px] opacity-80">(H1 미사용)</span></div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="px-4 py-3 flex items-center justify-center font-extrabold text-[#191919] border-r border-[#E1E1E1]">루메나</div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#969696] border-r border-[#E1E1E1]">미적용</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#00A15D] font-bold border-r border-[#E1E1E1]">✅ 완전<br/><span className="text-[12px] font-medium opacity-80">(title·desc·OG·canonical)</span></div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#00A15D] font-bold border-r border-[#E1E1E1]">✅ 존재</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#4B4B4B]">H1 없음,<br/><span className="text-[12px] opacity-80">H2 브랜드 스토리</span></div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-[#FDFDFD]">
+                  <div className="px-4 py-3 flex items-center justify-center font-extrabold text-[#191919] border-r border-[#E1E1E1]">쿠쿠</div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#969696] border-r border-[#E1E1E1]">미적용</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#FF8A00] font-bold border-r border-[#E1E1E1]">⚠️ 불완전<br/><span className="text-[12px] font-medium opacity-80">(OG 미확인)</span></div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#D64040] font-bold border-r border-[#E1E1E1]">❌ 없음</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#FF8A00]">⚠️ H1 다수 남발</div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr_1.5fr_1fr_1.2fr] hover:bg-[#FAEBEB]/50 transition-colors bg-[#FAEBEB]/30 border-t-2 border-[#D64040]">
+                  <div className="px-4 py-3 flex items-center justify-center font-black text-[#D64040] border-r border-[#E1E1E1]">블루벤트</div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#969696] border-r border-[#E1E1E1]">미적용</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#D64040] font-bold border-r border-[#E1E1E1]">❌ 불완전<br/><span className="text-[12px] font-medium opacity-80">(desc 빈 값)</span></div>
+                  <div className="px-4 py-3 flex items-center justify-center text-[#D64040] font-bold border-r border-[#E1E1E1]">❌ 없음</div>
+                  <div className="px-4 py-3 flex text-left items-center text-[#D64040]">❌ H1<br/><span className="text-[12px] font-medium opacity-80">"CUSTOMER CENTER"</span></div>
+                </div>
+              </div>
+
+              {/* 시사점 블록 */}
+              <div className="bg-[#191919] p-4 text-white text-[14px]">
+                <p className="font-semibold leading-relaxed tracking-tight">
+                  <span className="text-[#3C76F1]">시사점:</span> 경쟁사도 Schema.org는 전혀 미도입 상태이므로, 블루벤트가 JSON-LD를 선제 적용하면 업계 최초로 AI 검색 구조화 정보를 제공하는 브랜드가 될 수 있다.<br/>
+                  <span className="text-[#FF8A00] mt-1 inline-block">동시에, 현재 블루벤트에서 AI 크롤러를 차단(robots.txt)하고 있다는 점은 치명적 약점이며, 이것이 PoC의 최우선 선행 조건이다.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  };
+
   const RoadmapLayout = ({ slide, index }: { slide: typeof SLIDES[0], index: number }) => (
     <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-32 min-h-[940px] text-center bg-[#F5F8FA]">
       <div className="space-y-6 mb-20 max-w-4xl mx-auto">
@@ -1182,23 +1323,24 @@ export default function App() {
           <section
               key={index}
               id={`section-${index}`}
-              className={`w-full ${[12, 14].includes(index) ? '' : 'overflow-hidden'}`}
+              className={`w-full ${[13, 15].includes(index) ? '' : 'overflow-hidden'}`}
             >
             {index === 0 && <IntroLayout slide={slide} />}
-            {[1, 5, 10].includes(index) && <DividerLayout slide={slide} />}
+            {[1, 6, 11].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
             {index === 3 && <CitationMatrixLayout slide={slide} />}
-            {index === 4 && <ChecklistLayout slide={slide} index={index} />}
-            {index === 6 && <DiagnosticCombinedLayout slide={slide} />}
-            {[7, 8].includes(index) && <DiagnosticResultsLayout slide={slide} />}
-            {index === 9 && <HypothesesLayout slide={slide} />}
-            {index === 11 && <StrategyLayout slide={slide} />}
-            {index === 12 && <ComparisonTableLayout slide={slide} />}
-            {index === 13 && <VisualPreviewLayout slide={slide} />}
-            {index === 14 && <DecisionGridLayout slide={slide} />}
-            {index === 15 && <TechnicalDetailLayout slide={slide} />}
-            {index === 16 && <ValidationKpiLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 4 && <CompetitorStatusLayout slide={slide} />}
+            {index === 5 && <ChecklistLayout slide={slide} index={index} />}
+            {index === 7 && <DiagnosticCombinedLayout slide={slide} />}
+            {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
+            {index === 10 && <HypothesesLayout slide={slide} />}
+            {index === 12 && <StrategyLayout slide={slide} />}
+            {index === 13 && <ComparisonTableLayout slide={slide} />}
+            {index === 14 && <VisualPreviewLayout slide={slide} />}
+            {index === 15 && <DecisionGridLayout slide={slide} />}
+            {index === 16 && <TechnicalDetailLayout slide={slide} />}
+            {index === 17 && <ValidationKpiLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

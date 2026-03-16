@@ -47,8 +47,15 @@ export const SLIDES: Slide[] = [
     visualGuide: "모델별/질문별 인용률을 보여주는 히트맵(Heatmap)"
   },
   {
+    id: 41,
+    title: "1-3. 경쟁사 언급 현황",
+    oneLiner: "주요 모델 내 <strong>블루벤트 누락 및 경쟁사 반복 노출</strong> 원인 분석",
+    bullets: [],
+    visualGuide: "경쟁사 목록 및 GEO 인프라 비교 테이블"
+  },
+  {
     id: 5,
-    title: "1-3. 인사이트 도출 — 가설 설정의 배경",
+    title: "1-4. 인사이트 도출 — 가설 설정의 배경",
     oneLiner: "진단 데이터 기반 <strong>'테크니컬 개선을 통한 인용 신뢰도 확보'</strong> 가설 설정",
     bullets: [
       "INSIGHT:인용되는 페이지는 외부 기사의 블로그 컨텐츠로 특정된다.|공식 사이트보다 매거진한경, 아시아경제, 블로그 등에서 AI가 정보를 수집. 공식 페이지의 구조화된 텍스트 부재.",
