@@ -212,7 +212,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 18,
-    title: "3-3. 검증 계획 — 프로토콜 · KPI · 7주 로드맵",
+    title: "3-3. 검증 계획 — 프로토콜 · KPI",
     oneLiner: "성과 측정을 위한 <strong>정밀 검증 프로토콜</strong> 및 목표 지표 설정",
     bullets: [
       "PROTO:방법|1-1과 동일 프롬프트 세트(5개 질문)로 전/후 비교",
