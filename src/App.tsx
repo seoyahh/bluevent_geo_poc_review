@@ -1046,10 +1046,6 @@ export default function App() {
 
     return (
       <div className="w-full bg-white relative py-32 shadow-[0_0_80px_rgba(0,0,0,0.04)] z-20">
-        {/* 장식용 코너 포인트 */}
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#3C76F1]/10 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#3C76F1]/10 to-transparent pointer-events-none" />
-
         <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 min-h-screen flex flex-col justify-center relative z-10 py-20">
           <div className="mb-20 text-center">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#ECF1FE] text-[#3C76F1] text-sm font-bold tracking-widest mb-6 border border-[#3C76F1]/20">DECISION POINT</span>
