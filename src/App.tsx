@@ -457,6 +457,39 @@ export default function App() {
     const hypothesis = slide.bullets.find(b => b.startsWith('HYPOTHESIS:'))?.replace('HYPOTHESIS:', '');
     const numberColors = ['bg-[#3C76F1]', 'bg-[#FFBB38]', 'bg-[#FF4040]'];
     const [expandedImage, setExpandedImage] = useState<string | null>(null);
+    const [zoomScale, setZoomScale] = useState(1);
+    const [transformOrigin, setTransformOrigin] = useState("50% 50%");
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (!expandedImage) {
+        setZoomScale(1);
+        setTransformOrigin("50% 50%");
+        document.body.style.overflow = 'auto';
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }, [expandedImage]);
+
+    const handleWheel = (e: React.WheelEvent) => {
+      e.stopPropagation();
+      setZoomScale(prev => {
+        const newScale = prev - e.deltaY * 0.005;
+        return Math.min(Math.max(1, newScale), 5);
+      });
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLImageElement>) => {
+      if (zoomScale === 1) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        setTransformOrigin(`${x}% ${y}%`);
+      }
+    };
 
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center text-left bg-[#F5F8FA]">
@@ -528,20 +561,43 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-lg p-10"
-              onClick={() => setExpandedImage(null)}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-lg p-4 lg:p-10"
             >
               <button
                 onClick={() => setExpandedImage(null)}
-                className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white flex items-center justify-center border border-[#E1E1E1] shadow-sm group hover:bg-[#F5F8FA]"
+                className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-white hover:bg-[#F5F8FA] flex items-center justify-center transition-colors duration-300 z-[110] border border-[#E1E1E1] shadow-sm group"
               >
                 <X size={24} className="text-[#4B4B4B] group-hover:text-[#191919]" />
               </button>
-              <img 
-                src={expandedImage} 
-                alt="Expanded error" 
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" 
-              />
+
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-white text-[#4B4B4B] px-6 py-2 rounded-full border border-[#E1E1E1] text-xs font-semibold z-[110] flex items-center gap-2 shadow-sm">
+                <ZoomIn size={14} className="text-[#3C76F1]" />
+                스크롤 축소/확대 <span>({Math.round(zoomScale * 100)}%)</span>
+              </div>
+
+              <motion.div
+                ref={containerRef}
+                initial={{ scale: 0.95, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full h-full rounded-2xl overflow-hidden bg-white border border-[#E1E1E1] shadow-lg flex items-center justify-center cursor-move"
+                onClick={(e) => e.stopPropagation()}
+                onWheel={handleWheel}
+              >
+                <motion.img
+                  src={expandedImage}
+                  alt="Expanded error"
+                  className="max-w-full max-h-full object-contain pointer-events-auto"
+                  style={{ transformOrigin }}
+                  onMouseMove={handleMouseMove}
+                  animate={{ scale: zoomScale }}
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  drag={zoomScale > 1}
+                  dragConstraints={containerRef}
+                  dragElastic={0.2}
+                />
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
