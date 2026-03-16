@@ -122,13 +122,20 @@ export const SLIDES: Slide[] = [
       "CROSS:(신규 발견) robots.txt AI 크롤러 완전 차단|Claude·ChatGPT가 공식 사이트 접근 불가|사전 조건: robots.txt AI봇 허용 전환",
       "CROSS:Q5 스펙 인용률 0% 4개 모델 모두 미인용|상세페이지 이미지 통짜 alt·헤딩 부재|가설 A: 이미지 분할 + alt + 시맨틱 텍스트",
       "CROSS:Q1 브랜드 인지 낮음 외부 기사 의존|메인 JSON-LD 미적용 meta description 미설정|가설 B: JSON-LD + 메타 최적화",
-      "CROSS:Q2·Q3 경쟁사만 노출 비교 정보 부재|정보 순서 미구조화 스펙 데이터 텍스트 부재|가설 C: GEO 6단계 정보 구조 적용",
+    ],
+    visualGuide: "과제 도출 매트릭스 및 가설 수립 플로우차트."
+  },
+  {
+    id: 115,
+    title: "2-5. 검증 가능 여부 및 PoC 적용 범위",
+    oneLiner: "설정된 가설의 <strong>우선순위 및 핵심 검증 지표</strong> 정의",
+    bullets: [
       "VERIFY:사전 조건|도메인|AI봇 접근 가능 여부|필수|0순위",
       "VERIFY:가설 A|상세페이지|Q5 인용률, 스펙 정확도|높음|1순위",
       "VERIFY:가설 B|메인페이지|Q1 인용률, 공식 URL 비율|높음|1순위",
       "VERIFY:가설 C|메인+상세|Q2·Q3 노출, 경쟁사 순위|중간|2순위"
     ],
-    visualGuide: "과제 도출 매트릭스 및 가설 수립 플로우차트."
+    visualGuide: "가설별 검증 우선순위 지정 및 범위 정의 매트릭스."
   },
   {
     id: 12,

@@ -692,7 +692,6 @@ export default function App() {
   const HypothesesLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const hypos = slide.bullets.filter(b => b.startsWith('HYPO:')).map(b => b.replace('HYPO:', '').split('|'));
     const crossRows = slide.bullets.filter(b => b.startsWith('CROSS:')).map(b => b.replace('CROSS:', '').split('|'));
-    const verifyRows = slide.bullets.filter(b => b.startsWith('VERIFY:')).map(b => b.replace('VERIFY:', '').split('|'));
 
     const getVerifyColor = (level: string) => {
       if (level === '필수') return 'bg-[#00C781] text-white';
@@ -742,28 +741,47 @@ export default function App() {
             </motion.div>
           ))}
         </div>
+      </div>
+    );
+  };
+
+  const ValidationScopeLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const verifyRows = slide.bullets.filter(b => b.startsWith('VERIFY:')).map(b => b.replace('VERIFY:', '').split('|'));
+
+    const getVerifyColor = (level: string) => {
+      if (level === '필수') return 'bg-[#00C781] text-white';
+      if (level === '높음') return 'bg-[#FFBB38] text-white';
+      if (level === '중간') return 'bg-[#FF4040] text-white';
+      return 'bg-[#969696] text-white';
+    };
+
+    return (
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex justify-center flex-col bg-[#F5F8FA]">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight mb-16" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
 
         {/* 가설별 검증 가능 여부와 PoC 적용 범위 */}
-        <h3 className="text-lg font-bold text-[#191919] mb-4">가설별 검증 가능 여부와 PoC 적용 범위</h3>
         <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-12">
-          <div className="grid grid-cols-5 bg-[#082253] px-6 py-4 text-[13px] font-bold tracking-wide text-white">
+          <div className="grid grid-cols-5 bg-[#082253] px-6 py-5 text-[14px] font-bold tracking-wide text-white">
             <span className="text-center">구분</span>
             <span className="text-center">적용 대상</span>
             <span className="text-center">검증 지표</span>
             <span className="text-center">검증 가능성</span>
             <span className="text-center">순위</span>
           </div>
-          {verifyRows.map(([label, target, metric, feasibility, priority], idx) => (
-            <div key={idx} className="grid grid-cols-5 border-b border-[#E1E1E1]/60 last:border-0 text-sm items-center">
-              <div className={`p-4 text-center font-bold ${idx === 0 ? 'text-[#191919]' : 'text-[#3C76F1]'}`}>{label}</div>
-              <div className="p-4 text-center text-[#4B4B4B] font-medium">{target}</div>
-              <div className="p-4 text-center text-[#969696] font-medium">{metric}</div>
-              <div className="p-4 flex justify-center">
-                <span className={`px-4 py-1 rounded-full text-xs font-bold ${getVerifyColor(feasibility)}`}>{feasibility}</span>
+          <div className="divide-y divide-[#E1E1E1]">
+            {verifyRows.map(([label, target, metric, feasibility, priority], idx) => (
+              <div key={idx} className="grid grid-cols-5 text-[15px] items-center hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                <div className={`p-6 text-center font-bold tracking-tight border-r border-[#E1E1E1] ${idx === 0 ? 'text-[#191919] bg-[#FDFDFD]' : 'text-[#3C76F1]'}`}>{label}</div>
+                <div className="p-6 text-center text-[#4B4B4B] font-medium tracking-tight border-r border-[#E1E1E1]">{target}</div>
+                <div className="p-6 text-center text-[#4B4B4B] font-medium tracking-tight border-r border-[#E1E1E1]">{metric}</div>
+                <div className="p-6 flex justify-center border-r border-[#E1E1E1]">
+                  <span className={`px-5 py-1.5 rounded-full text-sm font-bold tracking-widest ${getVerifyColor(feasibility)}`}>{feasibility}</span>
+                </div>
+                <div className="p-6 text-center text-[#191919] font-black">{priority}</div>
               </div>
-              <div className="p-4 text-center text-[#191919] font-bold">{priority}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -1323,10 +1341,10 @@ export default function App() {
           <section
               key={index}
               id={`section-${index}`}
-              className={`w-full ${[13, 15].includes(index) ? '' : 'overflow-hidden'}`}
+              className={`w-full ${[14, 16].includes(index) ? '' : 'overflow-hidden'}`}
             >
             {index === 0 && <IntroLayout slide={slide} />}
-            {[1, 6, 11].includes(index) && <DividerLayout slide={slide} />}
+            {[1, 6, 12].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
             {index === 3 && <CitationMatrixLayout slide={slide} />}
             {index === 4 && <CompetitorStatusLayout slide={slide} />}
@@ -1334,13 +1352,14 @@ export default function App() {
             {index === 7 && <DiagnosticCombinedLayout slide={slide} />}
             {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
             {index === 10 && <HypothesesLayout slide={slide} />}
-            {index === 12 && <StrategyLayout slide={slide} />}
-            {index === 13 && <ComparisonTableLayout slide={slide} />}
-            {index === 14 && <VisualPreviewLayout slide={slide} />}
-            {index === 15 && <DecisionGridLayout slide={slide} />}
-            {index === 16 && <TechnicalDetailLayout slide={slide} />}
-            {index === 17 && <ValidationKpiLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 11 && <ValidationScopeLayout slide={slide} />}
+            {index === 13 && <StrategyLayout slide={slide} />}
+            {index === 14 && <ComparisonTableLayout slide={slide} />}
+            {index === 15 && <VisualPreviewLayout slide={slide} />}
+            {index === 16 && <DecisionGridLayout slide={slide} />}
+            {index === 17 && <TechnicalDetailLayout slide={slide} />}
+            {index === 18 && <ValidationKpiLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
