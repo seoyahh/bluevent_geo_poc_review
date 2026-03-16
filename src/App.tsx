@@ -431,131 +431,111 @@ export default function App() {
       </div>
     );
   };
-
-  const DualPillarLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
-    const pillar1 = slide.bullets.filter(b => b.startsWith('PILLAR:이트라이브')).map(b => b.replace(/PILLAR:.*?\|/, ''));
-    const pillar2 = slide.bullets.filter(b => b.startsWith('PILLAR:수행계획서')).map(b => b.replace(/PILLAR:.*?\|/, ''));
-
+  const DiagnosticCombinedLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
+      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-start bg-[#F5F8FA]">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Pillar 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="dark-card p-12 flex flex-col gap-10 border border-[#E1E1E1]/50 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:border-[#191919]/30 transition-all"
-          >
-            <div className="space-y-2">
-              <span className="label-caps !text-[#969696]">Methodology 01</span>
-              <h3 className="text-2xl font-bold text-[#191919] tracking-tight">이트라이브 내부 진단 도구</h3>
-            </div>
-            <div className="w-full h-[1px] bg-[#E1E1E1]" />
-            <p className="text-lg text-[#969696] leading-relaxed font-medium">
-              {pillar1[0]}
-            </p>
-          </motion.div>
-
-          {/* Pillar 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2 }}
-            className="dark-card p-12 flex flex-col gap-10 border border-[#E1E1E1]/50 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:border-[#191919]/30 transition-all"
-          >
-            <div className="space-y-2">
-              <span className="label-caps !text-[#969696]">Methodology 02</span>
-              <h3 className="text-2xl font-bold text-[#191919] tracking-tight">수행계획서 1-2 기준 점검 항목</h3>
-            </div>
-            <div className="w-full h-[1px] bg-[#E1E1E1]" />
-            <div className="grid grid-cols-1 gap-6">
-              {pillar2.map((item, idx) => (
-                <div key={idx} className="flex gap-4 items-start group">
-                  <div className="text-[#969696] group-hover:text-[#3C76F1] transition-colors mt-1 shrink-0">
-                    <CheckCircle2 size={20} strokeWidth={2} />
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 items-start mb-12">
+          {/* Left Table: 진단 기준 */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-bold text-[#191919] pl-2">진단 기준</h3>
+            <div className="rounded-xl border border-[#E1E1E1] bg-white overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+              <div className="grid grid-cols-[1fr_2fr] bg-[#082253] p-3 text-center">
+                <span className="text-[14px] font-bold tracking-wide text-white">판정</span>
+                <span className="text-[14px] font-bold tracking-wide text-white">기준</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1]">
+                <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-4 flex items-center justify-center font-bold text-[#00A15D] text-[15px] border-r border-[#E1E1E1]">Pass</div>
+                  <div className="p-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">업계 표준 충족</div>
+                </div>
+                <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-4 flex items-center justify-center font-bold text-[#FF8A00] text-[15px] border-r border-[#E1E1E1]">Warning</div>
+                  <div className="p-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">기능하나 최적화 필요</div>
+                </div>
+                <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-4 flex items-center justify-center font-bold text-[#FF4040] text-[15px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">미적용 또는 AI/검색엔진 인식 불가</div>
+                </div>
+                <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-4 flex items-center justify-center gap-1.5 font-bold text-[#D64040] text-[15px] border-r border-[#E1E1E1]">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#D64040]" />Critical
                   </div>
-                  <p className="text-base text-[#969696] group-hover:text-[#191919] transition-colors font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: item }} />
+                  <div className="p-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">PoC 효과 측정 자체를 차단하는 수준</div>
                 </div>
-              ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Right Table: 도메인 레벨 핵심 진단 */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-bold text-[#191919] pl-2">도메인 레벨 핵심 진단</h3>
+            <div className="rounded-xl border border-[#E1E1E1] bg-white overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+              <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] bg-[#082253] p-3 text-center">
+                <span className="text-[14px] font-bold tracking-wide text-white">항목</span>
+                <span className="text-[14px] font-bold tracking-wide text-white">상태</span>
+                <span className="text-[14px] font-bold tracking-wide text-white text-left pl-4">요약</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1]">
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">robots.txt</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#D64040] font-bold text-[14px] border-r border-[#E1E1E1] gap-1.5"><div className="w-2 h-2 rounded-full bg-white shadow-sm" />Critical</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#D64040] font-bold text-[15px]">GPTBot·ClaudeBot Disallow: /</div>
+                </div>
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">Sitemap.xml</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#EB5757] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">미존재</div>
+                </div>
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">JSON-LD</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#EB5757] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">전역 0건</div>
+                </div>
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">Meta Desc.</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#EB5757] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">전역 미설정 (빈 값)</div>
+                </div>
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">Canonical</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#F2994A] font-bold text-[14px] border-r border-[#E1E1E1]">Warning</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">미확인, 중복 URL 가능</div>
+                </div>
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">OG 태그</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#F2994A] font-bold text-[14px] border-r border-[#E1E1E1]">Warning</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">전역 고정값, 페이지별 미분화</div>
+                </div>
+                <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                  <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">서버/CDN</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#27AE60] font-bold text-[14px] border-r border-[#E1E1E1]">Pass</div>
+                  <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">Apache + NHN CDN</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    );
-  };
-  const InfraAuditLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
-    const robots = slide.bullets.filter(b => b.startsWith('INFAR:ROBOTS')).map(b => b.split('|')[1]);
-    const conclusion = slide.bullets.filter(b => b.startsWith('INFAR:CONCLUSION')).map(b => b.split('|')[1]);
-    const sitemap = slide.bullets.filter(b => b.startsWith('INFAR:SITEMAP')).map(b => b.split('|')[1]);
-    const canonical = slide.bullets.filter(b => b.startsWith('INFAR:CANONICAL')).map(b => b.split('|')[1]);
 
-    return (
-      <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
-        <h2 className="text-xl md:text-2xl font-semibold tracking-[-0.02em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Robots.txt Analysis */}
-          <div className="lg:col-span-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="bg-white border border-[#E1E1E1] rounded-[2rem] p-10 lg:p-14 relative overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="px-3 py-1 bg-[#FF4040]/10 text-[#FF4040] font-bold text-xs uppercase tracking-widest rounded-md">Critical</div>
-                  <h3 className="text-2xl font-bold text-[#191919] tracking-tight">robots.txt 진단 결과</h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                  {robots.map((item, idx) => (
-                    <div key={idx} className="flex gap-4 items-start">
-                      <div className="text-[#FF4040] shrink-0 mt-1">
-                        <AlertCircle size={20} strokeWidth={2} />
-                      </div>
-                      <p className="text-base text-[#191919] leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: item }} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Conclusion Box */}
-          <div className="lg:col-span-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="bg-[#082253] rounded-[2rem] p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between group"
-            >
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-full bg-[#FF4040]/10 flex items-center justify-center text-[#FF4040] group-hover:bg-[#FF4040] group-hover:text-white transition-all">
-                  <AlertTriangle size={28} />
-                </div>
-                <p className="text-lg lg:text-2xl text-white font-semibold tracking-tight leading-snug" dangerouslySetInnerHTML={{ __html: conclusion[0] }} />
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Secondary Items */}
-          <div className="lg:col-span-6">
-            <div className="bg-white border border-[#E1E1E1] rounded-[2rem] p-10 h-full shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-              <h4 className="label-caps mb-4 text-[#969696]">Infrastructure 02</h4>
-              <p className="text-xl font-bold text-[#191919] mb-4 tracking-tight" dangerouslySetInnerHTML={{ __html: sitemap[0]?.split(':')[0] }} />
-              <p className="text-base text-[#969696] leading-relaxed font-medium">{sitemap[0]?.split(':')[1]}</p>
-            </div>
-          </div>
-          <div className="lg:col-span-6">
-            <div className="bg-white border border-[#E1E1E1] rounded-[2rem] p-10 h-full shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-              <h4 className="label-caps mb-4 text-[#969696]">Infrastructure 03</h4>
-              <p className="text-xl font-bold text-[#191919] mb-4 tracking-tight" dangerouslySetInnerHTML={{ __html: canonical[0]?.split(':')[0] }} />
-              <p className="text-base text-[#969696] leading-relaxed font-medium">{canonical[0]?.split(':')[1]}</p>
-            </div>
-          </div>
+        {/* Bottom Alert Card */}
+        <div className="bg-[#FAEBEB] border border-[#D64040]/30 border-l-8 border-l-[#D64040] p-10 flex flex-col gap-6 shadow-[0_4px_24px_rgba(214,64,64,0.08)] overflow-hidden rounded-r-2xl">
+           <div className="flex items-center gap-3">
+             <div className="w-3.5 h-3.5 rounded-full bg-[#D64040] shadow-sm" />
+             <p className="font-extrabold text-2xl lg:text-3xl text-[#D64040] tracking-tight">PoC Blocker — robots.txt AI 크롤러 완전 차단</p>
+           </div>
+           
+           <div className="flex flex-col gap-6 ml-[1.6rem]">
+             <p className="text-[17px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight">
+               ClaudeBot·GPTBot이 bluevent.co.kr 어떤 페이지에도 접근 불가.<br/>
+               이 차단이 해제되지 않으면, 페이지 최적화 효과를 Claude·ChatGPT에서 측정할 수 없음.
+             </p>
+             <div className="h-[1px] w-full bg-[#D64040]/10" />
+             <p className="text-[16px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight">
+               조치: FTP 직접 수정 또는 NHN커머스 고객센터 요청 필요. 고도몰 업데이트 시 덮어쓰기 가능 &rarr; 주 1회 모니터링.<br/><br/>
+               <span className="text-[#3C76F1] font-bold inline-block bg-[#3C76F1]/10 px-4 py-2 rounded-lg">지연 시 대안: Perplexity·Gemini로 1차 검증, robots.txt 해제 후 Claude·ChatGPT 2차 검증 분리.</span>
+             </p>
+           </div>
         </div>
       </div>
     );
@@ -1237,25 +1217,24 @@ export default function App() {
           <section
               key={index}
               id={`section-${index}`}
-              className={`w-full ${[14, 16].includes(index) ? '' : 'overflow-hidden'}`}
+              className={`w-full ${[13, 15].includes(index) ? '' : 'overflow-hidden'}`}
             >
             {index === 0 && <IntroLayout slide={slide} />}
-            {[1, 6, 12].includes(index) && <DividerLayout slide={slide} />}
+            {[1, 6, 11].includes(index) && <DividerLayout slide={slide} />}
             {index === 2 && <MethodologyLayout slide={slide} />}
             {index === 3 && <CitationMatrixLayout slide={slide} />}
             {index === 4 && <SourceRatioLayout slide={slide} />}
             {index === 5 && <ChecklistLayout slide={slide} index={index} />}
-            {index === 7 && <DualPillarLayout slide={slide} />}
-            {index === 8 && <InfraAuditLayout slide={slide} />}
-            {[9, 10].includes(index) && <DiagnosticResultsLayout slide={slide} />}
-            {index === 11 && <HypothesesLayout slide={slide} />}
-            {index === 13 && <StrategyLayout slide={slide} />}
-            {index === 14 && <ComparisonTableLayout slide={slide} />}
-            {index === 15 && <VisualPreviewLayout slide={slide} />}
-            {index === 16 && <DecisionGridLayout slide={slide} />}
-            {index === 17 && <TechnicalDetailLayout slide={slide} />}
-            {index === 18 && <ValidationKpiLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 7 && <DiagnosticCombinedLayout slide={slide} />}
+            {[8, 9].includes(index) && <DiagnosticResultsLayout slide={slide} />}
+            {index === 10 && <HypothesesLayout slide={slide} />}
+            {index === 12 && <StrategyLayout slide={slide} />}
+            {index === 13 && <ComparisonTableLayout slide={slide} />}
+            {index === 14 && <VisualPreviewLayout slide={slide} />}
+            {index === 15 && <DecisionGridLayout slide={slide} />}
+            {index === 16 && <TechnicalDetailLayout slide={slide} />}
+            {index === 17 && <ValidationKpiLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

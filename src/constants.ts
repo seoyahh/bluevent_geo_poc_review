@@ -74,31 +74,10 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 7,
-    title: "2-1. 진단 방법론",
-    oneLiner: "<strong>데이터 기반 정밀 진단</strong>을 위한 이트라이브 고유 방법론 적용",
-    bullets: [
-      "PILLAR:이트라이브 내부 진단 도구|AI 봇의 사이트 구조 해석 안정성과 데이터 추출 정합성을 객관적으로 평가합니다.",
-      "PILLAR:수행계획서 기준 점검 항목|인덱싱 가능성: robots.txt, sitemap, canonical 등 AI 봇의 접근성 전수 조사",
-      "PILLAR:수행계획서 기준 점검 항목|사이트 구조: SSR 기술적 한계, 템플릿 반복 영역 및 본문 비중 분석",
-      "PILLAR:수행계획서 기준 점검 항목|헤딩 구조 & 링크: 시맨틱 헤딩(H1-H6) 위계 및 내부 링크 품질 검토",
-      "PILLAR:수행계획서 기준 점검 항목|구조화 데이터: Schema.org 기반 JSON-LD 유무 및 마크업 정합성 진단"
-    ],
-    visualGuide: "이트라이브만의 진단 로직이 담긴 다이아몬드 모델 프레임워크."
-  },
-  {
-    id: 8,
-    title: "2-1-b. 사이트 인프라 진단 결과",
-    oneLiner: "도메인 루트의 <strong>robots.txt 크리티컬 이슈</strong> 및 인프라 설정 진단 결과",
-    bullets: [
-      "INFAR:ROBOTS|<strong>robots.txt 진단 결과</strong>: 루트 도메인의 단일 파일이 사이트 전체에 적용 중",
-      "INFAR:ROBOTS|<strong>크리티컬 이슈</strong>: 고도몰 기본 정책에 의해 <strong>ClaudeBot & GPTBot 전면 차단</strong> 상태",
-      "INFAR:ROBOTS|<strong>AI 봇 영향도</strong>: ChatGPT와 Claude는 블루벤트 사이트를 직접 크롤링할 수 없음",
-      "INFAR:ROBOTS|<strong>검색 봇 상태</strong>: Google/Naver 등 주요 엔진은 관리자 영역만 부분 차단 중",
-      "INFAR:CONCLUSION|<strong>결론</strong>: 인프라 이슈 해결 전까지는 기술 개선 효과 검증이 불가능함",
-      "INFAR:SITEMAP|<strong>Sitemap.xml 존재</strong>: 사이트맵 경로 확인 및 AI 봇 인식 가용성 점검 필요",
-      "INFAR:CANONICAL|<strong>Canonical 정책</strong>: 중복 페이지 처리 로직 및 대표 URL 선언 상태 점검"
-    ],
-    visualGuide: "인프라 차단 이슈(Red Signal)가 페이지별 개선 효과를 저해하는 로직 도식화."
+    title: "2-1. 진단 방법론 + 2-1-b. 도메인 인프라 진단",
+    oneLiner: "",
+    bullets: [],
+    visualGuide: "진단 기준과 도메인 레벨 핵심 진단 표, 그리고 하단 robots.txt 이슈 블록 배치"
   },
   {
     id: 9,
