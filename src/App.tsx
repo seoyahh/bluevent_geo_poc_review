@@ -1514,8 +1514,8 @@ export default function App() {
             {index === 16 && <DecisionGridLayout slide={slide} />}
             {index === 17 && <TechnicalDetailLayout slide={slide} />}
             {index === 18 && <ValidationKpiLayout slide={slide} />}
-            {index === 19 && <EodLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === SLIDES.length - 1 && <EodLayout slide={slide} />}
+            {!([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, SLIDES.length - 1].includes(index)) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>
