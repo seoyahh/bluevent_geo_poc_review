@@ -4,7 +4,7 @@ import {
   CheckCircle2, Layout, BarChart3, Settings, AlertTriangle,
   PlayCircle, ArrowRight, ArrowUp, ArrowDown, FileText,
   Activity, ChevronRight, Sparkles, Check, Compass, AlertCircle,
-  Target, Calendar, X, ZoomIn
+  Target, Calendar, X, ZoomIn, ChevronDown
 } from 'lucide-react';
 import { SLIDES } from './constants';
 import React from 'react';
@@ -194,22 +194,35 @@ export default function App() {
             ))}
         </div>
 
-        {/* Visual Guide: Gradient Arrow to Key Findings */}
-        <div className="flex flex-col items-center justify-center mb-12 relative py-4">
+        {/* Visual Guide: Triple Chevron Gradient to Key Findings */}
+        <div className="flex flex-col items-center justify-center mb-16 py-4">
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center gap-3"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="flex flex-col items-center -gap-1"
           >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="flex flex-col items-center"
-            >
-              <div className="w-[2px] h-12 bg-gradient-to-b from-[#3C76F1] to-[#3C76F1]/20 rounded-full" />
-              <ArrowDown size={24} className="text-[#3C76F1] -mt-1" />
-            </motion.div>
+            {[0, 1, 2].map((i) => (
+              <motion.div
+                key={i}
+                animate={{ 
+                  opacity: [0.3, 1, 0.3],
+                  y: [0, 5, 0]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 1.5, 
+                  delay: i * 0.2,
+                  ease: "easeInOut" 
+                }}
+              >
+                <ChevronDown 
+                  size={32} 
+                  strokeWidth={3}
+                  className={i === 0 ? "text-[#3C76F1]" : i === 1 ? "text-[#3C76F1]/60" : "text-[#3C76F1]/30"} 
+                />
+              </motion.div>
+            ))}
           </motion.div>
         </div>
 
