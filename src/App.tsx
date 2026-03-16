@@ -754,11 +754,11 @@ export default function App() {
         {/* Hypo C Modal */}
         <AnimatePresence>
           {isHypoCModalOpen && (
-            <motion.div
+              <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-[#082253]/80 backdrop-blur-sm p-8"
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-8"
               onClick={() => setIsHypoCModalOpen(false)}
             >
               <div
@@ -767,7 +767,7 @@ export default function App() {
               >
                 {/* Header */}
                 <div className="bg-[#082253] px-8 py-6 flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-white tracking-tight">2-4 보충. GEO 6단계 정보 구조 정의 (가설 C)</h3>
+                  <h3 className="text-2xl font-bold text-white tracking-tight">GEO 6단계 정보 구조 정의 (가설 C)</h3>
                   <button
                     onClick={() => setIsHypoCModalOpen(false)}
                     className="text-white/80 hover:text-white transition-colors"
