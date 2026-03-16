@@ -819,31 +819,31 @@ export default function App() {
                         <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">1</div>
                         <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">TL;DR 요약문</div>
                         <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">AI가 가장 먼저 참조하는 1~2문장 핵심 정의</div>
-                        <div className="py-4 px-6 text-[#D64040] font-bold">없음</div>
+                        <div className="py-4 px-6 text-[#FF4040] font-bold">없음</div>
                       </div>
                       <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#F9F9F9]">
                         <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">2</div>
                         <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">스펙 데이터 테이블</div>
                         <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">용량, 소음, 크기, 소비전력 등 정량 데이터</div>
-                        <div className="py-4 px-6 text-[#D64040] font-bold">이미지 내에만 존재</div>
+                        <div className="py-4 px-6 text-[#FF4040] font-bold">이미지 내에만 존재</div>
                       </div>
                       <div className="grid grid-cols-[80px_1fr_2fr_1fr]">
                         <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">3</div>
                         <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">기능·특장점 설명</div>
                         <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">원핸드그립, AI 모드, 7중 필터 등 상세 텍스트</div>
-                        <div className="py-4 px-6 text-[#D64040] font-bold">이미지 내에만 존재</div>
+                        <div className="py-4 px-6 text-[#FF4040] font-bold">이미지 내에만 존재</div>
                       </div>
                       <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#F9F9F9]">
                         <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">4</div>
                         <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">경쟁 비교 정보</div>
                         <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">동급 제품 대비 차별점(소음 dB, 필터 수명 등)</div>
-                        <div className="py-4 px-6 text-[#D64040] font-bold">완전 부재</div>
+                        <div className="py-4 px-6 text-[#FF4040] font-bold">완전 부재</div>
                       </div>
                       <div className="grid grid-cols-[80px_1fr_2fr_1fr]">
                         <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">5</div>
                         <div className="py-4 px-6 font-bold text-[#191919] border-r border-[#E1E1E1]">FAQ</div>
                         <div className="py-4 px-6 text-[#4B4B4B] border-r border-[#E1E1E1]">자주 묻는 질문 5~10개 (FAQPage Schema 연동)</div>
-                        <div className="py-4 px-6 text-[#D64040] font-bold">없음</div>
+                        <div className="py-4 px-6 text-[#FF4040] font-bold">없음</div>
                       </div>
                       <div className="grid grid-cols-[80px_1fr_2fr_1fr] bg-[#F9F9F9]">
                         <div className="py-4 px-4 text-center font-black text-[#191919] border-r border-[#E1E1E1]">6</div>
@@ -924,7 +924,7 @@ export default function App() {
         <div className="flex flex-col gap-16">
           {/* Section 1: PoC 필수 선행 조치 */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-[22px] font-extrabold text-[#D64040] tracking-tight mb-2">PoC 착수 전 필수 선행 조치</h3>
+            <h3 className="text-[22px] font-extrabold text-[#FF4040] tracking-tight mb-2">PoC 착수 전 필수 선행 조치</h3>
             
             <div className="rounded-xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-2">
               <div className="grid grid-cols-[1.5fr_3fr_1.5fr_2.5fr] bg-[#082253] text-[#FFFFFF] px-4 py-4 text-center text-[15px] font-bold tracking-wider">
@@ -948,7 +948,7 @@ export default function App() {
             {/* Alert Box */}
             {alert && (
               <div className="bg-[#FAEBEB] p-5 rounded-lg flex items-center justify-center gap-2">
-                <span className="text-[#D64040] font-bold text-[16px] tracking-tight" dangerouslySetInnerHTML={{ __html: alert }} />
+                <span className="text-[#FF4040] font-bold text-[16px] tracking-tight" dangerouslySetInnerHTML={{ __html: alert }} />
               </div>
             )}
           </div>

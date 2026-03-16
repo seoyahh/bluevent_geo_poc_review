@@ -149,7 +149,7 @@ export const SLIDES: Slide[] = [
     title: "3-0. 고도몰 플랫폼 특성을 고려한 개선 전략",
     oneLiner: "",
     bullets: [
-      "ACTION:<span class='text-[#D64040]'>robots.txt AI봇 허용</span>|FTP 직접 수정 또는 NHN커머스 고객센터 요청|블루벤트 개발팀|업데이트 시 덮어쓰기 가능 &rarr; 주 1회 모니터링",
+      "ACTION:<span class='text-[#FF4040]'>robots.txt AI봇 허용</span>|FTP 직접 수정 또는 NHN커머스 고객센터 요청|블루벤트 개발팀|업데이트 시 덮어쓰기 가능 &rarr; 주 1회 모니터링",
       "ACTION:Sitemap.xml 확인/생성|고도몰 관리자 확인 &rarr; 미존재 시 수동 생성 + Search Console 제출|이트라이브|페이지 수 변동 시 갱신 필요",
       "ALERT:⚠ 위 2가지 미완료 시 &rarr; 아래 3-1/3-2 최적화 효과를 정상 측정할 수 없음",
       "CONSTR:SSR 한계 &rarr; 서버 사이드 렌더링 제어 불가|HTML 내 직접 텍스트/데이터 삽입 방식으로 구현",
