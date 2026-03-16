@@ -177,7 +177,7 @@ export default function App() {
         {/* 2. Source Ratio Table */}
         <h3 className="text-xl font-extrabold text-[#082253] mb-6 flex items-center gap-3">근거 URL 출처 비율 <span className="text-base text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
         
-        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-16">
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-12">
             <div className="grid grid-cols-[1.5fr_1fr_2fr_3fr] bg-[#082253] px-6 py-4 text-center lg:text-left text-[14px] font-bold tracking-widest text-[#FFFFFF] border-b border-[#082253]">
               <span className="lg:pl-6 text-[#FFFFFF] font-extrabold">출처 유형</span>
               <span className="text-center font-extrabold">비율</span>
@@ -194,9 +194,37 @@ export default function App() {
             ))}
         </div>
 
+        {/* Visual Guide: Gradient Arrow to Key Findings */}
+        <div className="flex flex-col items-center justify-center mb-12 relative py-4">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center gap-3"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="flex flex-col items-center"
+            >
+              <div className="w-[2px] h-12 bg-gradient-to-b from-[#3C76F1] to-[#3C76F1]/20 rounded-full" />
+              <ArrowDown size={24} className="text-[#3C76F1] -mt-1" />
+            </motion.div>
+          </motion.div>
+        </div>
+
         {/* 3. Key Findings Card */}
-        <div className="w-full bg-[#ECF1FE]/50 rounded-[2rem] border border-[#3C76F1]/20 p-12 overflow-hidden mb-16">
-          <div className="space-y-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full bg-[#ECF1FE]/50 rounded-[2rem] border border-[#3C76F1]/20 p-12 overflow-hidden mb-16 relative"
+        >
+          {/* Decorative background element for Key Findings */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#3C76F1]/5 blur-[80px] rounded-full -mr-32 -mt-32 pointer-events-none" />
+          
+          <div className="relative z-10 space-y-8">
             <span className="label-caps !text-[#3C76F1]">Key Findings</span>
             <h3 className="text-xl lg:text-2xl font-bold tracking-[-0.02em] text-[#082253]">
               주요 AI 모델 대상 블루벤트 인용 현황 점검에 따른 <span className="text-[#3C76F1]">주요 발견 사항</span>
@@ -234,7 +262,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   };
@@ -553,11 +581,11 @@ export default function App() {
               </div>
               <div className="divide-y divide-[#E1E1E1]">
                 <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
-                  <div className="p-4 flex items-center justify-center font-bold text-[#00A15D] text-[15px] border-r border-[#E1E1E1]">Pass</div>
+                  <div className="p-4 flex items-center justify-center font-bold text-[#00C781] text-[15px] border-r border-[#E1E1E1]">Pass</div>
                   <div className="p-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">업계 표준 충족</div>
                 </div>
                 <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
-                  <div className="p-4 flex items-center justify-center font-bold text-[#FF8A00] text-[15px] border-r border-[#E1E1E1]">Warning</div>
+                  <div className="p-4 flex items-center justify-center font-bold text-[#FFBB38] text-[15px] border-r border-[#E1E1E1]">Warning</div>
                   <div className="p-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">기능하나 최적화 필요</div>
                 </div>
                 <div className="grid grid-cols-[1fr_2fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
@@ -591,32 +619,32 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
                   <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">Sitemap.xml</div>
-                  <div className="p-3.5 flex items-center justify-center text-white bg-[#EB5757] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#FF4040] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
                   <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">미존재</div>
                 </div>
                 <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
                   <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">JSON-LD</div>
-                  <div className="p-3.5 flex items-center justify-center text-white bg-[#EB5757] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#FF4040] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
                   <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">전역 0건</div>
                 </div>
                 <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
                   <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">Meta Desc.</div>
-                  <div className="p-3.5 flex items-center justify-center text-white bg-[#EB5757] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#FF4040] font-bold text-[14px] border-r border-[#E1E1E1]">Fail</div>
                   <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">전역 미설정 (빈 값)</div>
                 </div>
                 <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
                   <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">Canonical</div>
-                  <div className="p-3.5 flex items-center justify-center text-white bg-[#F2994A] font-bold text-[14px] border-r border-[#E1E1E1]">Warning</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#FFBB38] font-bold text-[14px] border-r border-[#E1E1E1]">Warning</div>
                   <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">미확인, 중복 URL 가능</div>
                 </div>
                 <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
                   <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">OG 태그</div>
-                  <div className="p-3.5 flex items-center justify-center text-white bg-[#F2994A] font-bold text-[14px] border-r border-[#E1E1E1]">Warning</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#FFBB38] font-bold text-[14px] border-r border-[#E1E1E1]">Warning</div>
                   <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">전역 고정값, 페이지별 미분화</div>
                 </div>
                 <div className="grid grid-cols-[1.5fr_1.5fr_3.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
                   <div className="p-3.5 flex items-center justify-center font-bold text-[#191919] text-[15px] border-r border-[#E1E1E1]">서버/CDN</div>
-                  <div className="p-3.5 flex items-center justify-center text-white bg-[#27AE60] font-bold text-[14px] border-r border-[#E1E1E1]">Pass</div>
+                  <div className="p-3.5 flex items-center justify-center text-white bg-[#00C781] font-bold text-[14px] border-r border-[#E1E1E1]">Pass</div>
                   <div className="p-3.5 pl-4 flex items-center text-[#4B4B4B] font-medium text-[15px]">Apache + NHN CDN</div>
                 </div>
               </div>
@@ -885,64 +913,65 @@ export default function App() {
   };
 
   const StrategyLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
+    const actions = slide.bullets.filter(b => b.startsWith('ACTION:')).map(b => b.replace('ACTION:', '').split('|'));
+    const alert = slide.bullets.find(b => b.startsWith('ALERT:'))?.replace('ALERT:', '');
     const constrs = slide.bullets.filter(b => b.startsWith('CONSTR:')).map(b => b.replace('CONSTR:', '').split('|'));
-    const strats = slide.bullets.filter(b => b.startsWith('STRAT:')).map(b => b.replace('STRAT:', '').split('|'));
 
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-[-0.03em] text-[#191919] mb-16" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Section 1: Constraints */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-10 bg-[#e8e8ed]/50 border border-[#E1E1E1]/50 p-12 rounded-[2rem]"
-          >
-            <div className="flex items-center gap-4">
-              <div className="text-[#969696]">
-                <Settings size={28} strokeWidth={1.5} />
+        <div className="flex flex-col gap-16">
+          {/* Section 1: PoC 필수 선행 조치 */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-[22px] font-extrabold text-[#D64040] tracking-tight mb-2">PoC 착수 전 필수 선행 조치</h3>
+            
+            <div className="rounded-xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-2">
+              <div className="grid grid-cols-[1.5fr_3fr_1.5fr_2.5fr] bg-[#082253] text-[#FFFFFF] px-4 py-4 text-center text-[15px] font-bold tracking-wider">
+                <span>조치</span>
+                <span>방법</span>
+                <span>담당</span>
+                <span>리스크</span>
               </div>
-              <h3 className="text-xl font-bold text-[#191919] tracking-tight">고도몰 기술 제약사항</h3>
+              <div className="divide-y divide-[#E1E1E1] text-[15px] font-medium">
+                {actions.map(([action, method, assignee, risk], idx) => (
+                  <div key={idx} className="grid grid-cols-[1.5fr_3fr_1.5fr_2.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                    <div className="px-6 py-5 flex items-center justify-center text-center font-bold border-r border-[#E1E1E1]" dangerouslySetInnerHTML={{ __html: action }}></div>
+                    <div className="px-6 py-5 flex text-left items-center text-[#4B4B4B] border-r border-[#E1E1E1]" dangerouslySetInnerHTML={{ __html: method }}></div>
+                    <div className="px-6 py-5 flex items-center justify-center text-[#4B4B4B] border-r border-[#E1E1E1]" dangerouslySetInnerHTML={{ __html: assignee }}></div>
+                    <div className="px-6 py-5 flex text-left items-center text-[#4B4B4B]" dangerouslySetInnerHTML={{ __html: risk }}></div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="space-y-8">
-              {constrs.map(([title, content], idx) => (
-                <div key={idx} className="flex flex-col gap-2">
-                  <span className="text-[#191919] font-semibold text-sm uppercase tracking-widest">{title}</span>
-                  <p className="text-base text-[#969696] font-medium leading-relaxed">{content}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Section 2: Strategy */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-10 bg-white border border-[#E1E1E1]/50 p-12 rounded-[2rem] shadow-[0_4px_24px_rgba(0,0,0,0.02)]"
-          >
-            <div className="flex items-center gap-4">
-              <div className="text-[#3C76F1]">
-                <Compass size={28} strokeWidth={2} />
+            {/* Alert Box */}
+            {alert && (
+              <div className="bg-[#FAEBEB] p-5 rounded-lg flex items-center justify-center gap-2">
+                <span className="text-[#D64040] font-bold text-[16px] tracking-tight" dangerouslySetInnerHTML={{ __html: alert }} />
               </div>
-              <h3 className="text-xl font-bold text-[#191919] tracking-tight">제약 하 접근 전략</h3>
-            </div>
-            <div className="space-y-4">
-              {strats.map(([title, content], idx) => (
-                <div key={idx} className="p-6 rounded-2xl bg-[#F5F8FA] flex items-start gap-5 hover:bg-[#e8e8ed] transition-colors border border-transparent">
-                  <div className="text-[#191919] mt-1 shrink-0">
-                    <CheckCircle2 size={20} strokeWidth={2} />
+            )}
+          </div>
+
+          {/* Section 2: 기술 제약 및 대응 전략 */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-[22px] font-extrabold text-[#191919] tracking-tight mb-2">고도몰 기술 제약 및 대응 전략</h3>
+            
+            <div className="rounded-xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden">
+              <div className="grid grid-cols-[1fr_2.5fr] bg-[#082253] text-[#FFFFFF] px-4 py-4 text-center text-[15px] font-bold tracking-wider">
+                <span>제약</span>
+                <span>대응 전략</span>
+              </div>
+              <div className="divide-y divide-[#E1E1E1] text-[15px] font-medium">
+                {constrs.map(([constraint, strat], idx) => (
+                  <div key={idx} className="grid grid-cols-[1fr_2.5fr] hover:bg-[#F5F8FA]/50 transition-colors bg-white">
+                    <div className="px-6 py-5 flex text-left items-center text-[#4B4B4B] border-r border-[#E1E1E1]" dangerouslySetInnerHTML={{ __html: constraint }}></div>
+                    <div className="px-6 py-5 flex text-left items-center text-[#4B4B4B]" dangerouslySetInnerHTML={{ __html: strat }}></div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[#191919] font-semibold tracking-tight" dangerouslySetInnerHTML={{ __html: title }} />
-                    <p className="text-[#969696] leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: content }} />
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     );
@@ -1149,13 +1178,13 @@ export default function App() {
   const VisualPreviewLayout = ({ slide }: { slide: typeof SLIDES[0] }) => {
     const asis = slide.bullets.find(b => b.startsWith('ASIS:'))?.replace('ASIS:', '');
     const tobe = slide.bullets.find(b => b.startsWith('TOBE:'))?.replace('TOBE:', '');
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [expandedImage, setExpandedImage] = useState<string | null>(null);
     const [zoomScale, setZoomScale] = useState(1);
     const [transformOrigin, setTransformOrigin] = useState("50% 50%");
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      if (!isExpanded) {
+      if (!expandedImage) {
         setZoomScale(1);
         setTransformOrigin("50% 50%");
         document.body.style.overflow = 'auto';
@@ -1165,7 +1194,7 @@ export default function App() {
       return () => {
         document.body.style.overflow = 'auto';
       };
-    }, [isExpanded]);
+    }, [expandedImage]);
 
     const handleWheel = (e: React.WheelEvent) => {
       e.stopPropagation();
@@ -1198,8 +1227,18 @@ export default function App() {
               <span className="text-[#969696] font-semibold text-sm tracking-[0.2em] uppercase">AS-IS</span>
             </div>
 
-            <div className="rounded-[2rem] border border-[#E1E1E1]/50 bg-white relative group opacity-50 grayscale hover:opacity-100 transition-all duration-700 overflow-hidden h-[50vh] flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-              {asis && <img src={asis} alt="As-Is Main" className="max-w-full max-h-full object-contain" />}
+            <div className="relative group cursor-zoom-in" onClick={() => asis && setExpandedImage(asis)}>
+              <div className="rounded-[2rem] border border-[#E1E1E1]/50 bg-white relative overflow-hidden h-[50vh] flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] opacity-50 grayscale hover:opacity-100 transition-all duration-700">
+                {asis && <img src={asis} alt="As-Is Main" className="max-w-full max-h-full object-contain scale-100 group-hover:scale-[1.01] transition-transform duration-[3000ms] ease-out" />}
+                
+                {/* Hover overlay hint */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                  <div className="bg-[#082253]/80 backdrop-blur-md text-[#F5F8FA] px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl transition-transform duration-300 translate-y-2 group-hover:translate-y-0">
+                    <ZoomIn size={20} strokeWidth={1.5} />
+                    <span className="font-semibold tracking-wide text-sm">확대 보기</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -1214,7 +1253,7 @@ export default function App() {
               <span className="text-[#191919] font-semibold text-sm tracking-[0.2em] uppercase">TO-BE</span>
             </div>
 
-            <div className="relative group cursor-zoom-in" onClick={() => setIsExpanded(true)}>
+            <div className="relative group cursor-zoom-in" onClick={() => tobe && setExpandedImage(tobe)}>
               <div className="rounded-[2rem] border border-[#E1E1E1] shadow-[0_10px_40px_rgba(0,0,0,0.06)] bg-white relative overflow-hidden h-[75vh] flex items-center justify-center">
                 {tobe && <img src={tobe} alt="To-Be Main" className="max-w-full max-h-full object-contain scale-100 group-hover:scale-[1.01] transition-transform duration-[3000ms] ease-out" />}
                 
@@ -1232,7 +1271,7 @@ export default function App() {
 
         {/* Image Expand Modal */}
         <AnimatePresence>
-          {isExpanded && tobe && (
+          {expandedImage && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1240,7 +1279,7 @@ export default function App() {
               className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-lg p-4 lg:p-10"
             >
               <button
-                onClick={() => setIsExpanded(false)}
+                onClick={() => setExpandedImage(null)}
                 className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 rounded-full bg-white hover:bg-[#F5F8FA] flex items-center justify-center transition-colors duration-300 z-[110] border border-[#E1E1E1] shadow-sm group"
               >
                 <X size={24} className="text-[#4B4B4B] group-hover:text-[#191919]" />
@@ -1262,8 +1301,8 @@ export default function App() {
                 onWheel={handleWheel}
               >
                 <motion.img
-                  src={tobe}
-                  alt="To-Be Main Expanded"
+                  src={expandedImage}
+                  alt="Expanded Modal"
                   className="max-w-full max-h-full object-contain pointer-events-auto"
                   style={{ transformOrigin }}
                   onMouseMove={handleMouseMove}
@@ -1428,6 +1467,25 @@ export default function App() {
     );
   };
 
+  const EodLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
+    <div className="relative flex flex-col items-center text-center justify-center min-h-[940px] py-32 w-full px-6 lg:px-12 overflow-hidden bg-[#F5F8FA]">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full max-w-[1240px] flex flex-col items-center"
+      >
+        <div className="label-caps mb-8 text-[#969696]">
+          <span>END OF DOCUMENT</span>
+        </div>
+        <h2 className="h1-hero mb-8 text-[#191919]" dangerouslySetInnerHTML={{ __html: slide.title }} />
+        <p className="text-lg md:text-xl lg:text-2xl font-medium tracking-tight text-[#969696] leading-relaxed max-w-4xl mx-auto mb-20" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        <div className="mt-16 flex flex-col items-center gap-4 opacity-70">
+          <div className="w-[1px] h-24 bg-gradient-to-b from-transparent via-[#969696] to-transparent" />
+        </div>
+      </motion.div>
+    </div>
+  );
 
   return (
     <div className="bg-[#F5F8FA] text-[#191919] selection:bg-[#3C76F1] selection:text-white scroll-smooth relative flex flex-col items-center" style={{ fontFamily: "'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif" }}>
@@ -1456,7 +1514,8 @@ export default function App() {
             {index === 16 && <DecisionGridLayout slide={slide} />}
             {index === 17 && <TechnicalDetailLayout slide={slide} />}
             {index === 18 && <ValidationKpiLayout slide={slide} />}
-            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(index) && <StandardLayout slide={slide} index={index} />}
+            {index === 19 && <EodLayout slide={slide} />}
+            {![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].includes(index) && <StandardLayout slide={slide} index={index} />}
           </section>
         ))}
       </main>

@@ -146,17 +146,17 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 13,
-    title: "3-0. 플랫폼 특성을 고려한 개선 전략",
-    oneLiner: "솔루션 제약을 극복하고 <strong>실행력을 확보</strong>하기 위한 엔지니어링 전략",
+    title: "3-0. 고도몰 플랫폼 특성을 고려한 개선 전략",
+    oneLiner: "",
     bullets: [
-      "CONSTR:SSR 한계|HTML 내 직접 텍스트/데이터 삽입 방식으로 구현하여 AI 인용률 확보",
-      "CONSTR:템플릿 구조 제약|변경 가능 영역(본문/헤더) vs 불가 영역(시스템)을 엄격히 구분하여 적용",
-      "CONSTR:치환코드 활용|플랫폼 고유 치환코드를 활용한 메타 정보 및 데이터 레이어 자동화 시도",
-      "STRAT:구조화 구현|신규 컨텐츠 대량 제작이 아닌, 기존 <strong>템플릿/코드/데이터 구조화</strong>에 집중",
-      "STRAT:Robots.txt 수정|관리자 UI 수정 불가 → <strong>FTP 직접 수정 또는 고객센터 요청</strong> 필수",
-      "STRAT:리스크 관리|시스템 업데이트 시 초기화 가능성 존재 → 주기적인 <strong>기술 상태 모니터링</strong> 프로세스 가동"
+      "ACTION:<span class='text-[#D64040]'>robots.txt AI봇 허용</span>|FTP 직접 수정 또는 NHN커머스 고객센터 요청|블루벤트 개발팀|업데이트 시 덮어쓰기 가능 &rarr; 주 1회 모니터링",
+      "ACTION:Sitemap.xml 확인/생성|고도몰 관리자 확인 &rarr; 미존재 시 수동 생성 + Search Console 제출|이트라이브|페이지 수 변동 시 갱신 필요",
+      "ALERT:⚠ 위 2가지 미완료 시 &rarr; 아래 3-1/3-2 최적화 효과를 정상 측정할 수 없음",
+      "CONSTR:SSR 한계 &rarr; 서버 사이드 렌더링 제어 불가|HTML 내 직접 텍스트/데이터 삽입 방식으로 구현",
+      "CONSTR:템플릿 구조 제약|변경 가능 영역(상품 상세 설명, 머리말/꼬리말) vs 불가 영역 구분",
+      "CONSTR:치환코드 활용 범위 한정|자유 입력 가능 영역(상품 설명, 추가 HTML)을 최대한 활용"
     ],
-    visualGuide: "플랫폼 제약사항과 기술적 돌파구를 매칭한 솔루션 맵."
+    visualGuide: "플랫폼 제약사항과 필수 조치를 테이블로 대비한 형태"
   },
   {
     id: 14,
@@ -204,13 +204,9 @@ export const SLIDES: Slide[] = [
       "ASIDE_BULLET:<strong>alt 텍스트 품질이 확보</strong>되면 이미지 위치와 상관없이 크롤러의 정보 인식률이 대폭 상승합니다.",
       "ASIDE_BULLET:순서 재배치는 검증보다 <strong>UX/CRO 성격이 강해</strong> 이번 PoC 기술 검증 항목과는 분리합니다.",
       "ASIDE_BULLET:PoC 우선순위는 <strong>① 이미지 Alt 텍스트 전면 적용 → ② 섹션별 헤딩 구조 정비 및 데이터 구조화</strong> 순입니다.",
-      "COMPARE:① JSON-LD|미적용|Product + FAQPage/HowTo Schema",
-      "COMPARE:② 메타 태그|(점검 필요)|Meta Title·Desc·OG·Canonical 정규화",
-      "COMPARE:③ 이미지 구조|통 이미지 1장|13개 기능 단위 분할",
-      "COMPARE:③ Alt 텍스트|없음 / '.' 등 비규격|\"블루벤트 ID [기능명] — [설명]\" 규격",
-      "COMPARE:③ 시맨틱 텍스트|없음|이미지 아래 H2/H3/p 텍스트 블록 삽입<br/>(시각적 노출 또는 sr-only, 클로킹 금지 준수)",
-      "COMPARE:③ 헤딩 계층|없음|섹션별 H2/H3 계층 적용",
-      "COMPARE:④ 인프라|(2-1-b 동일)|robots.txt 허용 + sitemap + (선택) llms.txt"
+      "COMPARE:① 메타 태그|(점검 필요)|Meta Title·Desc·OG·Canonical 정규화",
+      "COMPARE:② Alt 텍스트|없음 / '.' 등 비규격|\"블루벤트 ID [기능명] — [설명]\" 규격",
+      "COMPARE:② 시맨틱 텍스트|없음|이미지 아래 H2/H3/p 텍스트 블록 삽입<br/>(시각적 노출 또는 sr-only, 클로킹 금지 준수)"
     ],
     visualGuide: "상세 페이지의 테크니컬 개선 핵심 포인트(Aside)와 4대 실행 항목(Grid)을 결합한 정보 중심 레이아웃."
   },
@@ -229,5 +225,12 @@ export const SLIDES: Slide[] = [
       "KPI:사실 오류|오류 건수 50%+ 감소|text-[#F59E0B]"
     ],
     visualGuide: "검증 프로토콜과 KPI 지표를 대조표 형태로 배치한 성과 중심 레이아웃."
+  },
+  {
+    id: 19,
+    title: "Thank You",
+    oneLiner: "질의 응답 및 논의 진행",
+    bullets: [],
+    visualGuide: "종료(EOD) 장표"
   }
 ];
