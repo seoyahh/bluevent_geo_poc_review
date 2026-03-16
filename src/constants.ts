@@ -199,7 +199,7 @@ export const SLIDES: Slide[] = [
     title: "3-2. 제품 상세페이지 — As-Is & To-Be",
     oneLiner: "테크니컬 GEO 신호 개선 및 <strong>텍스트 레이어 확보</strong> 전략",
     bullets: [
-      "ASIDE_TITLE:본 PoC 범위에서는 상세페이지 이미지 ‘순서 재배치’는 제외하고, 기술적 GEO 신호 개선에 집중합니다.",
+      "ASIDE_TITLE:본 PoC 범위에서는 상세페이지 이미지 ‘순서 재배치’는 제외하고, GEO 개선에 집중합니다.",
       "ASIDE_BULLET:<strong>AI 인용/정확도 개선의 핵심 레버</strong>는 이미지 위치보다 ‘텍스트로 읽히는 구조’(alt, hidden text, H1~H3)입니다.",
       "ASIDE_BULLET:<strong>alt 텍스트 품질이 확보</strong>되면 이미지 위치와 상관없이 크롤러의 정보 인식률이 대폭 상승합니다.",
       "ASIDE_BULLET:순서 재배치는 검증보다 <strong>UX/CRO 성격이 강해</strong> 이번 PoC 기술 검증 항목과는 분리합니다.",
