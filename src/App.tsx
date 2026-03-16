@@ -128,7 +128,6 @@ export default function App() {
     ];
     const ratioData = [
       { type: '외부 기사/매거진', ratio: '~45%', url: 'magazine.hankyung.com 등', desc: 'PR 기사에서 원핸드그립·슬림 키워드 인용', highlight: true },
-      { type: '앱스토어', ratio: '~25%', url: 'apps.apple.com', desc: '앱 기능 정보의 유일한 텍스트 출처', highlight: true },
       { type: '블루벤트 공식몰', ratio: '~15%', url: 'bluevent.co.kr', desc: '제품 목록만 인용, 상세 스펙 텍스트 없음', highlight: false },
       { type: '유튜브/블로그', ratio: '~10%', url: 'youtube, blog.naver 등', desc: '다나와 리뷰에서 일부 스펙 추출', highlight: false },
       { type: '쇼핑몰', ratio: '~5%', url: '이마트/쿠팡', desc: 'ChatGPT에서 간헐적 인용(가격 위주)', highlight: false },
