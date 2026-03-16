@@ -356,9 +356,9 @@ export default function App() {
   };
 
   const DividerLayout = ({ slide }: { slide: typeof SLIDES[0] }) => (
-    <div className="relative flex flex-col items-center text-center justify-center min-h-[70vh] py-32 w-full px-6 lg:px-12 overflow-hidden bg-[#F5F8FA]">
+    <div className="relative flex flex-col items-center text-center justify-center min-h-screen py-32 w-full px-6 lg:px-12 overflow-hidden bg-[#F5F8FA]">
       {/* 장식용 중앙 그라데이션 (표지 색상: Blue to Purple) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-[#3C76F1]/15 to-[#9747FF]/15 rounded-full blur-[90px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-[#3C76F1]/15 to-[#9747FF]/15 rounded-full blur-[120px] pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
