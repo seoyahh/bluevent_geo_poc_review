@@ -456,6 +456,7 @@ export default function App() {
     });
     const hypothesis = slide.bullets.find(b => b.startsWith('HYPOTHESIS:'))?.replace('HYPOTHESIS:', '');
     const numberColors = ['bg-[#3C76F1]', 'bg-[#FFBB38]', 'bg-[#FF4040]'];
+    const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
     return (
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-20 min-h-screen flex flex-col justify-center text-left bg-[#F5F8FA]">
@@ -475,9 +476,27 @@ export default function App() {
                 <div className={`${numberColors[idx]} text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-black shrink-0 mt-1`}>
                   {idx + 1}
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-full">
                   <h3 className="text-base font-bold text-[#191919] tracking-[-0.02em]" dangerouslySetInnerHTML={{ __html: item.title }} />
                   <p className="text-sm text-[#969696] font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: item.desc }} />
+                  
+                  {idx === 2 && (
+                    <div className="flex flex-wrap gap-4 mt-8">
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <div 
+                          key={num} 
+                          className="w-40 aspect-square rounded-xl overflow-hidden border border-[#E1E1E1] shadow-sm hover:scale-[1.05] hover:border-[#3C76F1] transition-all cursor-zoom-in bg-white"
+                          onClick={() => setExpandedImage(`/images/error${num}.png`)}
+                        >
+                          <img 
+                            src={`/images/error${num}.png`} 
+                            alt={`Fact error ${num}`} 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -498,6 +517,31 @@ export default function App() {
             </p>
           </motion.div>
         )}
+
+        {/* Image Modal */}
+        <AnimatePresence>
+          {expandedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-white/95 backdrop-blur-lg p-10"
+              onClick={() => setExpandedImage(null)}
+            >
+              <button
+                onClick={() => setExpandedImage(null)}
+                className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white flex items-center justify-center border border-[#E1E1E1] shadow-sm group hover:bg-[#F5F8FA]"
+              >
+                <X size={24} className="text-[#4B4B4B] group-hover:text-[#191919]" />
+              </button>
+              <img 
+                src={expandedImage} 
+                alt="Expanded error" 
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" 
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     );
   };
