@@ -705,6 +705,23 @@ export default function App() {
       <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 py-32 min-h-[940px] flex flex-col justify-center bg-[#F5F8FA]">
         <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-12" dangerouslySetInnerHTML={{ __html: slide.title }} />
 
+        {/* 교차 분석 테이블 */}
+        <h3 className="text-lg font-bold text-[#191919] mb-4">교차 분석: 인용 현황(1장) × 테크니컬 진단(2장)</h3>
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-12">
+          <div className="grid grid-cols-3 bg-[#082253] px-6 py-4 text-[13px] font-bold tracking-wide text-white">
+            <span className="text-center">인용 현황</span>
+            <span className="text-center">테크니컬 원인</span>
+            <span className="text-center">대응 가설</span>
+          </div>
+          {crossRows.map(([citation, techCause, hypothesis], idx) => (
+            <div key={idx} className="grid grid-cols-3 border-b border-[#E1E1E1]/60 last:border-0 text-sm">
+              <div className="p-5 text-center text-[#4B4B4B] font-medium border-r border-[#E1E1E1]/40" dangerouslySetInnerHTML={{ __html: citation }} />
+              <div className="p-5 text-center text-[#969696] font-medium border-r border-[#E1E1E1]/40" dangerouslySetInnerHTML={{ __html: techCause }} />
+              <div className="p-5 text-center text-[#3C76F1] font-bold" dangerouslySetInnerHTML={{ __html: hypothesis }} />
+            </div>
+          ))}
+        </div>
+
         {/* 상단 가설 3개 카드 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {hypos.map(([title, desc], idx) => (
@@ -745,23 +762,6 @@ export default function App() {
                 <span className={`px-4 py-1 rounded-full text-xs font-bold ${getVerifyColor(feasibility)}`}>{feasibility}</span>
               </div>
               <div className="p-4 text-center text-[#191919] font-bold">{priority}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* 교차 분석 테이블 */}
-        <h3 className="text-lg font-bold text-[#191919] mb-4">교차 분석: 인용 현황(1장) × 테크니컬 진단(2장)</h3>
-        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden">
-          <div className="grid grid-cols-3 bg-[#082253] px-6 py-4 text-[13px] font-bold tracking-wide text-white">
-            <span className="text-center">인용 현황</span>
-            <span className="text-center">테크니컬 원인</span>
-            <span className="text-center">대응 가설</span>
-          </div>
-          {crossRows.map(([citation, techCause, hypothesis], idx) => (
-            <div key={idx} className="grid grid-cols-3 border-b border-[#E1E1E1]/60 last:border-0 text-sm">
-              <div className="p-5 text-center text-[#4B4B4B] font-medium border-r border-[#E1E1E1]/40" dangerouslySetInnerHTML={{ __html: citation }} />
-              <div className="p-5 text-center text-[#969696] font-medium border-r border-[#E1E1E1]/40" dangerouslySetInnerHTML={{ __html: techCause }} />
-              <div className="p-5 text-center text-[#3C76F1] font-bold" dangerouslySetInnerHTML={{ __html: hypothesis }} />
             </div>
           ))}
         </div>
