@@ -253,8 +253,8 @@ export default function App() {
         <div className="bg-[#ECF1FE] p-10 flex flex-col gap-6 rounded-[2rem] border border-[#3C76F1]/20 shadow-sm relative overflow-hidden mb-12">
            <div className="relative z-10 flex flex-col gap-5">
              <p className="text-[17px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight">
-               Q2(추천)와 Q3(비교)에서 4개 모델 모두 블루벤트를 언급하지 않았다.<br/>
-               대신 아래 경쟁사가 반복적으로 노출되었다:
+               Q2(추천)와 Q3(비교) 질문에서 4개 모델 모두 블루벤트 미언급.<br/>
+               대신 아래 경쟁사가 반복적으로 노출됨:
              </p>
              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                <div className="bg-white p-5 rounded-xl border border-[#E1E1E1]/50 shadow-sm">
@@ -276,7 +276,7 @@ export default function App() {
              
              <div className="mt-2 bg-white/60 p-5 rounded-xl border-l-[6px] border-[#3C76F1]">
                <p className="text-[16px] font-bold text-[#191919] tracking-tight leading-relaxed">
-                 블루벤트는 <span className="text-[#3C76F1]">‘존재하지 않는 브랜드’</span>처럼 취급되었으며, 이는 공식 사이트에 AI가 참조할 수 있는 비교 정보(스펙 테이블, 경쟁 비교 콘텐츠)가 부재하기 때문으로 분석된다.
+                 블루벤트를 <span className="text-[#3C76F1]">‘존재하지 않는 브랜드’</span>처럼 취급. 이는 공식 사이트 내 AI 참조용 비교 정보(스펙 테이블, 경쟁 비교 콘텐츠 등) 부재가 주원인으로 분석됨.
                </p>
              </div>
            </div>
@@ -291,12 +291,12 @@ export default function App() {
               참고 — 경쟁사 사이트 크롤링 기반 벤치마크
             </h3>
             <p className="text-[15px] text-[#4B4B4B] font-medium leading-relaxed tracking-tight">
-              블루벤트와 5개 주요 경쟁사의 공식 사이트를 실제 크롤링하여 GEO 인프라를 비교 분석하였다. 핵심 발견은 다음과 같다.
+              블루벤트 및 5개 주요 경쟁사의 공식 사이트 대상 실제 크롤링 및 GEO 인프라 비교 분석 진행. 핵심 발견 사항:
             </p>
             <div className="space-y-4">
               <div className="bg-white border border-[#E1E1E1] rounded-xl p-5 shadow-sm">
                 <h4 className="font-extrabold text-[#3C76F1] text-[16px] mb-1">1) Schema.org 구조화 데이터: 전 브랜드 미적용</h4>
-                <p className="text-[14px] font-medium text-[#4B4B4B] leading-relaxed">조사된 6개 브랜드 모두 Schema.org JSON-LD를 적용하지 않고 있다. 블루벤트가 선제적으로 도입하면 구조화 정보 우위를 점할 수 있다.</p>
+                <p className="text-[14px] font-medium text-[#4B4B4B] leading-relaxed">조사 대상 6개 브랜드 모두 Schema.org JSON-LD 미적용 상태. 블루벤트의 선제적 도입 시 차별화된 구조화 정보 우위 확보 가능.</p>
               </div>
               <div className="bg-white border border-[#E1E1E1] rounded-xl p-5 shadow-sm">
                 <h4 className="font-extrabold text-[#191919] text-[16px] mb-1">2) Sitemap.xml: 블루벤트·쿠쿠만 미존재</h4>
@@ -370,8 +370,8 @@ export default function App() {
               {/* 시사점 블록 */}
               <div className="bg-[#191919] p-4 text-white text-[14px]">
                 <p className="font-semibold leading-relaxed tracking-tight">
-                  <span className="text-[#3C76F1]">시사점:</span> 경쟁사도 Schema.org는 전혀 미도입 상태이므로, 블루벤트가 JSON-LD를 선제 적용하면 업계 최초로 AI 검색 구조화 정보를 제공하는 브랜드가 될 수 있다.<br/>
-                  <span className="text-[#FF8A00] mt-1 inline-block">동시에, 현재 블루벤트에서 AI 크롤러를 차단(robots.txt)하고 있다는 점은 치명적 약점이며, 이것이 PoC의 최우선 선행 조건이다.</span>
+                  <span className="text-[#3C76F1]">시사점:</span> 경쟁사 전반에 Schema.org가 미도입된 상태로, 블루벤트의 JSON-LD 선제 적용은 업계 최초 AI 구조화 정보 제공 우위 확보를 의미함.<br/>
+                  <span className="text-[#FF8A00] mt-1 inline-block">현재 블루벤트 자사몰의 AI 크롤러 차단(robots.txt)은 치명적 약점이며, 해당 제약사항 해소가 PoC 최우선 선행 조건임.</span>
                 </p>
               </div>
             </div>
