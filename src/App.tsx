@@ -526,8 +526,13 @@ export default function App() {
                             alt={`Fact error ${num}`} 
                             className="w-full h-full object-cover transition-all duration-700 group-hover/thumb:scale-110" 
                           />
-                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 opacity-0 group-hover/thumb:opacity-100 transition-opacity">
-                            <span className="text-white text-[10px] font-bold tracking-widest uppercase">Error Example {num}</span>
+                          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 opacity-0 group-hover/thumb:opacity-100 transition-opacity">
+                            <span className="text-white text-[10px] font-bold tracking-widest">
+                              {num === 1 ? '모델명 오류1' : 
+                               num === 2 ? '모델명 오류2' : 
+                               num === 3 ? '모델명 오류3' : 
+                               num === 4 ? '주소 정보 오류' : '외부 기사 인용'}
+                            </span>
                           </div>
                         </div>
                       ))}
