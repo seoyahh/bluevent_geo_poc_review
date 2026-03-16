@@ -175,7 +175,27 @@ export default function App() {
           <div className="flex items-center gap-3"><div className="w-4 h-4 border border-[#E1E1E1] bg-white rounded" /> 0~19% (미흡)</div>
         </div>
 
-        {/* 2. Key Findings Card */}
+        {/* 2. Source Ratio Table */}
+        <h3 className="text-xl font-extrabold text-[#082253] mb-6 flex items-center gap-3">근거 URL 출처 비율 <span className="text-base text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
+        
+        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-16">
+            <div className="grid grid-cols-[1.5fr_1fr_2fr_3fr] bg-[#082253] px-6 py-4 text-center lg:text-left text-[14px] font-bold tracking-widest text-[#FFFFFF] border-b border-[#082253]">
+              <span className="lg:pl-6 text-[#FFFFFF] font-extrabold">출처 유형</span>
+              <span className="text-center font-extrabold">비율</span>
+              <span className="font-extrabold">주요 URL</span>
+              <span className="font-extrabold">특징</span>
+            </div>
+            {ratioData.map((row, idx) => (
+              <div key={idx} className="grid grid-cols-[1.5fr_1fr_2fr_3fr] border-b border-[#E1E1E1] last:border-0 hover:bg-[#F5F8FA]/50 transition-colors text-[15px] font-medium bg-white">
+                <div className={`p-5 flex items-center font-extrabold lg:pl-12 border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1] text-[16px]' : 'text-[#4B4B4B]'}`}>{row.type}</div>
+                <div className={`p-5 flex items-center justify-center font-black tracking-tighter text-xl border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1]' : 'text-[#969696]'}`}>{row.ratio}</div>
+                <div className={`p-5 flex items-center border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#082253]' : 'text-[#969696]'}`}>{row.url}</div>
+                <div className={`p-5 flex items-center font-medium ${row.highlight ? 'text-[#191919]' : 'text-[#969696]'}`}>{row.desc}</div>
+              </div>
+            ))}
+        </div>
+
+        {/* 3. Key Findings Card */}
         <div className="w-full bg-[#ECF1FE]/50 rounded-[2rem] border border-[#3C76F1]/20 p-12 overflow-hidden mb-16">
           <div className="space-y-8">
             <span className="label-caps !text-[#3C76F1]">Key Findings</span>
@@ -215,26 +235,6 @@ export default function App() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* 3. Source Ratio Table */}
-        <h3 className="text-xl font-extrabold text-[#082253] mb-6 flex items-center gap-3">근거 URL 출처 비율 <span className="text-base text-[#969696] font-semibold tracking-normal">(정성적 추정치)</span></h3>
-        
-        <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-sm overflow-hidden mb-16">
-            <div className="grid grid-cols-[1.5fr_1fr_2fr_3fr] bg-[#082253] px-6 py-4 text-center lg:text-left text-[14px] font-bold tracking-widest text-[#FFFFFF] border-b border-[#082253]">
-              <span className="lg:pl-6 text-[#FFFFFF] font-extrabold">출처 유형</span>
-              <span className="text-center font-extrabold">비율</span>
-              <span className="font-extrabold">주요 URL</span>
-              <span className="font-extrabold">특징</span>
-            </div>
-            {ratioData.map((row, idx) => (
-              <div key={idx} className="grid grid-cols-[1.5fr_1fr_2fr_3fr] border-b border-[#E1E1E1] last:border-0 hover:bg-[#F5F8FA]/50 transition-colors text-[15px] font-medium bg-white">
-                <div className={`p-5 flex items-center font-extrabold lg:pl-12 border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1] text-[16px]' : 'text-[#4B4B4B]'}`}>{row.type}</div>
-                <div className={`p-5 flex items-center justify-center font-black tracking-tighter text-xl border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#3C76F1]' : 'text-[#969696]'}`}>{row.ratio}</div>
-                <div className={`p-5 flex items-center border-r border-[#E1E1E1]/50 ${row.highlight ? 'text-[#082253]' : 'text-[#969696]'}`}>{row.url}</div>
-                <div className={`p-5 flex items-center font-medium ${row.highlight ? 'text-[#191919]' : 'text-[#969696]'}`}>{row.desc}</div>
-              </div>
-            ))}
         </div>
       </div>
     );
