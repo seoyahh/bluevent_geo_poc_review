@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, X, ZoomIn, ExternalLink } from 'lucide-react';
 import { Slide } from '../../types';
 
 export const CitationMatrixLayout = ({ slide }: { slide: Slide }) => {
@@ -23,9 +23,20 @@ export const CitationMatrixLayout = ({ slide }: { slide: Slide }) => {
   };
   return (
     <div className="w-full max-w-[1770px] mx-auto px-6 lg:px-12 flex flex-col justify-center py-20 min-h-screen text-left bg-[#F5F8FA]">
-      <div className="mb-12">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
-        <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+      <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[#191919] mb-6" dangerouslySetInnerHTML={{ __html: slide.title }} />
+          <p className="text-lg lg:text-xl text-[#969696] font-medium leading-tight tracking-tight" dangerouslySetInnerHTML={{ __html: slide.oneLiner }} />
+        </div>
+        <a 
+          href="https://docs.google.com/spreadsheets/d/1Ju3IWJyseUY3eX2f3n2ZxQcn0rNLFBkd2itZp7uIVP0/edit?usp=sharing" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 bg-white border border-[#E1E1E1] hover:border-[#3C76F1] hover:text-[#3C76F1] px-6 py-3 rounded-xl font-bold text-sm tracking-tight transition-all shadow-sm group shrink-0 mb-1"
+        >
+          실제 답변 데이터(Raw) 보기
+          <ExternalLink size={18} className="text-[#969696] group-hover:text-[#3C76F1] transition-colors" />
+        </a>
       </div>
       
       <div className="rounded-2xl border border-[#E1E1E1] bg-white shadow-lg overflow-hidden mb-6">
