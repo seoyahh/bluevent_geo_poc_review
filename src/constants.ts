@@ -3,7 +3,7 @@ import { Slide } from './types';
 export const SLIDES: Slide[] = [
   {
     id: 1,
-    title: "블루벤트 GEO향 개편 PoC - 수행방안 리뷰",
+    title: "블루벤트 GEO향 개편 PoC - 설계 방안 리뷰",
     oneLiner: "<strong>AI 기반 검색 엔진 최적화</strong> 및 사용자 경험 고도화 전략",
     bullets: [
       "Project: <strong>SEO/GEO Optimization</strong>",
@@ -24,7 +24,7 @@ export const SLIDES: Slide[] = [
     title: "1-1. 질문 세트 구성 방안",
     oneLiner: "정교한 질문 설계를 통한 <strong>브랜드 인식</strong> 및 인용 정확도 측정",
     bullets: [
-      "SUMMARY:<strong>진단 목적</strong>|AI 플랫폼(ChatGPT, Perplexity, Gemini 등)에서 블루벤트가 얼마나 올바르게 인식·인용되는지 측정",
+      "SUMMARY:<strong>진단 목적</strong>|AI 플랫폼(ChatGPT, Perplexity, Gemini 등)에서<br> 블루벤트가 얼마나 올바르게 인식·인용되는지 측정",
       "SUMMARY:<strong>개선 범위</strong>|메인페이지 + 제품 상세페이지<br/>(코드 수정 수준)",
       "SUMMARY:<strong>수집 항목</strong>|① 블루벤트 언급 유무<br/>② 인용 URL<br/>③ 오류/누락 내용<br/>④ 제품명·스펙 정확도",
       "QUESTION:브랜드 인식|블루벤트는 어떤 회사고, 어떤 제품을 판매하나요?",
